@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 10.0.1.11
--- Generation Time: May 12, 2014 at 02:21 PM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Erstellungszeit: 12. Mai 2014 um 14:21
+-- Server Version: 5.6.14
+-- PHP-Version: 5.5.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `itv_v1`
+-- Datenbank: `itv_v1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komponenten`
+-- Tabellenstruktur für Tabelle `komponenten`
 --
 
 CREATE TABLE IF NOT EXISTS `komponenten` (
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `komponenten` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `komponenten`
+-- Daten für Tabelle `komponenten`
 --
 
 INSERT INTO `komponenten` (`k_id`, `lieferant_l_id`, `lieferant_r_id`, `k_einkaufsdatum`, `k_gewaehrleistungsdauer`, `k_notiz`, `k_hersteller`, `komponentenarten_ka_id`) VALUES
@@ -55,7 +55,7 @@ INSERT INTO `komponenten` (`k_id`, `lieferant_l_id`, `lieferant_r_id`, `k_einkau
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komponentenarten`
+-- Tabellenstruktur für Tabelle `komponentenarten`
 --
 
 CREATE TABLE IF NOT EXISTS `komponentenarten` (
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `komponentenarten` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
--- Dumping data for table `komponentenarten`
+-- Daten für Tabelle `komponentenarten`
 --
 
 INSERT INTO `komponentenarten` (`ka_id`, `ka_komponentenart`) VALUES
@@ -90,7 +90,7 @@ INSERT INTO `komponentenarten` (`ka_id`, `ka_komponentenart`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komponentenattribute`
+-- Tabellenstruktur für Tabelle `komponentenattribute`
 --
 
 CREATE TABLE IF NOT EXISTS `komponentenattribute` (
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `komponentenattribute` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
--- Dumping data for table `komponentenattribute`
+-- Daten für Tabelle `komponentenattribute`
 --
 
 INSERT INTO `komponentenattribute` (`kat_id`, `kat_beschreibung`) VALUES
@@ -132,7 +132,7 @@ INSERT INTO `komponentenattribute` (`kat_id`, `kat_beschreibung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komponentenattribut_hat_zulaessige_werte`
+-- Tabellenstruktur für Tabelle `komponentenattribut_hat_zulaessige_werte`
 --
 
 CREATE TABLE IF NOT EXISTS `komponentenattribut_hat_zulaessige_werte` (
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `komponentenattribut_hat_zulaessige_werte` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `komponentenattribut_hat_zulaessige_werte`
+-- Daten für Tabelle `komponentenattribut_hat_zulaessige_werte`
 --
 
 INSERT INTO `komponentenattribut_hat_zulaessige_werte` (`komponentenattribute_kat_id`, `zulaessige_werte_zw_id`) VALUES
@@ -231,14 +231,14 @@ INSERT INTO `komponentenattribut_hat_zulaessige_werte` (`komponentenattribute_ka
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komponente_hat_attribute`
+-- Tabellenstruktur für Tabelle `komponente_hat_attribute`
 --
 
 CREATE TABLE IF NOT EXISTS `komponente_hat_attribute` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `komponenten_k_id` int(11) NOT NULL,
   `komponentenattribute_kat_id` int(11) NOT NULL,
   `khkat_wert` varchar(45) DEFAULT NULL,
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID`),
   KEY `fk_komponenten_has_komponentenattribute_komponentenattribute1` (`komponentenattribute_kat_id`),
   KEY `fk_komponenten_has_komponentenattribute_komponenten1` (`komponenten_k_id`)
@@ -247,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `komponente_hat_attribute` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komponente_hat_komponente`
+-- Tabellenstruktur für Tabelle `komponente_hat_komponente`
 --
 
 CREATE TABLE IF NOT EXISTS `komponente_hat_komponente` (
@@ -263,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `komponente_hat_komponente` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `komponente_hat_komponente`
+-- Daten für Tabelle `komponente_hat_komponente`
 --
 
 INSERT INTO `komponente_hat_komponente` (`komponenten_k_id_aggregat`, `komponenten_k_id_teil`, `khk_id`, `vorgangsarten_v_id`, `khk_datum`) VALUES
@@ -275,7 +275,7 @@ INSERT INTO `komponente_hat_komponente` (`komponenten_k_id_aggregat`, `komponent
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lieferant`
+-- Tabellenstruktur für Tabelle `lieferant`
 --
 
 CREATE TABLE IF NOT EXISTS `lieferant` (
@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `lieferant` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `lieferant`
+-- Daten für Tabelle `lieferant`
 --
 
 INSERT INTO `lieferant` (`l_id`, `l_firmenname`, `l_strasse`, `l_tel`, `l_mobil`, `l_fax`, `l_email`, `l_plz_id`, `l_plz`, `l_ort`) VALUES
@@ -305,7 +305,7 @@ INSERT INTO `lieferant` (`l_id`, `l_firmenname`, `l_strasse`, `l_tel`, `l_mobil`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `plz_zuordnung`
+-- Tabellenstruktur für Tabelle `plz_zuordnung`
 --
 
 CREATE TABLE IF NOT EXISTS `plz_zuordnung` (
@@ -316,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `plz_zuordnung` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14957 ;
 
 --
--- Dumping data for table `plz_zuordnung`
+-- Daten für Tabelle `plz_zuordnung`
 --
 
 INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
@@ -15288,7 +15288,7 @@ INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `raeume`
+-- Tabellenstruktur für Tabelle `raeume`
 --
 
 CREATE TABLE IF NOT EXISTS `raeume` (
@@ -15300,7 +15300,7 @@ CREATE TABLE IF NOT EXISTS `raeume` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `raeume`
+-- Daten für Tabelle `raeume`
 --
 
 INSERT INTO `raeume` (`r_id`, `r_nr`, `r_bezeichnung`, `r_notiz`) VALUES
@@ -15315,7 +15315,7 @@ INSERT INTO `raeume` (`r_id`, `r_nr`, `r_bezeichnung`, `r_notiz`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vorgangsarten`
+-- Tabellenstruktur für Tabelle `vorgangsarten`
 --
 
 CREATE TABLE IF NOT EXISTS `vorgangsarten` (
@@ -15325,7 +15325,7 @@ CREATE TABLE IF NOT EXISTS `vorgangsarten` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `vorgangsarten`
+-- Daten für Tabelle `vorgangsarten`
 --
 
 INSERT INTO `vorgangsarten` (`v_id`, `v_bezeichnung`) VALUES
@@ -15336,7 +15336,7 @@ INSERT INTO `vorgangsarten` (`v_id`, `v_bezeichnung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wird_beschrieben_durch`
+-- Tabellenstruktur für Tabelle `wird_beschrieben_durch`
 --
 
 CREATE TABLE IF NOT EXISTS `wird_beschrieben_durch` (
@@ -15348,7 +15348,7 @@ CREATE TABLE IF NOT EXISTS `wird_beschrieben_durch` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `wird_beschrieben_durch`
+-- Daten für Tabelle `wird_beschrieben_durch`
 --
 
 INSERT INTO `wird_beschrieben_durch` (`komponentenarten_ka_id`, `komponentenattribute_kat_id`) VALUES
@@ -15383,7 +15383,7 @@ INSERT INTO `wird_beschrieben_durch` (`komponentenarten_ka_id`, `komponentenattr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `zulaessige_werte`
+-- Tabellenstruktur für Tabelle `zulaessige_werte`
 --
 
 CREATE TABLE IF NOT EXISTS `zulaessige_werte` (
@@ -15393,7 +15393,7 @@ CREATE TABLE IF NOT EXISTS `zulaessige_werte` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=82 ;
 
 --
--- Dumping data for table `zulaessige_werte`
+-- Daten für Tabelle `zulaessige_werte`
 --
 
 INSERT INTO `zulaessige_werte` (`zw_id`, `zw_wert`) VALUES
@@ -15480,11 +15480,11 @@ INSERT INTO `zulaessige_werte` (`zw_id`, `zw_wert`) VALUES
 (81, 'Schwar-Weiss');
 
 --
--- Constraints for dumped tables
+-- Constraints der exportierten Tabellen
 --
 
 --
--- Constraints for table `komponenten`
+-- Constraints der Tabelle `komponenten`
 --
 ALTER TABLE `komponenten`
   ADD CONSTRAINT `fk_komponenten_haendler` FOREIGN KEY (`lieferant_l_id`) REFERENCES `lieferant` (`l_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -15492,21 +15492,21 @@ ALTER TABLE `komponenten`
   ADD CONSTRAINT `fk_komponenten_raeume1` FOREIGN KEY (`lieferant_r_id`) REFERENCES `raeume` (`r_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `komponentenattribut_hat_zulaessige_werte`
+-- Constraints der Tabelle `komponentenattribut_hat_zulaessige_werte`
 --
 ALTER TABLE `komponentenattribut_hat_zulaessige_werte`
   ADD CONSTRAINT `fk_komponentenattribute_has_zulaessige_werte_komponentenattri1` FOREIGN KEY (`komponentenattribute_kat_id`) REFERENCES `komponentenattribute` (`kat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_komponentenattribute_has_zulaessige_werte_zulaessige_werte1` FOREIGN KEY (`zulaessige_werte_zw_id`) REFERENCES `zulaessige_werte` (`zw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `komponente_hat_attribute`
+-- Constraints der Tabelle `komponente_hat_attribute`
 --
 ALTER TABLE `komponente_hat_attribute`
   ADD CONSTRAINT `fk_komponenten_has_komponentenattribute_komponenten1` FOREIGN KEY (`komponenten_k_id`) REFERENCES `komponenten` (`k_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_komponenten_has_komponentenattribute_komponentenattribute1` FOREIGN KEY (`komponentenattribute_kat_id`) REFERENCES `komponentenattribute` (`kat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `komponente_hat_komponente`
+-- Constraints der Tabelle `komponente_hat_komponente`
 --
 ALTER TABLE `komponente_hat_komponente`
   ADD CONSTRAINT `fk_komponenten_has_komponenten_komponenten1` FOREIGN KEY (`komponenten_k_id_aggregat`) REFERENCES `komponenten` (`k_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -15514,13 +15514,13 @@ ALTER TABLE `komponente_hat_komponente`
   ADD CONSTRAINT `fk_komponente_hat_komponente_vorgangsarten1` FOREIGN KEY (`vorgangsarten_v_id`) REFERENCES `vorgangsarten` (`v_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `lieferant`
+-- Constraints der Tabelle `lieferant`
 --
 ALTER TABLE `lieferant`
   ADD CONSTRAINT `l_plz_id_FK` FOREIGN KEY (`l_plz_id`) REFERENCES `plz_zuordnung` (`ID`);
 
 --
--- Constraints for table `wird_beschrieben_durch`
+-- Constraints der Tabelle `wird_beschrieben_durch`
 --
 ALTER TABLE `wird_beschrieben_durch`
   ADD CONSTRAINT `fk_komponentenarten_has_komponentenattribute_komponentenarten1` FOREIGN KEY (`komponentenarten_ka_id`) REFERENCES `komponentenarten` (`ka_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
