@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 10.0.1.11
--- Generation Time: May 12, 2014 at 11:42 AM
+-- Generation Time: May 12, 2014 at 12:54 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -63,7 +63,31 @@ CREATE TABLE IF NOT EXISTS `komponentenattribute` (
   `kat_id` int(11) NOT NULL AUTO_INCREMENT,
   `kat_beschreibung` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`kat_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data for table `komponentenattribute`
+--
+
+INSERT INTO `komponentenattribute` (`kat_id`, `kat_beschreibung`) VALUES
+(1, 'Bildschirmgroesse'),
+(2, 'Taktfrequenz'),
+(3, 'Formfaktor'),
+(4, 'Sockel'),
+(5, 'Speicherkapazität'),
+(6, 'RPM'),
+(7, 'Festplattentyp'),
+(8, 'Schnittstellen (intern)'),
+(9, 'Schnittstellen (extern)'),
+(10, 'RAM-Typ'),
+(11, 'Anzahl Baenke'),
+(12, 'Onboard-Funktionalitaet'),
+(13, 'Lesegeschwindigkeit'),
+(14, 'Maximal Unterstuetzter RAM'),
+(15, 'Anzahl Kerne'),
+(16, 'CPU-Architektur'),
+(17, 'Laufwerke'),
+(18, 'Prozessortyp');
 
 -- --------------------------------------------------------
 
@@ -78,6 +102,91 @@ CREATE TABLE IF NOT EXISTS `komponentenattribut_hat_zulaessige_werte` (
   KEY `fk_komponentenattribute_has_zulaessige_werte_zulaessige_werte1` (`zulaessige_werte_zw_id`),
   KEY `fk_komponentenattribute_has_zulaessige_werte_komponentenattri1` (`komponentenattribute_kat_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `komponentenattribut_hat_zulaessige_werte`
+--
+
+INSERT INTO `komponentenattribut_hat_zulaessige_werte` (`komponentenattribute_kat_id`, `zulaessige_werte_zw_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(3, 5),
+(3, 6),
+(8, 7),
+(8, 8),
+(8, 9),
+(8, 10),
+(10, 11),
+(8, 12),
+(8, 13),
+(9, 14),
+(9, 15),
+(9, 16),
+(9, 17),
+(9, 18),
+(10, 19),
+(10, 20),
+(5, 21),
+(9, 22),
+(9, 23),
+(5, 24),
+(5, 25),
+(5, 26),
+(9, 27),
+(9, 28),
+(9, 29),
+(2, 30),
+(9, 31),
+(2, 32),
+(2, 33),
+(2, 34),
+(9, 35),
+(9, 36),
+(2, 37),
+(8, 38),
+(8, 39),
+(5, 40),
+(5, 41),
+(5, 42),
+(5, 43),
+(5, 44),
+(5, 45),
+(5, 46),
+(5, 47),
+(17, 48),
+(17, 49),
+(18, 50),
+(17, 51),
+(18, 52),
+(18, 53),
+(18, 54),
+(16, 55),
+(16, 56),
+(4, 57),
+(4, 59),
+(4, 60),
+(4, 61),
+(13, 62),
+(13, 63),
+(13, 64),
+(13, 65),
+(10, 66),
+(10, 67),
+(11, 68),
+(15, 68),
+(11, 69),
+(15, 69),
+(11, 70),
+(15, 70),
+(11, 71),
+(15, 71),
+(7, 72),
+(7, 73),
+(6, 74),
+(6, 75),
+(6, 76);
 
 -- --------------------------------------------------------
 
@@ -127,6 +236,8 @@ CREATE TABLE IF NOT EXISTS `lieferant` (
   `l_fax` varchar(20) DEFAULT NULL,
   `l_email` varchar(45) DEFAULT NULL,
   `l_plz_id` int(11) DEFAULT NULL,
+  `l_plz` int(5) DEFAULT NULL,
+  `l_ort` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`l_id`),
   KEY `l_plz_id_FK` (`l_plz_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -135,9 +246,9 @@ CREATE TABLE IF NOT EXISTS `lieferant` (
 -- Dumping data for table `lieferant`
 --
 
-INSERT INTO `lieferant` (`l_id`, `l_firmenname`, `l_strasse`, `l_tel`, `l_mobil`, `l_fax`, `l_email`, `l_plz_id`) VALUES
-(1, 'Dell', 'Grafenstrasse 1', '0123/45679', '0160/1234567', '0123/45678', 'service@dell.de', NULL),
-(2, 'HP', 'Kesselstrasse 45', '0987/45679', '0175/234578', '0987/45678', 'service@hp.de', NULL);
+INSERT INTO `lieferant` (`l_id`, `l_firmenname`, `l_strasse`, `l_tel`, `l_mobil`, `l_fax`, `l_email`, `l_plz_id`, `l_plz`, `l_ort`) VALUES
+(1, 'Dell', 'Grafenstrasse 1', '0123/45679', '0160/1234567', '0123/45678', 'service@dell.de', NULL, NULL, NULL),
+(2, 'HP', 'Kesselstrasse 45', '0987/45679', '0175/234578', '0987/45678', 'service@hp.de', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -15194,7 +15305,7 @@ CREATE TABLE IF NOT EXISTS `zulaessige_werte` (
   `zw_id` int(11) NOT NULL AUTO_INCREMENT,
   `zw_wert` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`zw_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=77 ;
 
 --
 -- Dumping data for table `zulaessige_werte`
@@ -15204,7 +15315,79 @@ INSERT INTO `zulaessige_werte` (`zw_id`, `zw_wert`) VALUES
 (1, '19"'),
 (2, '17"'),
 (3, '24"'),
-(4, '27"');
+(4, '27"'),
+(5, '3,5"'),
+(6, '2,5"'),
+(7, 'SATA'),
+(8, 'SAS'),
+(9, 'PCI'),
+(10, 'PCIe'),
+(11, 'DDR3'),
+(12, 'AAFP'),
+(13, 'ATX'),
+(14, 'USB 2.0'),
+(15, 'USB 3.0'),
+(16, 'HDMI'),
+(17, 'VGA'),
+(18, 'DVI'),
+(19, 'DDR2'),
+(20, 'DDR4'),
+(21, '2GB'),
+(22, 'RJ45'),
+(23, 'LWL'),
+(24, '4GB'),
+(25, '8GB'),
+(26, '16GB'),
+(27, 'S-Video'),
+(28, 'PS/2'),
+(29, 'Displayport'),
+(30, '533MHz'),
+(31, 'Mini-HDMI'),
+(32, '667MHz'),
+(33, '800MHz'),
+(34, '1066MHz'),
+(35, 'LPT'),
+(36, 'Seriell'),
+(37, '1600MHz'),
+(38, 'IDE'),
+(39, 'e-SATA'),
+(40, '120 GB'),
+(41, '128 GB'),
+(42, '250 GB'),
+(43, '750 GB'),
+(44, '500 GB'),
+(45, '1000 GB'),
+(46, '2000 GB'),
+(47, '3000 GB'),
+(48, 'CD-ROM'),
+(49, 'DVD-ROM'),
+(50, 'i3'),
+(51, 'Blu-Ray'),
+(52, 'i5'),
+(53, 'k5'),
+(54, 'k6'),
+(55, '32-Bit'),
+(56, '64-Bit'),
+(57, '1156'),
+(58, 'i7'),
+(59, '1150'),
+(60, 'Sockel-3'),
+(61, 'Sockel-7'),
+(62, '16x'),
+(63, '18x'),
+(64, '24x'),
+(65, '32x'),
+(66, 'GDDR2'),
+(67, 'GDDR4'),
+(68, '2'),
+(69, '4'),
+(70, '6'),
+(71, '8'),
+(72, 'SSD'),
+(73, 'HDD'),
+(74, '5600'),
+(75, '7200'),
+(76, '10000');
 
 --
 -- Constraints for dumped tables
