@@ -11,9 +11,9 @@ function select_statement($Type, $Index) {
   mysql_connect($Server, $User, $PW);
   mysql_select_db("itv_v1");
 
-  $Statements=["raeume" => "SELECT * FROM raeume"];
-
-  $Result=mysql_query($Statements);
+  $Statements=["raeume" => "SELECT * FROM raeume WHERE '".$Index[0]."'"];
+  
+  $Result = mysql_query($Statement["raeume"]);
   while($tmp=mysql_fetch_row($Result)) {
     $Data[]=$tmp;
   }
@@ -21,6 +21,5 @@ function select_statement($Type, $Index) {
   mysql_close();
   return $Data;
 }
-
 
 ?>
