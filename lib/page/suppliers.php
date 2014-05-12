@@ -1,36 +1,37 @@
-
 <div class="row">
-	<h1>Lieferer</h1>
-	<button id="add_btn"type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target=".add_supplier_modal">Hinzufügen</button>
-</div>
-<div class="row">
-	<div class="table-responsive">
-	  <table class="table table-striped" id="suppliers_table">
-		<th>Firmenname</th>
-		<th>Straße</th>
-		<th>Tel</th>
-		<th>Mobil</th>
-		<th>Fax</th>
-		<th>Email</th>
-		<th>Tel</th>
-		<th>Ort</th>
-		<th></th>  
-		<tr>
-			<td> item 1</td>
-			<td> item 2</td>
-			<td> item 3</td>
-			<td> item 4</td>
-			<td> item 5</td>
-			<td> item 6</td>
-			<td> item 7</td>
-			<td> item 8</td>
-			<td>	
-				<button type="button" class="btn btn-primary btn-xs" style="float: right">Löschen</button>
-				<button type="button" class="btn btn-primary btn-xs" style="float: right">Editieren</button>
-			</td>	
-		</tr>
-	  </table>
+	<div class="col-md-2">
+		<h1 class="page-header">Lieferanten</h1>
 	</div>
+	<div class="col-md-10">
+		<button id="add_btn"type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target=".add_supplier_modal">Hinzufügen</button>
+	</div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped" id="suppliers_table">
+	<th>Firmenname</th>
+	<th>Straße</th>
+	<th>Tel</th>
+	<th>Mobil</th>
+	<th>Fax</th>
+	<th>Email</th>
+	<th>Tel</th>
+	<th>Ort</th>
+	<th></th>  
+	<th></th>  
+	<tr>
+		<td> item 1</td>
+		<td> item 2</td>
+		<td> item 3</td>
+		<td> item 4</td>
+		<td> item 5</td>
+		<td> item 6</td>
+		<td> item 7</td>
+		<td> item 8</td>
+		<td class="col-md-1"><button type="button" class="btn btn-primary btn-xs">Editieren</button></td>
+		<td class="col-md-1"><button type="button" class="btn btn-danger btn-xs">L&ouml;schen</button></td>
+	</tr>
+  </table>
 </div>
 
 <div class="modal fade add_supplier_modal">

@@ -1,8 +1,8 @@
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-2">
 		<h1 class="page-header">R&auml;ume</h1>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-10">
 		<button type="button" class="btn btn-primary" style="float: right">Hinzuf&uuml;gen</button>
 	</div>
 </div>
