@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
 
-    <title>Components</title>
+    <title>Verwaltung</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Components</a>
+          <a class="navbar-brand" href="#">Verwaltung</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -53,16 +53,16 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#management">Management</a>
+            <li><a href="#management">Verwaltung</a>
 				<ul>
-					<li><a href="#suppliers">Suppliers</a></li>
-					<li><a href="#rooms">Rooms</a></li>
-					<li><a href="#users">Users</a></li>
+					<li><a href="#suppliers">Lieferer</a></li>
+					<li><a href="#rooms">Räume</a></li>
+					<li><a href="#users">Benutzer</a></li>
 				</ul>
 			</li>
-            <li><a href="#orders">Orders</a></li>
+            <li><a href="#orders">Bestellungen</a></li>
             <li><a href="#reporting">Reporting</a></li>
-            <li><a href="#acquisitions">New Acquisitions</a></li>
+            <li><a href="#acquisitions">Neubeschaffungen</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

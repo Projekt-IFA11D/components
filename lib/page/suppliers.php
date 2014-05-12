@@ -1,31 +1,32 @@
 
 <div class="row">
-	<h1>Suppliers</h1>
-	<button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target=".add_supplier_modal">Add</button>
+	<h1>Lieferer</h1>
+	<button id="add_btn"type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target=".add_supplier_modal">Hinzufügen</button>
 </div>
 <div class="row">
 	<div class="table-responsive">
 	  <table class="table table-striped" id="suppliers_table">
-		<th>tbl_header1</th>
-		<th>tbl_header1</th>
-		<th>tbl_header1</th>
+		<th>Firmenname</th>
+		<th>Straße</th>
+		<th>Tel</th>
+		<th>Mobil</th>
+		<th>Fax</th>
+		<th>Email</th>
+		<th>Tel</th>
+		<th>Ort</th>
 		<th></th>  
 		<tr>
 			<td> item 1</td>
 			<td> item 2</td>
 			<td> item 3</td>
+			<td> item 4</td>
+			<td> item 5</td>
+			<td> item 6</td>
+			<td> item 7</td>
+			<td> item 8</td>
 			<td>	
-				<button type="button" class="btn btn-primary btn-xs" style="float: right">Delete</button>
-				<button type="button" class="btn btn-primary btn-xs" style="float: right">Edit</button>
-			</td>	
-		</tr>
-		<tr>
-			<td> item 1</td>
-			<td> item 2</td>
-			<td> item 3</td>
-			<td>	
-				<button type="button" class="btn btn-primary btn-xs" style="float: right">Delete</button>
-				<button type="button" class="btn btn-primary btn-xs" style="float: right">Edit</button>
+				<button type="button" class="btn btn-primary btn-xs" style="float: right">Löschen</button>
+				<button type="button" class="btn btn-primary btn-xs" style="float: right">Editieren</button>
 			</td>	
 		</tr>
 	  </table>
@@ -37,7 +38,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Add Supplier</h4>
+        <h4 class="modal-title">Lieferer hinzufügen</h4>
       </div>
       <div class="modal-body">
 		<div class="row">
@@ -62,8 +63,8 @@
 		</div>	
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="add_supplier_button" name="add_supplier_button">Add supplier</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+        <button type="button" class="btn btn-primary" id="add_supplier_button" name="add_supplier_button">Hinzufügen</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 10.0.1.11
--- Generation Time: May 12, 2014 at 12:54 PM
+-- Generation Time: May 12, 2014 at 02:21 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -39,7 +39,18 @@ CREATE TABLE IF NOT EXISTS `komponenten` (
   KEY `fk_komponenten_haendler` (`lieferant_l_id`),
   KEY `fk_komponenten_raeume1` (`lieferant_r_id`),
   KEY `fk_komponenten_komponentenarten1` (`komponentenarten_ka_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `komponenten`
+--
+
+INSERT INTO `komponenten` (`k_id`, `lieferant_l_id`, `lieferant_r_id`, `k_einkaufsdatum`, `k_gewaehrleistungsdauer`, `k_notiz`, `k_hersteller`, `komponentenarten_ka_id`) VALUES
+(1, 1, 2, '2014-01-01', 2, '', 'LENOVO', 1),
+(2, 1, 2, '2014-01-01', 2, '', 'LENOVO', 3),
+(3, 1, 2, '2014-01-01', 2, '', 'LENOVO', 2),
+(4, 1, 2, '2014-01-01', 2, '', 'LENOVO', 5),
+(5, 1, 2, '2014-01-01', 2, '', 'LENOVO', 4);
 
 -- --------------------------------------------------------
 
@@ -51,7 +62,30 @@ CREATE TABLE IF NOT EXISTS `komponentenarten` (
   `ka_id` int(11) NOT NULL AUTO_INCREMENT,
   `ka_komponentenart` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ka_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+
+--
+-- Dumping data for table `komponentenarten`
+--
+
+INSERT INTO `komponentenarten` (`ka_id`, `ka_komponentenart`) VALUES
+(1, 'Komplettsystem'),
+(2, 'RAM'),
+(3, 'Prozessor'),
+(4, 'Mainboard'),
+(5, 'Festplatte'),
+(6, 'Grafikkarte'),
+(7, 'Netzwerkkarte'),
+(8, 'Raidcontroller'),
+(13, 'Netzteil'),
+(14, 'Switches'),
+(15, 'VLAN'),
+(16, 'Router'),
+(17, 'Hubs'),
+(18, 'Accesspoints'),
+(19, 'Drucker'),
+(20, 'Optisches Laufwerk'),
+(21, 'Software');
 
 -- --------------------------------------------------------
 
@@ -63,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `komponentenattribute` (
   `kat_id` int(11) NOT NULL AUTO_INCREMENT,
   `kat_beschreibung` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`kat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `komponentenattribute`
@@ -86,8 +120,14 @@ INSERT INTO `komponentenattribute` (`kat_id`, `kat_beschreibung`) VALUES
 (14, 'Maximal Unterstuetzter RAM'),
 (15, 'Anzahl Kerne'),
 (16, 'CPU-Architektur'),
-(17, 'Laufwerke'),
-(18, 'Prozessortyp');
+(17, 'Laufwerktyp'),
+(18, 'Prozessortyp'),
+(20, 'Druckertyp'),
+(21, 'DruckerArt'),
+(22, 'IP-Adresse'),
+(23, 'Anzahl_Ports'),
+(24, 'Uplinktyp'),
+(25, 'Uplink_Geschwindigkeit');
 
 -- --------------------------------------------------------
 
@@ -198,10 +238,11 @@ CREATE TABLE IF NOT EXISTS `komponente_hat_attribute` (
   `komponenten_k_id` int(11) NOT NULL,
   `komponentenattribute_kat_id` int(11) NOT NULL,
   `khkat_wert` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`komponenten_k_id`,`komponentenattribute_kat_id`),
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`),
   KEY `fk_komponenten_has_komponentenattribute_komponentenattribute1` (`komponentenattribute_kat_id`),
   KEY `fk_komponenten_has_komponentenattribute_komponenten1` (`komponenten_k_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -219,7 +260,17 @@ CREATE TABLE IF NOT EXISTS `komponente_hat_komponente` (
   KEY `fk_komponenten_has_komponenten_komponenten2` (`komponenten_k_id_teil`),
   KEY `fk_komponenten_has_komponenten_komponenten1` (`komponenten_k_id_aggregat`),
   KEY `fk_komponente_hat_komponente_vorgangsarten1` (`vorgangsarten_v_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `komponente_hat_komponente`
+--
+
+INSERT INTO `komponente_hat_komponente` (`komponenten_k_id_aggregat`, `komponenten_k_id_teil`, `khk_id`, `vorgangsarten_v_id`, `khk_datum`) VALUES
+(1, 2, 1, 1, '2014-01-01'),
+(1, 3, 2, 1, '2014-01-01'),
+(1, 4, 3, 1, '2014-01-01'),
+(1, 5, 4, 1, '2014-01-01');
 
 -- --------------------------------------------------------
 
@@ -240,15 +291,16 @@ CREATE TABLE IF NOT EXISTS `lieferant` (
   `l_ort` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`l_id`),
   KEY `l_plz_id_FK` (`l_plz_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `lieferant`
 --
 
 INSERT INTO `lieferant` (`l_id`, `l_firmenname`, `l_strasse`, `l_tel`, `l_mobil`, `l_fax`, `l_email`, `l_plz_id`, `l_plz`, `l_ort`) VALUES
-(1, 'Dell', 'Grafenstrasse 1', '0123/45679', '0160/1234567', '0123/45678', 'service@dell.de', NULL, NULL, NULL),
-(2, 'HP', 'Kesselstrasse 45', '0987/45679', '0175/234578', '0987/45678', 'service@hp.de', NULL, NULL, NULL);
+(1, 'Dell', 'Grafenstrasse 1', '0123/45679', '0160/1234567', '0123/45678', 'service@dell.de', 6331, NULL, NULL),
+(2, 'HP', 'Kesselstrasse 45', '0987/45679', '0175/234578', '0987/45678', 'service@hp.de', 2542, NULL, NULL),
+(3, 'Lenovo', 'Hamburger Straße 423', '01824/99283', '0156/472839941', '01824/99284', 'service@lenovo.com', 13245, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -15295,6 +15347,39 @@ CREATE TABLE IF NOT EXISTS `wird_beschrieben_durch` (
   KEY `fk_komponentenarten_has_komponentenattribute_komponentenarten1` (`komponentenarten_ka_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `wird_beschrieben_durch`
+--
+
+INSERT INTO `wird_beschrieben_durch` (`komponentenarten_ka_id`, `komponentenattribute_kat_id`) VALUES
+(2, 2),
+(6, 2),
+(5, 3),
+(3, 4),
+(2, 5),
+(5, 5),
+(5, 6),
+(5, 7),
+(4, 8),
+(6, 8),
+(7, 8),
+(13, 8),
+(4, 9),
+(5, 9),
+(6, 9),
+(7, 9),
+(13, 9),
+(14, 9),
+(2, 10),
+(4, 11),
+(4, 12),
+(20, 13),
+(4, 14),
+(20, 17),
+(3, 18),
+(19, 20),
+(19, 21);
+
 -- --------------------------------------------------------
 
 --
@@ -15305,7 +15390,7 @@ CREATE TABLE IF NOT EXISTS `zulaessige_werte` (
   `zw_id` int(11) NOT NULL AUTO_INCREMENT,
   `zw_wert` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`zw_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=77 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=82 ;
 
 --
 -- Dumping data for table `zulaessige_werte`
@@ -15387,7 +15472,12 @@ INSERT INTO `zulaessige_werte` (`zw_id`, `zw_wert`) VALUES
 (73, 'HDD'),
 (74, '5600'),
 (75, '7200'),
-(76, '10000');
+(76, '10000'),
+(77, 'Tinte'),
+(78, 'Laser'),
+(79, 'Nadel'),
+(80, 'Farbe'),
+(81, 'Schwar-Weiss');
 
 --
 -- Constraints for dumped tables

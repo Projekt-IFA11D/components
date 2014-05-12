@@ -1,5 +1,5 @@
 // Handler for manipulation statements
-// kpetsch 12/05/2014
+// kpetsch 2014-05-12
 
 <?php include "statement_creator.php"?>
 <?php
@@ -30,9 +30,14 @@ function check_column_names($Data) {
   }
 }
 
+// Build a DM-statement from the form data
 function manipulation_statement($Type, $Form_Data) {
 
-  mysql_connect("localhost", "root", "1234");
+  // Placeholder data until server is running
+  $Server="PLACEHOLDER SERVER";
+  $User="PLACEHOLDER USER";
+  $PW="PLACEHOLDER PASSWORD";
+  mysql_connect($Server, $User, $PW);
   mysql_select_db("itv_v1");
   if(isset($Form_Data["Anzahl"]) && $Form_Data["Anzahl"] > 0) {
     $Anzahl = $Form_Data["Anzahl"];

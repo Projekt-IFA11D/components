@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-8">
-		<h1 class="page-header">Benutzer</h1>
+		<h1 class="page-header">R&auml;ume</h1>
 	</div>
 	<div class="col-md-4">
 		<button type="button" class="btn btn-primary" style="float: right">Hinzuf&uuml;gen</button>
@@ -9,9 +9,9 @@
 
 <div class="table table-responsive">
 	<table class="table table-striped">
-		<th>tbl_header1</th>
-		<th>tbl_header1</th>
-		<th>tbl_header1</th>
+		<th>Raum-Nr</th>
+		<th>Raum-Bez</th>
+		<th>Raum-Notiz</th>
 		<th></th>
 		<th></th>
 		<tr>
