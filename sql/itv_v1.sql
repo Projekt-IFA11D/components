@@ -19,9 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `itv_v1`
 --
-
 -- --------------------------------------------------------
-
+use itv_v1;
 --
 -- Tabellenstruktur für Tabelle `komponenten`
 --
