@@ -8,3 +8,4 @@ Hier kann jeder mal seinen Kürzel eintragen und das dann committen ins remote r
 | dreschmn              |
 | weizenfaust			|
 | mgriessmeier          |
+| rsalevsky             |
