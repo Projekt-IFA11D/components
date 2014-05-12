@@ -3,6 +3,17 @@
 
 <?php
 
+// Split the form names into their respective tables and columns
+function read_column_names($Data) {
+  
+  $Table_Columns = array();
+  foreach ($Data as $columns => $values) {
+    $Table_split=split("_", $columns);
+    $Table_Columns[$Table_split[0]][$Table_split[1]] = $values;
+  }
+  return $Table_Columns;
+}
+
 function manipulation_statement($Type, $Form_Data) {
 
   if(isset($Form_Data["Anzahl"]) && $Form_Data["Anzahl"] > 0) {
