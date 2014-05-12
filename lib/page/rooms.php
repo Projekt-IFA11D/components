@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-8">
-		<h1 class="page-header">Users</h1>
+		<h1 class="page-header">Rooms</h1>
 	</div>
 	<div class="col-md-4">
 		<button type="button" class="btn btn-primary" style="float: right">Add</button>
