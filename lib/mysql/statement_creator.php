@@ -6,7 +6,7 @@
 // Expects Values to follow $Values[TABLE]=[COLUMNS => VALUES]
 // Expectes Index to contain key for WHERE
 function create_statement($Values, $Type, $Index) {
-
+  
   foreach ($Values as $Table => $Columns) {
     switch ($Type) {
 
@@ -21,7 +21,7 @@ function create_statement($Values, $Type, $Index) {
       $Statement[$Table]=substr($Statement[$Table], 0, -2);
       $Statement[$Table].=") VALUES(";
       foreach ($values as $value) {
-	$Statement[$Table].="$value, ";
+	$Statement[$Table].="\"$value\", ";
       }
       $Statement[$Table]=substr($Statement[$Table], 0, -2);
       $Statement[$Table].=")";
@@ -30,12 +30,12 @@ function create_statement($Values, $Type, $Index) {
     case "Update":
       $Statement[$Table]="UPDATE $Table SET ";
       foreach ($Columns as $key => $value) {
-	$Statement[$Table].="$key=$value, ";
+	$Statement[$Table].="$key=\"$value\", ";
       }
       $Statement[$Table]=substr($Statement[$Table], 0, -2);
       $Statement[$Table].=" WHERE ";
       foreach ($Index as $key => $value) {
-	$Statement[$Table].="$key=$value AND ";
+	$Statement[$Table].="$key=\"$value\" AND ";
       }
       $Statement[$Table]=substr($Statement[$Table], 0, -5);
       break;
@@ -43,10 +43,11 @@ function create_statement($Values, $Type, $Index) {
     case "Delete":
       $Statement[$Table]="DELETE FROM $Table WHERE ";
       foreach ($Index as $key => $value) {
-	$Statement[$Table].="$key=$value AND ";
+	$Statement[$Table].="$key=\"$value\" AND ";
       }
       $Statement[$Table]=substr($Statement[$Table], 0, -5);
     }
   }
+  return $Statement;
 }
 ?>
