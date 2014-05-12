@@ -5,3 +5,4 @@ Hier kann jeder mal seinen Kürzel eintragen und das dann committen ins remote r
 | mmeister              |
 | kpetsch               |
 | mstecher              |
+| dreschmn              |
