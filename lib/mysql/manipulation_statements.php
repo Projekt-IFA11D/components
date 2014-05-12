@@ -32,7 +32,10 @@ function check_column_names($Data) {
 
 function manipulation_statement($Type, $Form_Data) {
 
-  mysql_connect("localhost", "root", "1234");
+  $Server="localhost";
+  $User="root";
+  $PW="1234";
+  mysql_connect($Server, $User, $PW);
   mysql_select_db("itv_v1");
   if(isset($Form_Data["Anzahl"]) && $Form_Data["Anzahl"] > 0) {
     $Anzahl = $Form_Data["Anzahl"];
