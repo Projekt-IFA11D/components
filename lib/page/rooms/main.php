@@ -41,3 +41,5 @@
 		?>
 	<table>
 </div>
+	
+<script src="lib/page/rooms/script.js"></script>
