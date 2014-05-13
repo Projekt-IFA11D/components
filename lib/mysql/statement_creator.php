@@ -1,14 +1,12 @@
-/*
- Statement creator for DELETE, INSERT and UPDATE
- @author = Kilian Petsch 
- @license = 
- @date = 2014-05-12
-*/
 <?php
-/* 
- Create sql statements
- Expects Values to follow $Values[TABLE]=[COLUMNS => VALUES]
- Expectes Index to contain key for WHERE condition
+/*
+ * Statement creator for DELETE, INSERT and UPDATE
+ * @author = Kilian Petsch 
+ * @license = 
+ * @date = 2014-05-12
+ * Create sql statements
+ * Expects Values to follow $Values[TABLE]=[COLUMNS => VALUES]
+ * Expectes Index to contain key for WHERE condition
 */
 function create_statement($Values, $Type, $Index) {
   
