@@ -4,9 +4,10 @@
  * @author = Kilian Petsch
  * @license = 
  * @date = 2014-05-12
- * Select select statements and return an array for further processing
+
 */
 
+// Select select statements and return an array for further processing
 // Index is the limiting condition if applicable
 function select_statement($Table, $Index = 0) {
   
@@ -30,7 +31,30 @@ INNER JOIN plz_zurodnung AS plz ON (L.l_plz_id=plz.ID)"];
   array_pop($Data);
 
   mysql_close();
-  return $Data;
+  return nice_empty_values($Data);
 }
 
+// Handle multiple select statements which need to be returned in a single array
+function complex_select_statement($Table, $Index = 0) {
+
+
+}
+
+// Replace empty values with visual empty signs
+function nice_empty_values($Data) {
+  
+  foreach ($Data as $sub_Data) {
+    foreach ($sub_Data as $key => $raw_Data) {
+      if($raw_Data==NULL) {
+	$tmp[$key]="-";
+      } else {
+	$tmp[$key]=$raw_Data;
+      }
+    }
+    $nice_Data[]=$tmp;
+    unset($tmp);
+  }
+
+  return $nice_Data;
+}
 ?>
