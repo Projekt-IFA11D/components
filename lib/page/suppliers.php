@@ -8,29 +8,35 @@
 </div>
 
 <div class="table-responsive">
-  <table class="table table-striped" id="suppliers_table">
-	<th>Firmenname</th>
-	<th>Straße</th>
-	<th>Tel</th>
-	<th>Mobil</th>
-	<th>Fax</th>
-	<th>Email</th>
-	<th>Tel</th>
-	<th>Ort</th>
-	<th></th>  
-	<th></th>  
-	<tr>
-		<td> item 1</td>
-		<td> item 2</td>
-		<td> item 3</td>
-		<td> item 4</td>
-		<td> item 5</td>
-		<td> item 6</td>
-		<td> item 7</td>
-		<td> item 8</td>
-		<td class="col-md-1"><button type="button" class="btn btn-primary btn-xs">Editieren</button></td>
-		<td class="col-md-1"><button type="button" class="btn btn-danger btn-xs">L&ouml;schen</button></td>
-	</tr>
+	<table class="table table-striped" id="suppliers_table">
+		<th>Firmenname</th>
+		<th>Straße</th>
+		<th>PLZ</th>
+		<th>Ort</th>
+		<th>Tel</th>
+		<th>Mobil</th>
+		<th>Fax</th>
+		<th>Email</th>
+		<th></th>  
+		<th></th>  
+		<?php
+			$suppliers = select_statement("suppliers");
+			foreach ($suppliers as $supplier)
+			{ ?>
+				<tr>
+					<td><?php echo($supplier['l_firmenname']) ?></td>
+					<td><?php echo($supplier['l_strasse']) ?></td>
+					<td><?php echo($supplier['l_plz']) ?></td>
+					<td><?php echo($supplier['l_ort']) ?></td>
+					<td><?php echo($supplier['l_tel']) ?></td>
+					<td><?php echo($supplier['l_mobil']) ?></td>
+					<td><?php echo($supplier['l_fax']) ?></td>
+					<td><?php echo($supplier['l_email']) ?></td>
+					<td class="col-md-1"><button type="button" class="btn btn-primary btn-xs">Editieren</button></td>
+					<td class="col-md-1"><button type="button" class="btn btn-danger btn-xs">L&ouml;schen</button></td>
+				</tr>
+			<?php }
+		?>
   </table>
 </div>
 

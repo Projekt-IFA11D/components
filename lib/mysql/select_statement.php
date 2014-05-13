@@ -20,7 +20,8 @@ function select_statement($Table, $Index = 0) {
     }
   }
   // Still needs the correct select statements for each table
-  $Statements=["rooms" => "SELECT r_nr, r_bezeichnung, r_notiz FROM raeume"];
+  $Statements=["rooms" => "SELECT r_nr, r_bezeichnung, r_notiz FROM raeume",
+			   "suppliers" => "SELECT l_firmenname, l_strasse, l_tel, l_mobil, l_fax, l_email, l_plz, l_ort FROM lieferant"];
   
   $Result = mysql_query($Statements[$Table]);
   while($Data[]=mysql_fetch_assoc($Result));
