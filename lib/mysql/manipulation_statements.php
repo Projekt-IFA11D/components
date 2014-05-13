@@ -10,7 +10,7 @@ function read_column_names($Data) {
   $Table_Columns = array();
   foreach ($Data as $columns => $values) {
     $Table_split=split("_", $columns, 2);
-    $Table_Columns[$Table_split[0]][$Table_split[1]] = quote_sql($values);
+    $Table_Columns[$Table_split[0]][$Table_split[1]] = sql_quote($values);
   }
   return $Table_Columns;
 }
