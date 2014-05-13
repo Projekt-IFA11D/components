@@ -45,20 +45,30 @@ function select_statement($Table, $Index = 0) {
 // Index contains the column name for the where condition
 function complex_select_statement($Table, $Index = 0) {
 
+
+  $Server = "10.0.1.14";
+  $User = "Gast";
+  $PW = "";
+  $Data = array();
+  mysql_connect($Server, $User, $PW);
+  mysql_select_db("itv_v1");
+
   $Data = array();
   $Sub_Data = array();
+  $Sub_Index = "";
   // Still needs the correct select statements for each table
-  $Statements = ["components" => ["SELECT Komp.k_id
+  $Statements = ["components" => ["SELECT *
 FROM Komponenten Komp
 LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil
 WHERE KhK.komponenten_k_id_teil IS NULL",
+
 "SELECT r_nr as RaumNr ,r_bezeichnung,k_id,ka_komponentenart,kat_beschreibung,khkat_wert, (SELECT KA.ka_komponentenart FROM komponenten K 
 INNER JOIN komponentenarten KA ON K.komponentenarten_ka_id=KA.ka_id WHERE K.k_id=komponenten_k_id_aggregat) as AggregatBez,komponenten_k_id_aggregat as AggregatNr 
 FROM komponenten RIGHT JOIN raeume ON lieferant_r_id=r_id 
 INNER JOIN Komponentenarten ON komponentenarten_ka_id=ka_id 
 LEFT JOIN komponente_hat_attribute ON komponenten_k_id=k_id 
 LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id 
-LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE $Sub_Index
+LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE $Index 
 ORDER BY  `komponenten`.`k_id` ASC"
 ]];
 
@@ -73,10 +83,12 @@ ORDER BY  `komponenten`.`k_id` ASC"
   $Result = mysql_query($Statements[$Table][0]);
   while($Data[] = mysql_fetch_assoc($Result));
   array_pop($Data);
-  
+
+  // Replacing the $Index with the actual condition
   foreach ($Data as $key => $piece) {
-    $Sub_Index=$Index."=".$piece[$Index];
-    $Sub_Result = mysql_query($Statements[$Table][1]);
+    $Sub_Index=" ".$Index."=".$piece[$Index];
+    $tmp_Statement=str_replace(" ".$Index." ", $Sub_Index, $Statements[$Table][1]);
+    $Sub_Result = mysql_query($tmp_Statement);
     while($Sub_Data[] = mysql_fetch_assoc($Sub_Result));
     array_pop($Sub_Data);
     $Data[$key][$Table] = $Sub_Data;
@@ -106,4 +118,5 @@ function nice_empty_values($Data) {
 
   return $nice_Data;
 }
+
 ?>
