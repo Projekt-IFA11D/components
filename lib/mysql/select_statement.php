@@ -1,17 +1,13 @@
-/* 
- Handler for select statements
- @author = Kilian Petsch
- @license = 
- @date = 2014-05-12
-*/
-
-<?php include "quote-sql.php"?>
 <?php
-
 /* 
- Select select statements and return an array for further processing
- Index is the limiting condition if applicable
+ * Handler for select statements
+ * @author = Kilian Petsch
+ * @license = 
+ * @date = 2014-05-12
+ * Select select statements and return an array for further processing
 */
+
+// Index is the limiting condition if applicable
 function select_statement($Table, $Index) {
   
   $Data = array();
