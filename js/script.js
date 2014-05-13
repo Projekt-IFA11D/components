@@ -1,33 +1,33 @@
-function testbtn()
+function edit_room(caller, id)
 {
-	alert( "Handler for .click() called." );
-		console.log('asd');
-
-}
-$( document ).ready(function() {
-
-	$( "#add_supplier_button" ).click(function() {
-		alert( "Handler for .click() called." );
-		console.log('asd');
-	});
-});
-
-$( "edit-room" ).on('click', function() {
-
-	console.log("test");
-	var $row = jQuery(this).closest('tr');
-	var $columns = $row.find('td');
+	var row = caller.closest('tr');
+	var columns = row.find('td');
 	var arr_edit = [];
-	jQuery.each($columns, function(i, item) {
+	$.each(columns, function(i, item) {
 		arr_edit[i] = item.innerHTML;
 	});
-	$('#i_raum_nr').val(arr_edit[0]);
-	$('#i_raum_bez').val(arr_edit[1]);
-	$('#i_raum_not').val(arr_edit[2]);
-});
+	$('#i_room_id').val(id);
+	$('#i_room_nr').val(arr_edit[0]);
+	$('#i_room_bez').val(arr_edit[1]);
+	$('#i_room_notiz').val(arr_edit[2]);
+}
 
-$( "delete-room" ).on('click', function() {
+function delete_room(id)
+{
+	$('#i_room_id').val(id);
+}
 
-	//console.log(($(this).value));
-	console.log("test");
-});
+function room_submit(caller, action)
+{
+	var form = caller.closest('form');
+	console.log(form);
+	var ser = form.serialize();
+	console.log(ser);
+	$.ajax({
+		url: "ajax.php?"+action+"="+ser,
+		cache: false
+	})
+	.done(function( html ) {
+		$( ".main" ).html( html );
+	});
+}

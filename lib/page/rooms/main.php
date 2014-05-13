@@ -29,39 +29,15 @@
 					<td><?php echo($room['r_bezeichnung'])?></td>
 					<td><?php echo($room['r_notiz']) ?></td>
 					<td class="col-md-1">
-						<button id="edit-room" type="button" class="btn btn-primary btn-xs"
-							data-toggle="modal" data-target=".edit_room_modal"
-							value=<?php echo($room['r_id']) ?>>Editieren</button>
+						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_room_modal"
+							onclick="<?php echo('edit_room($(this), '.$room['r_id'].')') ?>">Editieren</button>
 					</td>
 					<td class="col-md-1">
-						<button id="delete-room" type="button" class="btn btn-danger btn-xs"
-							data-toggle="modal" data-target=".delete_room_modal"
-							value=<?php echo($room['r_id']) ?>>L&ouml;schen</button>
+						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_modal"
+							onclick="<?php echo('delete_room('.$room['r_id'].')') ?>">L&ouml;schen</button>
 					</td>
 				</tr>
 			<?php }
 		?>
 	<table>
 </div>
-
-<?php
-
-	if(isset($_POST['submit'])){
-
-		switch($_POST['submit']){
-
-			case 'add_room':
-
-				break;
-
-			case 'delete_room':
-
-				break;
-
-			case 'edit_room':
-
-				break;
-		}
-	}
-
-?>
