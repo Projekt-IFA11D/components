@@ -48,7 +48,19 @@ function complex_select_statement($Table, $Index = 0) {
   $Data = array();
   $Sub_Data = array();
   // Still needs the correct select statements for each table
-  $Statements = ["components" => ["SELECT * FROM raeume", "SELECT * FROM raeume WHERE $Index"]];
+  $Statements = ["components" => ["SELECT Komp.k_id
+FROM Komponenten Komp
+LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil
+WHERE KhK.komponenten_k_id_teil IS NULL",
+"SELECT r_nr as RaumNr ,r_bezeichnung,k_id,ka_komponentenart,kat_beschreibung,khkat_wert, (SELECT KA.ka_komponentenart FROM komponenten K 
+INNER JOIN komponentenarten KA ON K.komponentenarten_ka_id=KA.ka_id WHERE K.k_id=komponenten_k_id_aggregat) as AggregatBez,komponenten_k_id_aggregat as AggregatNr 
+FROM komponenten RIGHT JOIN raeume ON lieferant_r_id=r_id 
+INNER JOIN Komponentenarten ON komponentenarten_ka_id=ka_id 
+LEFT JOIN komponente_hat_attribute ON komponenten_k_id=k_id 
+LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id 
+LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE $Sub_Index
+ORDER BY  `komponenten`.`k_id` ASC"
+]];
 
   // Escape all special characters inside the string
   if($Index!=0) {
@@ -63,7 +75,8 @@ function complex_select_statement($Table, $Index = 0) {
   array_pop($Data);
   
   foreach ($Data as $key => $piece) {
-    $Sub_Result = mysql_query($Statements[$Table][1]."=".$piece[$Index]);
+    $Sub_Index=$Index."=".$piece[$Index];
+    $Sub_Result = mysql_query($Statements[$Table][1]);
     while($Sub_Data[] = mysql_fetch_assoc($Sub_Result));
     array_pop($Sub_Data);
     $Data[$key][$Table] = $Sub_Data;
