@@ -1,3 +1,25 @@
+<?php 
+
+	if(isset($_POST['submit'])){
+		
+		switch($_POST['submit']){
+			
+			case 'add_room':
+				
+				break;
+			
+			case 'delete_room':
+				
+				break;
+			
+			case 'edit_room':
+				
+				break;
+		}
+	}
+
+?>
+
 <!-- MODAL DELETE ROOM -->
 <div class="modal fade delete_room_modal">
   <div class="modal-dialog modal-sm">
@@ -9,12 +31,12 @@
       <div class="modal-body">
 		  Sind Sie sicher?
 	  </div>
-		  
-	  <div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
-		<button type="submit" class="btn btn-primary" id="add_room" name="add_room">Ja</button>
-	  </div>
-      
+	  <form method="POST">		
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+			<button type="submit" class="btn btn-primary" id="delete_room" name="submit" value="delete_room">Ja</button>
+		  </div>
+      </form>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -49,7 +71,7 @@
 		  
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-			<button type="submit" class="btn btn-primary" id="add_room" name="add_room">Hinzufügen</button>
+			<button type="submit" class="btn btn-primary" id="edit_room" name="submit" value="edit_room">Hinzufügen</button>
 		  </div>
       </form>
     </div><!-- /.modal-content -->
@@ -87,7 +109,7 @@
 		  
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-			<button type="submit" class="btn btn-primary" id="add_room" name="add_room">Hinzufügen</button>
+			<button type="submit" class="btn btn-primary" id="add_room" name="submit" value="add_room">Hinzufügen</button>
 		  </div>
       </form>
     </div><!-- /.modal-content -->
