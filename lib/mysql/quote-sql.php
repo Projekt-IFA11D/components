@@ -1,6 +1,9 @@
-// Quote parameters which go into sql statements for safety reasons
-// kpetsch 2014-05-12
-
+/*
+ Quote parameters which go into sql statements for safety reasons
+ @author = Kilian Petsch
+ @license = 
+ @date = 2014-05-12
+*/
 <?php
 
 // Function to close quotes/braces etc. in variables which go into sql statements

@@ -1,5 +1,8 @@
-// Handler for manipulation statements
-// kpetsch 2014-05-12
+/* Handler for manipulation statements
+ @author = Kilian Petsch
+ @license = 
+ @date = 2014-05-12
+*/
 
 <?php include "statement_creator.php"?>
 <?php include "quote-sql.php"?>
@@ -31,7 +34,7 @@ function check_column_names($Data) {
   }
 }
 
-// Build a DM-statement from the form data
+// Build a data manipulation statement from the form data
 function manipulation_statement($Type, $Form_Data) {
 
   // Placeholder data until server is running

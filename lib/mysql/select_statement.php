@@ -1,11 +1,17 @@
-// Handler for select statements
-// kpetsch 2014-05-12
+/* 
+ Handler for select statements
+ @author = Kilian Petsch
+ @license = 
+ @date = 2014-05-12
+*/
 
 <?php include "quote-sql.php"?>
 <?php
 
-// Select select statements and return an array for further processing
-// Index is the limiting condition if applicable
+/* 
+ Select select statements and return an array for further processing
+ Index is the limiting condition if applicable
+*/
 function select_statement($Table, $Index) {
   
   // Placeholder data until server is running
@@ -35,5 +41,5 @@ function select_statement($Table, $Index) {
   return $Data;
 }
 
-var_dump(select_statement("raeume", [""=>""]));
+var_dump(select_statement("raeume",0));
 ?>
