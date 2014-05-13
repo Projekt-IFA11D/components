@@ -1,0 +1,112 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title>
+    
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/impress-demo.css" rel="stylesheet" />
+    <link href="fa/css/font-awesome.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+
+<!--
+    For example this fallback message is only visible when there is `impress-not-supported` class on body.
+-->
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress">
+
+    <div class="step slide" data-x="12000" data-y="1500" data-z="-6000" data-rotate="90" data-scale="1">
+        <h1 align=center>Projektarbeit IFA11D</h1>
+        <br>
+        <p><b>Übersicht</b></p>
+        <br>
+        <ol>
+          <li>Teamaufteilung</li>
+          <li>Ziel des Projekts</li>
+          <li>Software</li>
+          <li>Infrastruktur</li>
+          <li>Ablauf</li>
+        </ol>
+    </div>
+    <div class="step slide" data-x="12000" data-y="3000" data-z="-6000" data-rotate="90" data-scale="1">
+        <h1><b>Team</b></h1>
+    </div>
+    <div class="step slide" data-x="12000" data-y="4500" data-z="-6000" data-rotate="90" data-scale="1">
+        <h1><b>Ziel</b></h1>
+        <br>
+        <p>Software zum Verwalten von IT Komponenten</p>
+    </div>
+    <div class="step slide" data-x="12000" data-y="6000" data-z="-6000" data-rotate="90" data-scale="1">
+        <h1><b>Software</b></h1>
+        <br>
+        <ul>
+          <li>Lieferanten, Räume</li>
+          <ul style="padding: 1px 20px">
+            <li>Anlegen</li>
+            <li>Ändern</li>
+            <li>Entfernen</li>
+          </ul>
+          <br>
+          <li>Sonderfall Komponenten</li>
+          <ul style="padding: 1px 20px">
+            <li>Komplexität durch Vielfalt und Sub-Komponenten</li>
+          </ul>
+          <br>
+          <li>Lösung Wizard</li>
+        </ul>
+    </div>
+    <div class="step slide" data-x="12000" data-y="7500" data-z="-6000" data-rotate="90" data-scale="1">
+        <h1 align=center>Wizard</h1>
+        <img src="../pflichtenheft/wizzard-aktivitaets.png" style="padding: 1px 200px">
+        <a href="../../index.php">START</a>
+    </div>
+    <div class="step slide" data-x="12000" data-y="9000" data-z="-6000" data-rotate="90" data-scale="1">
+        <h1><b>Infrastruktur</b></h1>
+        <img src="../pflichtenheft/Netzplan.png">
+        <br>
+    </div>
+    <div class="step slide" data-x="12000" data-y="10500" data-z="-6000" data-rotate="90" data-scale="1">
+        <p>Folie</p>
+    </div>
+    <div class="step slide" data-x="12000" data-y="12000" data-z="-6000" data-rotate="90" data-scale="1">
+        <p>Folie</p>
+    </div>
+    <div class="step slide" data-x="12000" data-y="13500" data-z="-6000" data-rotate="90" data-scale="1">
+        <p>Folie</p>
+    </div>
+    <div class="step slide" data-x="12000" data-y="15000" data-z="-6000" data-rotate="90" data-scale="1">
+        <p>Folie</p>
+    </div>
+
+</div>
+
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+</body>
+</html>
