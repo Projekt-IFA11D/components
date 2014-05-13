@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 10.0.1.14
--- Generation Time: May 13, 2014 at 11:24 AM
+-- Generation Time: May 13, 2014 at 02:32 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `komponenten` (
   KEY `fk_komponenten_haendler` (`lieferant_l_id`),
   KEY `fk_komponenten_raeume1` (`lieferant_r_id`),
   KEY `fk_komponenten_komponentenarten1` (`komponentenarten_ka_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `komponenten`
@@ -55,7 +55,9 @@ INSERT INTO `komponenten` (`k_id`, `lieferant_l_id`, `lieferant_r_id`, `k_einkau
 (7, 3, 2, '2014-01-01', 2, NULL, 'LENOVO', 13),
 (8, 3, 2, '2014-01-01', 2, NULL, 'LENOVO', 23),
 (9, 3, 2, '2014-01-01', 2, NULL, 'LENOVO', 24),
-(10, 3, 2, '2014-01-01', 2, NULL, 'LENOVO', 25);
+(10, 3, 2, '2014-01-01', 2, NULL, 'LENOVO', 25),
+(14, 3, 2, '2014-01-30', NULL, NULL, 'MICROSOFT', 21),
+(15, 3, 2, '2014-01-01', 2, NULL, NULL, 22);
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `komponentenattribute` (
   `kat_id` int(11) NOT NULL AUTO_INCREMENT,
   `kat_beschreibung` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`kat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `komponentenattribute`
@@ -142,7 +144,11 @@ INSERT INTO `komponentenattribute` (`kat_id`, `kat_beschreibung`) VALUES
 (28, 'Subnetzmaske'),
 (29, 'Gateway'),
 (30, 'ID VLANs'),
-(31, 'Einsatzzweck');
+(31, 'Einsatzzweck'),
+(32, 'Lizenztyp'),
+(33, 'Lizenzlaufzeit'),
+(35, 'Lizenzinformationen'),
+(36, 'Installationshinweis');
 
 -- --------------------------------------------------------
 
@@ -261,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `komponente_hat_attribute` (
   PRIMARY KEY (`ID`),
   KEY `fk_komponenten_has_komponentenattribute_komponentenattribute1` (`komponentenattribute_kat_id`),
   KEY `fk_komponenten_has_komponentenattribute_komponenten1` (`komponenten_k_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `komponente_hat_attribute`
@@ -296,7 +302,10 @@ INSERT INTO `komponente_hat_attribute` (`komponenten_k_id`, `komponentenattribut
 (7, 8, 'PCIe', 27),
 (7, 8, 'SATA', 28),
 (10, 1, '17"', 29),
-(7, 26, '500 Watt', 30);
+(7, 26, '500 Watt', 30),
+(14, 27, 'Office 2014', 31),
+(14, 32, 'Einzelplatzlizenz', 32),
+(14, 33, '2 Jahre', 33);
 
 -- --------------------------------------------------------
 
@@ -314,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `komponente_hat_komponente` (
   KEY `fk_komponenten_has_komponenten_komponenten2` (`komponenten_k_id_teil`),
   KEY `fk_komponenten_has_komponenten_komponenten1` (`komponenten_k_id_aggregat`),
   KEY `fk_komponente_hat_komponente_vorgangsarten1` (`vorgangsarten_v_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `komponente_hat_komponente`
@@ -329,7 +338,8 @@ INSERT INTO `komponente_hat_komponente` (`komponenten_k_id_aggregat`, `komponent
 (1, 7, 10, 1, '2014-01-01'),
 (1, 8, 11, 1, '2014-01-01'),
 (1, 9, 12, 1, '2014-01-01'),
-(1, 10, 13, 1, '2014-01-01');
+(1, 10, 13, 1, '2014-01-01'),
+(1, 14, 14, 1, '2014-01-30');
 
 -- --------------------------------------------------------
 
@@ -346,8 +356,6 @@ CREATE TABLE IF NOT EXISTS `lieferant` (
   `l_fax` varchar(20) DEFAULT NULL,
   `l_email` varchar(45) DEFAULT NULL,
   `l_plz_id` int(11) DEFAULT NULL,
-  `l_plz` int(5) DEFAULT NULL,
-  `l_ort` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`l_id`),
   KEY `l_plz_id_FK` (`l_plz_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
@@ -356,10 +364,10 @@ CREATE TABLE IF NOT EXISTS `lieferant` (
 -- Dumping data for table `lieferant`
 --
 
-INSERT INTO `lieferant` (`l_id`, `l_firmenname`, `l_strasse`, `l_tel`, `l_mobil`, `l_fax`, `l_email`, `l_plz_id`, `l_plz`, `l_ort`) VALUES
-(1, 'Dell', 'Grafenstrasse 1', '0123/45679', '0160/1234567', '0123/45678', 'service@dell.de', 6331, NULL, NULL),
-(2, 'HP', 'Kesselstrasse 45', '0987/45679', '0175/234578', '0987/45678', 'service@hp.de', 2542, NULL, NULL),
-(3, 'Lenovo', 'Hamburger Straße 423', '01824/99283', '0156/472839941', '01824/99284', 'service@lenovo.com', 13245, NULL, NULL);
+INSERT INTO `lieferant` (`l_id`, `l_firmenname`, `l_strasse`, `l_tel`, `l_mobil`, `l_fax`, `l_email`, `l_plz_id`) VALUES
+(1, 'Dell', 'Grafenstrasse 1', '0123/45679', '0160/1234567', '0123/45678', 'service@dell.de', 6331),
+(2, 'HP', 'Kesselstrasse 45', '0987/45679', '0175/234578', '0987/45678', 'service@hp.de', 2542),
+(3, 'Lenovo', 'Hamburger Straße 423', '01824/99283', '0156/472839941', '01824/99284', 'service@lenovo.com', 13245);
 
 -- --------------------------------------------------------
 
@@ -368,17 +376,17 @@ INSERT INTO `lieferant` (`l_id`, `l_firmenname`, `l_strasse`, `l_tel`, `l_mobil`
 --
 
 CREATE TABLE IF NOT EXISTS `plz_zuordnung` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `PLZ` int(5) DEFAULT NULL,
-  `Ort` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  `plz_id` int(11) NOT NULL AUTO_INCREMENT,
+  `plz_plz` int(5) DEFAULT NULL,
+  `plz_ort` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`plz_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14957 ;
 
 --
 -- Dumping data for table `plz_zuordnung`
 --
 
-INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
+INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
 (1, 1067, 'Dresden'),
 (2, 1069, 'Dresden'),
 (3, 1097, 'Dresden'),
@@ -2364,9 +2372,9 @@ INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
 (1983, 12621, 'Berlin'),
 (1984, 12623, 'Berlin'),
 (1985, 12627, 'Berlin'),
-(1986, 12629, 'Berlin'),
-(1987, 12679, 'Berlin');
-INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
+(1986, 12629, 'Berlin');
+INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
+(1987, 12679, 'Berlin'),
 (1988, 12681, 'Berlin'),
 (1989, 12683, 'Berlin'),
 (1990, 12685, 'Berlin'),
@@ -4256,9 +4264,9 @@ INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
 (3874, 21406, 'Barnstedt'),
 (3875, 21406, 'Melbeck'),
 (3876, 21407, ' Deutsch  Evern '),
-(3877, 21409, 'Embsen'),
-(3878, 21423, 'Drage');
-INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
+(3877, 21409, 'Embsen');
+INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
+(3878, 21423, 'Drage'),
 (3879, 21423, ' Winsen  (Luhe) '),
 (3880, 21435, 'Stelle'),
 (3881, 21436, 'Marschacht'),
@@ -6163,9 +6171,9 @@ INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
 (5780, 29499, 'Zernien'),
 (5781, 29525, 'Uelzen'),
 (5782, 29549, ' Bad  Bevensen '),
-(5783, 29553, 'Bienenbüttel'),
-(5784, 29556, 'Suderburg');
-INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
+(5783, 29553, 'Bienenbüttel');
+INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
+(5784, 29556, 'Suderburg'),
 (5785, 29559, 'Wrestedt'),
 (5786, 29562, 'Suhlendorf'),
 (5787, 29565, 'Wriedel'),
@@ -8049,10 +8057,10 @@ INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
 (7665, 47228, 'Duisburg'),
 (7666, 47229, 'Duisburg'),
 (7667, 47239, 'Duisburg'),
-(7668, 47249, 'Duisburg'),
+(7668, 47249, 'Duisburg');
+INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
 (7669, 47259, 'Duisburg'),
-(7670, 47269, 'Duisburg');
-INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
+(7670, 47269, 'Duisburg'),
 (7671, 47279, 'Duisburg'),
 (7672, 47441, 'Moers'),
 (7673, 47443, 'Moers'),
@@ -9945,10 +9953,10 @@ INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
 (9560, 56651, 'Brenk'),
 (9561, 56651, 'Niederdürenbach'),
 (9562, 56651, 'Galenberg'),
-(9563, 56653, 'Glees'),
+(9563, 56653, 'Glees');
+INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
 (9564, 56653, 'Wehr'),
-(9565, 56653, 'Wassenach');
-INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
+(9565, 56653, 'Wassenach'),
 (9566, 56656, 'Brohl-Lützing'),
 (9567, 56659, 'Burgbrohl'),
 (9568, 56727, 'Reudelsterz'),
@@ -11686,10 +11694,10 @@ INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
 (11300, 73492, 'Rainau'),
 (11301, 73494, 'Rosenberg'),
 (11302, 73495, 'Stödtlen'),
-(11303, 73497, 'Tannhausen'),
+(11303, 73497, 'Tannhausen');
+INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
 (11304, 73499, 'Wört'),
-(11305, 73525, ' Schwäbisch  Gmünd ');
-INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
+(11305, 73525, ' Schwäbisch  Gmünd '),
 (11306, 73527, 'Täferrot'),
 (11307, 73527, ' Schwäbisch  Gmünd '),
 (11308, 73529, ' Schwäbisch  Gmünd '),
@@ -13397,11 +13405,11 @@ INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
 (13010, 88239, ' Wangen  im  Allgäu '),
 (13011, 88250, 'Weingarten'),
 (13012, 88255, 'Baindt'),
-(13013, 88255, 'Baienfurt'),
+(13013, 88255, 'Baienfurt');
+INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
 (13014, 88260, 'Argenbühl'),
 (13015, 88263, 'Horgenzell'),
-(13016, 88267, 'Vogt');
-INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
+(13016, 88267, 'Vogt'),
 (13017, 88271, 'Wilhelmsdorf'),
 (13018, 88273, 'Fronreute'),
 (13019, 88276, 'Berg'),
@@ -15123,11 +15131,11 @@ INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
 (14735, 99610, 'Sprötau'),
 (14736, 99610, 'Vogelsberg'),
 (14737, 99625, 'Kölleda'),
-(14738, 99625, 'Großneuhausen'),
+(14738, 99625, 'Großneuhausen');
+INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
 (14739, 99625, 'Schillingstedt'),
 (14740, 99625, 'Kleinneuhausen'),
-(14741, 99625, 'Beichlingen');
-INSERT INTO `plz_zuordnung` (`ID`, `PLZ`, `Ort`) VALUES
+(14741, 99625, 'Beichlingen'),
 (14742, 99625, 'Großmonra'),
 (14743, 99628, 'Eßleben-Teutleben'),
 (14744, 99628, 'Guthmannshausen'),
@@ -15465,10 +15473,15 @@ INSERT INTO `wird_beschrieben_durch` (`komponentenarten_ka_id`, `komponentenattr
 (16, 27),
 (17, 27),
 (18, 27),
+(21, 27),
 (1, 28),
 (1, 29),
 (15, 30),
-(5, 31);
+(5, 31),
+(21, 32),
+(21, 33),
+(21, 35),
+(21, 36);
 
 -- --------------------------------------------------------
 
@@ -15480,7 +15493,7 @@ CREATE TABLE IF NOT EXISTS `zulaessige_werte` (
   `zw_id` int(11) NOT NULL AUTO_INCREMENT,
   `zw_wert` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`zw_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=92 ;
 
 --
 -- Dumping data for table `zulaessige_werte`
@@ -15567,11 +15580,16 @@ INSERT INTO `zulaessige_werte` (`zw_id`, `zw_wert`) VALUES
 (78, 'Laser'),
 (79, 'Nadel'),
 (80, 'Farbe'),
-(81, 'Schwar-Weiss'),
+(81, 'Schwarz-Weiss'),
 (82, '350 Watt'),
 (83, '500 Watt'),
 (84, '750 Watt'),
-(85, '1000 Watt');
+(85, '1000 Watt'),
+(86, 'Volumen'),
+(88, 'Einzelplatzlizenz'),
+(89, 'Schuelerlizenz'),
+(90, 'Lehrerlizenz'),
+(91, 'Verwaltung');
 
 --
 -- Constraints for dumped tables
@@ -15611,7 +15629,7 @@ ALTER TABLE `komponente_hat_komponente`
 -- Constraints for table `lieferant`
 --
 ALTER TABLE `lieferant`
-  ADD CONSTRAINT `l_plz_id_FK` FOREIGN KEY (`l_plz_id`) REFERENCES `plz_zuordnung` (`ID`);
+  ADD CONSTRAINT `l_plz_id_FK` FOREIGN KEY (`l_plz_id`) REFERENCES `plz_zuordnung` (`plz_id`);
 
 --
 -- Constraints for table `wird_beschrieben_durch`
