@@ -5,7 +5,7 @@ $( "a[href^=#]" ).on('click', function(e) {
 	$(this).parent().addClass('active');
 	e.stopPropagation();
 	$.ajax({
-		url: "lib/page/"+href+".php",
+		url: "ajax.php?page="+href,
 		cache: false
 	})
 	.done(function( html ) {
