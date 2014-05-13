@@ -31,5 +31,4 @@ function select_statement($Table, $Index) {
   return $Data;
 }
 
-var_dump(select_statement("raeume",0));
 ?>
