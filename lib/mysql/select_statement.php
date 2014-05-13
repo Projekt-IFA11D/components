@@ -8,7 +8,7 @@
 */
 
 // Index is the limiting condition if applicable
-function select_statement($Table, $Index) {
+function select_statement($Table, $Index = 0) {
   
   $Data = array();
 
@@ -20,7 +20,7 @@ function select_statement($Table, $Index) {
     }
   }
   // Still needs the correct select statements for each table
-  $Statements=["raeume" => "SELECT r_nr, r_bezeichnung, r_notiz FROM raeume"];
+  $Statements=["rooms" => "SELECT r_nr, r_bezeichnung, r_notiz FROM raeume"];
   
   $Result = mysql_query($Statements[$Table]);
   while($Data[]=mysql_fetch_assoc($Result));
