@@ -14,12 +14,18 @@
 		<th>Raum-Notiz</th>
 		<th></th>
 		<th></th>
-		<tr>
-			<td>item 1</td>
-			<td>item 2</td>
-			<td>item 3</td>
-			<td class="col-md-1"><button type="button" class="btn btn-primary btn-xs">Editieren</button></td>
-			<td class="col-md-1"><button type="button" class="btn btn-danger btn-xs">L&ouml;schen</button></td>
-		</tr>
+		<?php
+			$rooms = select_statement("rooms");
+			foreach ($rooms as $room)
+			{ ?>
+				<tr>
+					<td><?php echo($room['r_nr']) ?></td>
+					<td><?php echo($room['r_bezeichnung']) ?></td>
+					<td><?php echo($room['r_notiz']) ?></td>
+					<td class="col-md-1"><button type="button" class="btn btn-primary btn-xs">Editieren</button></td>
+					<td class="col-md-1"><button type="button" class="btn btn-danger btn-xs">L&ouml;schen</button></td>
+				</tr>
+			<?php }
+		?>
 	<table>
 </div>
