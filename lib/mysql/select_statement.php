@@ -21,7 +21,8 @@ function select_statement($Table, $Index = 0) {
   }
   // Still needs the correct select statements for each table
   $Statements=["rooms" => "SELECT r_nr, r_bezeichnung, r_notiz FROM raeume",
-			   "suppliers" => "SELECT l_firmenname, l_strasse, l_tel, l_mobil, l_fax, l_email, l_plz, l_ort FROM lieferant"];
+			   "suppliers" => "SELECT L.l_firmenname, L.l_strasse, L.l_tel, L.l_mobil, L.l_fax, L.l_email, plz.PLZ, plz.Ort FROM lieferant AS L 
+INNER JOIN plz_zurodnung AS plz ON (L.l_plz_id=plz.ID)"];
   
   $Result = mysql_query($Statements[$Table]);
   while($Data[]=mysql_fetch_assoc($Result));
