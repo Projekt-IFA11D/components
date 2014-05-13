@@ -9,27 +9,31 @@
 function select_statement($Table, $Index) {
   
   // Placeholder data until server is running
-  $Server = "PLACEHOLDER SERVER";
-  $User = "PLACEHOLDER USER";
-  $PW = "PLACEHOLDER PASSWORD";
+  $Server = "PLACEHOLDER";
+  $User = "PLACEHOLDER";
+  $PW = "PLACEHOLDER";
   $Data = array();
   mysql_connect($Server, $User, $PW);
   mysql_select_db("itv_v1");
-  
+
   // Escape all special characters inside the string
-  $safe_Index = array();
-  foreach ($Index as $unsafe_index) {
-    $safe_Index[] = sql_quote($unsafe_index);
+  if($Index!=0) {
+    $safe_Index = array();
+    foreach ($Index as $unsafe_index) {
+      $safe_Index[] = sql_quote($unsafe_index);
+    }
   }
   // Still needs the correct select statements for each table
-  $Statements=["raeume" => "SELECT r_nr AS 'Raum Nr', r_bezeichnung AS Art, r_notiz AS Notiz FROM raeume"];
+  $Statements=["raeume" => "SELECT r_nr, r_bezeichnung, r_notiz FROM raeume"];
   
   $Result = mysql_query($Statements[$Table]);
   while($Data[]=mysql_fetch_assoc($Result));
+  // Need to delete last element of the array as fetch_assoc writes its failure into the array
+  array_pop($Data);
 
   mysql_close();
   return $Data;
 }
 
-print_r(select_statement("raeume", [""=>""]));
+var_dump(select_statement("raeume", [""=>""]));
 ?>
