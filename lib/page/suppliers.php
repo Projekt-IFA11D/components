@@ -35,13 +35,14 @@
 </div>
 
 <div class="modal fade add_supplier_modal">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Lieferer hinzufügen</h4>
       </div>
       <div class="modal-body">
+		<!-- 
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">	 
@@ -62,6 +63,56 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>	
+		-->
+		
+	
+		<table table-striped>
+				<tr>
+					<td>Firma:</td>
+					<td><input class="form-control" type='text' name='lieferant__l_firmenname' size='20'></td>
+				</tr>
+				 
+	
+				<tr>
+					<td>Strasse:</td>
+					<td><input class="form-control" type='text' name='lieferant__l_strasse' size='20'>
+				</tr>
+					
+				<tr>
+					<td>Ort:</td>
+					<td><input class="form-control" type='text' name='plz_zurordnung__ORT' size='20'>
+				</tr>
+	
+				
+				<tr>
+					<td>Postleitzahl:</td>
+					<td><input class="form-control" type='text' name='plz_zurordnung__PLZ' size='6'>
+				</tr>
+	
+				<tr>
+					<td>Telefon:</td>
+					<td><input class="form-control" type='text' name='lieferant__l_tel' size='20'>
+				</tr>
+				
+				<tr>
+					<td>Mobil:</td>
+					<td><input class="form-control" type='text' name='lieferant__l_mobil' size='20'>
+				</tr>
+				
+				<tr>
+					<td>Fax:</td>
+					<td><input class="form-control" type='text' name='lieferant__l_fax' size='20'>
+				</tr>
+
+				<tr>
+					<td>Email:</td>
+					<td><input class="form-control" type='text' name='lieferant__l_email' size='20'>
+				</tr>
+	
+		</table>
+	
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
