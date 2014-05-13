@@ -2,6 +2,7 @@
 // kpetsch 2014-05-12
 
 <?php include "statement_creator.php"?>
+<?php include "quote-sql.php"?>
 <?php
 // Split the form names into their respective tables and columns
 function read_column_names($Data) {
@@ -9,7 +10,7 @@ function read_column_names($Data) {
   $Table_Columns = array();
   foreach ($Data as $columns => $values) {
     $Table_split=split("_", $columns, 2);
-    $Table_Columns[$Table_split[0]][$Table_split[1]] = $values;
+    $Table_Columns[$Table_split[0]][$Table_split[1]] = quote_sql($values);
   }
   return $Table_Columns;
 }
