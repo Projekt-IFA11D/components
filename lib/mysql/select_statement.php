@@ -16,7 +16,7 @@ function select_statement($Table, $Index = 0) {
   $Statements=["rooms" => "SELECT r_nr, r_bezeichnung, r_notiz FROM raeume",
 			   "suppliers" => "SELECT L.l_firmenname, L.l_strasse, L.l_tel, L.l_mobil, L.l_fax, L.l_email, plz.plz_plz, plz.plz_ort FROM lieferant
 							   AS L INNER JOIN plz_zuordnung AS plz ON (L.l_plz_id=plz.plz_id)",
-			   "orders" => "SELECT komponenten.k_id, lieferant.l_firmenname, raeume.r_bezeichnung, komponenten.k_einkaufsdatum,
+			   "acqisitions" => "SELECT komponenten.k_id, lieferant.l_firmenname, raeume.r_bezeichnung, komponenten.k_einkaufsdatum,
 							komponenten.k_gewaehrleistungsdauer, komponenten.k_notiz, k_hersteller, komponentenarten.ka_komponentenart
 							FROM komponenten
 								INNER JOIN lieferant ON komponenten.lieferant_l_id = lieferant.l_id
