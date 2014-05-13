@@ -1,10 +1,11 @@
-/* Handler for manipulation statements
- @author = Kilian Petsch
- @license = 
- @date = 2014-05-12
+<?php
+/* 
+ * Handler for manipulation statements
+ * @author = Kilian Petsch
+ * @license = 
+ * @date = 2014-05-12
 */
 
-<?php
 // Split the form names into their respective tables and columns
 function read_column_names($Data) {
   
