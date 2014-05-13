@@ -4,7 +4,6 @@
 		<ul>
 			<li><a href="#suppliers">Lieferanten</a></li>
 			<li><a href="#rooms">Räume</a></li>
-			<li><a href="#users">Benutzer</a></li>
 		</ul>
 	</li>
 	<li><a href="#orders">Bestellungen</a></li>

@@ -28,10 +28,10 @@
 					<td><?php echo($room['r_nr']) ?></td>
 					<td><?php echo($room['r_bezeichnung'])?></td>
 					<td><?php echo($room['r_notiz']) ?></td>
-					<td class="col-md-1 edit_room">
+					<td id="edit-room" class="col-md-1">
 						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_room_modal">Editieren</button>
 					</td>
-					<td class="col-md-1 delete_room">
+					<td class="col-md-1">
 						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_modal">L&ouml;schen</button>
 					</td>
 				</tr>
@@ -61,28 +61,3 @@
 	}
 
 ?>
-
-
-<script>
-
-	jQuery('.edit_room').on('click', function() {
-		
-		$('#i_raum_nr').val('');
-		$('#i_raum_bez').val('');
-		$('#i_raum_not').val('');
-		
-		var $row = jQuery(this).closest('tr');
-		var $columns = $row.find('td');
-		var arr_edit = [];
-		jQuery.each($columns, function(i, item) {
-			arr_edit[i] = item.innerHTML;
-		});
-		$('#i_raum_nr').val(arr_edit[0]);
-		$('#i_raum_bez').val(arr_edit[1]);
-		$('#i_raum_not').val(arr_edit[2]);
-		console.log(values);
-	});
-	
-	
-	
-</script>

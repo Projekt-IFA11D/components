@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 10.0.1.14
--- Generation Time: May 13, 2014 at 02:32 PM
+-- Generation Time: May 13, 2014 at 03:47 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -19,8 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `itv_v1`
 --
-create database if not exists `itv_v1`;
-use itv_v1;
+CREATE DATABASE IF NOT EXISTS `itv_v1` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `itv_v1`;
+
 -- --------------------------------------------------------
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `komponenten` (
   KEY `fk_komponenten_haendler` (`lieferant_l_id`),
   KEY `fk_komponenten_raeume1` (`lieferant_r_id`),
   KEY `fk_komponenten_komponentenarten1` (`komponentenarten_ka_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `komponenten`
@@ -58,7 +59,20 @@ INSERT INTO `komponenten` (`k_id`, `lieferant_l_id`, `lieferant_r_id`, `k_einkau
 (9, 3, 2, '2014-01-01', 2, NULL, 'LENOVO', 24),
 (10, 3, 2, '2014-01-01', 2, NULL, 'LENOVO', 25),
 (14, 3, 2, '2014-01-30', NULL, NULL, 'MICROSOFT', 21),
-(15, 3, 2, '2014-01-01', 2, NULL, NULL, 22);
+(15, 3, 2, '2014-01-01', 2, NULL, NULL, 22),
+(16, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 1),
+(18, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 3),
+(20, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 2),
+(21, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 5),
+(22, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 4),
+(23, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 20),
+(24, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 13),
+(25, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 23),
+(26, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 24),
+(27, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 25),
+(28, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 21),
+(29, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 22),
+(30, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 7);
 
 -- --------------------------------------------------------
 
@@ -324,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `komponente_hat_komponente` (
   KEY `fk_komponenten_has_komponenten_komponenten2` (`komponenten_k_id_teil`),
   KEY `fk_komponenten_has_komponenten_komponenten1` (`komponenten_k_id_aggregat`),
   KEY `fk_komponente_hat_komponente_vorgangsarten1` (`vorgangsarten_v_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `komponente_hat_komponente`
@@ -340,7 +354,20 @@ INSERT INTO `komponente_hat_komponente` (`komponenten_k_id_aggregat`, `komponent
 (1, 8, 11, 1, '2014-01-01'),
 (1, 9, 12, 1, '2014-01-01'),
 (1, 10, 13, 1, '2014-01-01'),
-(1, 14, 14, 1, '2014-01-30');
+(1, 14, 14, 1, '2014-01-30'),
+(16, 18, 15, 1, '2014-03-02'),
+(16, 20, 16, 1, '2014-03-02'),
+(16, 21, 17, 1, '2014-03-02'),
+(16, 22, 18, 1, '2014-03-02'),
+(16, 23, 19, 1, '2014-03-02'),
+(16, 24, 20, 1, '2014-03-02'),
+(16, 25, 21, 1, '2014-03-02'),
+(16, 25, 22, 1, '2014-03-02'),
+(16, 26, 23, 1, '2014-03-02'),
+(16, 27, 24, 1, '2014-03-02'),
+(16, 28, 25, 1, '2014-03-02'),
+(16, 29, 26, 1, '2014-03-02'),
+(16, 30, 27, 1, '2014-03-02');
 
 -- --------------------------------------------------------
 
@@ -15494,7 +15521,7 @@ CREATE TABLE IF NOT EXISTS `zulaessige_werte` (
   `zw_id` int(11) NOT NULL AUTO_INCREMENT,
   `zw_wert` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`zw_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=92 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=96 ;
 
 --
 -- Dumping data for table `zulaessige_werte`
@@ -15590,7 +15617,11 @@ INSERT INTO `zulaessige_werte` (`zw_id`, `zw_wert`) VALUES
 (88, 'Einzelplatzlizenz'),
 (89, 'Schuelerlizenz'),
 (90, 'Lehrerlizenz'),
-(91, 'Verwaltung');
+(91, 'Verwaltung'),
+(92, '1024x768'),
+(93, '800x600'),
+(94, NULL),
+(95, '1920x1080');
 
 --
 -- Constraints for dumped tables
