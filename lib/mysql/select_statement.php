@@ -19,10 +19,10 @@ function select_statement($Table, $Index) {
   // Escape all special characters inside the string
   $safe_Index = array();
   foreach ($Index as $unsafe_index) {
-    $safe_Index[] = quote_sql($unsafe_index);
+    $safe_Index[] = sql_quote($unsafe_index);
   }
   // Still needs the correct select statements for each table
-  $Statements=["raeume" => "SELECT * FROM raeume WHERE $safe_Index[0]"];
+  $Statements=["raeume" => "SELECT r_nr AS 'Raum Nr', r_bezeichnung AS Art, r_notiz AS Notiz FROM raeume"];
   
   $Result = mysql_query($Statements[$Table]);
   while($Data[]=mysql_fetch_assoc($Result));
@@ -31,4 +31,5 @@ function select_statement($Table, $Index) {
   return $Data;
 }
 
+print_r(select_statement("raeume", [""=>""]));
 ?>
