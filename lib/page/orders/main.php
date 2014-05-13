@@ -1,3 +1,37 @@
+<h1 class="page-header">Bestellung</h1>
+
+<div id="step_1">
+	<h2 class="sub-header">Step 1</h2>
+	<select id="c_type" class="form-control">
+		<option id="bundle" value="pc">Komplett PC</option>
+		<option id="single" value="ram">Arbeitsspeicher</option>
+		<option id="single" value="cpu">Prozessor</option>
+		<option id="single" value="mainboard">Mainboard</option>
+		<option id="single" value="hdd">Festplatte</option>
+		<option id="single" value="gpu">Grafikkarte</option>
+		<option id="single" value="ethernet">Netzwerkkarte</option>
+		<option id="single" value="raid">Raidcontroller</option>
+		<option id="single" value="rom">Laufwerk</option>
+		<option id="single" value="power">Netzteil</option>
+		<option id="single" value="switch">Switch</option>
+		<option id="single" value="vlan">VLAN</option>
+		<option id="single" value="router">Router</option>
+		<option id="single" value="hub">Hub</option>
+	</select>
+</div>
+<div id="step_2">
+	<h2 class="sub-header">Step 2</h2>
+	<div id="bundle">
+	</div>
+</div>
+<div id="step_3">
+	<h2 class="sub-header">Step 3</h2>
+	<div id="single">
+	</div>
+</div>
+
+<script src="lib/page/orders/script.js"></script>
+
 <?php 
 
 /*+--------------------------------------------------+*/
@@ -24,10 +58,6 @@
 /*+--------------------------------------------------+*/
 
 
-
-
-
-
 function wizzard_step_one()
 {
 	//Schritt 1: Auswahl der Komponente, die angelegt werden soll.	
@@ -39,7 +69,7 @@ function wizzard_step_one()
 					<br>
 					<h3>Komponenten Set</h3>
 					<form method='POST' name='Bundles' action='#'>
-						<input type='submit' name='bundle_pc' value='Computer'>
+						<input type='submit' name='bundle_pc' id='Computer'>
 					</form>
 					<br>
 					<br>
