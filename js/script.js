@@ -2,7 +2,7 @@ function testbtn()
 {
 	alert( "Handler for .click() called." );
 		console.log('asd');
-	
+
 }
 $( document ).ready(function() {
 
@@ -11,8 +11,8 @@ $( document ).ready(function() {
 		console.log('asd');
 	});
 });
-	
-$('#edit-room').on('click', function() {
+
+$( "edit-room" ).on('click', function() {
 
 	console.log("test");
 	var $row = jQuery(this).closest('tr');
@@ -26,8 +26,8 @@ $('#edit-room').on('click', function() {
 	$('#i_raum_not').val(arr_edit[2]);
 });
 
-$('#delete-room').on('click', function() {
-	
+$( "delete-room" ).on('click', function() {
+
 	//console.log(($(this).value));
 	console.log("test");
 });

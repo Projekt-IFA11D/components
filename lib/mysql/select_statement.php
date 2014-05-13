@@ -44,7 +44,7 @@ function select_statement($Table, $Index = 0) {
 
 // Handle multiple select statements which need to be returned in a single array
 // Index contains the column name for the where condition
-function complex_select_statement($Table, $Index = 0) {
+/*function complex_select_statement($Table, $Index = 0) {
 
 
   $Server = "10.0.1.14";
@@ -99,7 +99,7 @@ ORDER BY  `komponenten`.`k_id` ASC"
   mysql_close();
   return nice_empty_values($Data);
   
-}
+}*/
 
 // Replace NULL values with visual empty signs
 function nice_empty_values($Data) {
@@ -120,5 +120,5 @@ function nice_empty_values($Data) {
   return $nice_Data;
 }
 
-var_dump(complex_select_statement("components",["2", "k_id"]));
+//var_dump(complex_select_statement("components",["2", "k_id"]));
 ?>
