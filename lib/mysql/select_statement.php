@@ -14,8 +14,8 @@ function select_statement($Table, $Index = 0) {
 
   // Still needs the correct select statements for each table
   $Statements=["rooms" => "SELECT r_nr, r_bezeichnung, r_notiz FROM raeume",
-			   "suppliers" => "SELECT L.l_firmenname, L.l_strasse, L.l_tel, L.l_mobil, L.l_fax, L.l_email, plz.PLZ, plz.Ort FROM lieferant AS L 
-INNER JOIN plz_zurodnung AS plz ON (L.l_plz_id=plz.ID)"];
+			   "suppliers" => "SELECT L.l_firmenname, L.l_strasse, L.l_tel, L.l_mobil, L.l_fax, L.l_email, plz.plz_plz, plz.plz_ort FROM lieferant
+								AS L INNER JOIN plz_zuordnung AS plz ON (L.l_plz_id=plz.plz_id)"];
 
   // Escape all special characters inside the string
   if($Index!=0) {

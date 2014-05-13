@@ -17,8 +17,8 @@
 		<th>Mobil</th>
 		<th>Fax</th>
 		<th>Email</th>
-		<th></th>  
-		<th></th>  
+		<th></th>
+		<th></th>
 		<?php
 			$suppliers = select_statement("suppliers");
 			foreach ($suppliers as $supplier)
@@ -26,8 +26,8 @@
 				<tr>
 					<td><?php echo($supplier['l_firmenname']) ?></td>
 					<td><?php echo($supplier['l_strasse']) ?></td>
-					<td><?php echo($supplier['l_plz']) ?></td>
-					<td><?php echo($supplier['l_ort']) ?></td>
+					<td><?php echo($supplier['plz_plz']) ?></td>
+					<td><?php echo($supplier['plz_ort']) ?></td>
 					<td><?php echo($supplier['l_tel']) ?></td>
 					<td><?php echo($supplier['l_mobil']) ?></td>
 					<td><?php echo($supplier['l_fax']) ?></td>

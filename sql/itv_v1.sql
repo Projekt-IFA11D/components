@@ -19,7 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `itv_v1`
 --
-
+create database if not exists `itv_v1`;
+use itv_v1;
 -- --------------------------------------------------------
 
 --
