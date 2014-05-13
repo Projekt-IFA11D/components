@@ -5,10 +5,8 @@
 
 // Function to close quotes/braces etc. in variables which go into sql statements
 function sql_quote($SQL) {
-  
-  
 
+  return mysql_real_escape_string($SQL);
 }
-
 
 ?>
