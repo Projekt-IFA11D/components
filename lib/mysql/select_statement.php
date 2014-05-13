@@ -14,13 +14,7 @@
 */
 function select_statement($Table, $Index) {
   
-  // Placeholder data until server is running
-  $Server = "PLACEHOLDER";
-  $User = "PLACEHOLDER";
-  $PW = "PLACEHOLDER";
   $Data = array();
-  mysql_connect($Server, $User, $PW);
-  mysql_select_db("itv_v1");
 
   // Escape all special characters inside the string
   if($Index!=0) {

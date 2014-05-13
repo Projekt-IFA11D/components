@@ -4,8 +4,6 @@
  @date = 2014-05-12
 */
 
-<?php include "statement_creator.php"?>
-<?php include "quote-sql.php"?>
 <?php
 // Split the form names into their respective tables and columns
 function read_column_names($Data) {
@@ -37,12 +35,6 @@ function check_column_names($Data) {
 // Build a data manipulation statement from the form data
 function manipulation_statement($Type, $Form_Data) {
 
-  // Placeholder data until server is running
-  $Server="PLACEHOLDER SERVER";
-  $User="PLACEHOLDER USER";
-  $PW="PLACEHOLDER PASSWORD";
-  mysql_connect($Server, $User, $PW);
-  mysql_select_db("itv_v1");
   if(isset($Form_Data["Anzahl"]) && $Form_Data["Anzahl"] > 0) {
     $Anzahl = $Form_Data["Anzahl"];
     unset($Form_Data["Anzahl"]);
