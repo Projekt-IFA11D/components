@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.8
+-- version 4.0.9
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 13, 2014 at 08:15 AM
--- Server version: 5.5.33-MariaDB
--- PHP Version: 5.4.20
+-- Host: 10.0.1.14
+-- Generation Time: May 13, 2014 at 11:01 AM
+-- Server version: 5.6.14
+-- PHP Version: 5.5.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `komponentenattribute` (
   `kat_id` int(11) NOT NULL AUTO_INCREMENT,
   `kat_beschreibung` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`kat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `komponentenattribute`
@@ -132,7 +132,11 @@ INSERT INTO `komponentenattribute` (`kat_id`, `kat_beschreibung`) VALUES
 (23, 'Anzahl_Ports'),
 (24, 'Uplinktyp'),
 (25, 'Uplink_Geschwindigkeit'),
-(26, 'Leistung');
+(26, 'Leistung'),
+(27, 'Interne Bezeichnung'),
+(28, 'Subnetzmaske'),
+(29, 'Gateway'),
+(30, 'ID VLANs');
 
 -- --------------------------------------------------------
 
@@ -157,21 +161,41 @@ INSERT INTO `komponentenattribut_hat_zulaessige_werte` (`komponentenattribute_ka
 (1, 2),
 (1, 3),
 (1, 4),
-(2, 30),
-(2, 32),
-(2, 33),
-(2, 34),
-(2, 37),
 (3, 5),
 (3, 6),
-(4, 57),
-(4, 59),
-(4, 60),
-(4, 61),
+(8, 7),
+(8, 8),
+(8, 9),
+(8, 10),
+(10, 11),
+(8, 12),
+(8, 13),
+(9, 14),
+(9, 15),
+(9, 16),
+(9, 17),
+(9, 18),
+(10, 19),
+(10, 20),
 (5, 21),
+(9, 22),
+(9, 23),
 (5, 24),
 (5, 25),
 (5, 26),
+(9, 27),
+(9, 28),
+(9, 29),
+(2, 30),
+(9, 31),
+(2, 32),
+(2, 33),
+(2, 34),
+(9, 35),
+(9, 36),
+(2, 37),
+(8, 38),
+(8, 39),
 (5, 40),
 (5, 41),
 (5, 42),
@@ -180,58 +204,38 @@ INSERT INTO `komponentenattribut_hat_zulaessige_werte` (`komponentenattribute_ka
 (5, 45),
 (5, 46),
 (5, 47),
-(6, 74),
-(6, 75),
-(6, 76),
-(7, 72),
-(7, 73),
-(8, 7),
-(8, 8),
-(8, 9),
-(8, 10),
-(8, 12),
-(8, 13),
-(8, 38),
-(8, 39),
-(9, 14),
-(9, 15),
-(9, 16),
-(9, 17),
-(9, 18),
-(9, 22),
-(9, 23),
-(9, 27),
-(9, 28),
-(9, 29),
-(9, 31),
-(9, 35),
-(9, 36),
-(10, 11),
-(10, 19),
-(10, 20),
-(10, 66),
-(10, 67),
-(11, 68),
-(11, 69),
-(11, 70),
-(11, 71),
+(17, 48),
+(17, 49),
+(18, 50),
+(17, 51),
+(18, 52),
+(18, 53),
+(18, 54),
+(16, 55),
+(16, 56),
+(4, 57),
+(4, 59),
+(4, 60),
+(4, 61),
 (13, 62),
 (13, 63),
 (13, 64),
 (13, 65),
+(10, 66),
+(10, 67),
+(11, 68),
 (15, 68),
+(11, 69),
 (15, 69),
+(11, 70),
 (15, 70),
+(11, 71),
 (15, 71),
-(16, 55),
-(16, 56),
-(17, 48),
-(17, 49),
-(17, 51),
-(18, 50),
-(18, 52),
-(18, 53),
-(18, 54);
+(7, 72),
+(7, 73),
+(6, 74),
+(6, 75),
+(6, 76);
 
 -- --------------------------------------------------------
 
@@ -247,7 +251,34 @@ CREATE TABLE IF NOT EXISTS `komponente_hat_attribute` (
   PRIMARY KEY (`ID`),
   KEY `fk_komponenten_has_komponentenattribute_komponentenattribute1` (`komponentenattribute_kat_id`),
   KEY `fk_komponenten_has_komponentenattribute_komponenten1` (`komponenten_k_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+
+--
+-- Dumping data for table `komponente_hat_attribute`
+--
+
+INSERT INTO `komponente_hat_attribute` (`komponenten_k_id`, `komponentenattribute_kat_id`, `khkat_wert`, `ID`) VALUES
+(3, 2, '1600MHz', 1),
+(3, 5, '4GB', 2),
+(3, 10, 'DDR4', 3),
+(2, 4, '1150', 4),
+(2, 18, 'i5', 5),
+(4, 3, '2,5"', 6),
+(4, 5, '250 GB', 7),
+(4, 6, '7200', 8),
+(4, 7, 'HDD', 9),
+(5, 8, 'SATA', 10),
+(5, 8, 'PCI', 11),
+(5, 8, 'PCIe', 12),
+(5, 8, 'ATX', 13),
+(5, 8, 'IDE', 14),
+(5, 8, 'USB 2.0', 15),
+(5, 8, 'USB 3.0', 16),
+(5, 8, 'VGA', 18),
+(5, 8, 'Displayport', 19),
+(5, 8, 'RJ45', 20),
+(5, 11, '4', 21),
+(5, 8, 'HDMI', 22);
 
 -- --------------------------------------------------------
 
@@ -15357,33 +15388,56 @@ CREATE TABLE IF NOT EXISTS `wird_beschrieben_durch` (
 --
 
 INSERT INTO `wird_beschrieben_durch` (`komponentenarten_ka_id`, `komponentenattribute_kat_id`) VALUES
+(25, 1),
 (2, 2),
-(2, 5),
-(2, 10),
-(3, 4),
-(3, 18),
-(4, 8),
-(4, 9),
-(4, 11),
-(4, 12),
-(4, 14),
+(3, 2),
+(6, 2),
 (5, 3),
+(3, 4),
+(4, 4),
+(2, 5),
 (5, 5),
+(6, 5),
 (5, 6),
 (5, 7),
-(5, 9),
-(6, 2),
+(4, 8),
 (6, 8),
-(6, 9),
 (7, 8),
-(7, 9),
 (13, 8),
+(4, 9),
+(5, 9),
+(6, 9),
+(7, 9),
 (13, 9),
 (14, 9),
+(2, 10),
+(4, 10),
+(4, 11),
+(4, 12),
+(20, 13),
+(4, 14),
+(20, 17),
+(3, 18),
 (19, 20),
 (19, 21),
-(20, 13),
-(20, 17);
+(1, 22),
+(16, 22),
+(18, 22),
+(15, 23),
+(17, 23),
+(13, 26),
+(1, 27),
+(2, 27),
+(3, 27),
+(4, 27),
+(5, 27),
+(6, 27),
+(8, 27),
+(15, 27),
+(16, 27),
+(1, 28),
+(1, 29),
+(15, 30);
 
 -- --------------------------------------------------------
 
