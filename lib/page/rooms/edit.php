@@ -33,23 +33,3 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- END MODAL EDIT ROOM -->
-
-<script>
-	jQuery('#edit-room').on('click', function() {
-
-		$('#i_raum_nr').val('');
-		$('#i_raum_bez').val('');
-		$('#i_raum_not').val('');
-
-		var $row = jQuery(this).closest('tr');
-		var $columns = $row.find('td');
-		var arr_edit = [];
-		jQuery.each($columns, function(i, item) {
-			arr_edit[i] = item.innerHTML;
-		});
-		$('#i_raum_nr').val(arr_edit[0]);
-		$('#i_raum_bez').val(arr_edit[1]);
-		$('#i_raum_not').val(arr_edit[2]);
-		console.log(values);
-	});
-</script>

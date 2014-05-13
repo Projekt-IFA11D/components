@@ -29,10 +29,14 @@
 					<td><?php echo($room['r_bezeichnung'])?></td>
 					<td><?php echo($room['r_notiz']) ?></td>
 					<td id="edit-room" class="col-md-1">
-						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_room_modal">Editieren</button>
+						<button id="edit-room" type="button" class="btn btn-primary btn-xs"
+							data-toggle="modal" data-target=".edit_room_modal"
+							value=<?php echo($room['r_id']) ?>>Editieren</button>
 					</td>
 					<td class="col-md-1">
-						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_modal">L&ouml;schen</button>
+						<button id="delete-room" type="button" class="btn btn-danger btn-xs"
+							data-toggle="modal" data-target=".delete_room_modal"
+							value=<?php echo($room['r_id']) ?>>L&ouml;schen</button>
 					</td>
 				</tr>
 			<?php }
