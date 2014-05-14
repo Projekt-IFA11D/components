@@ -8,25 +8,25 @@
 			</div>
 			<form method="POST">
 				<div class="modal-body">
-					<input type='hidden' id="i_room_id" name='i_room_id'>
+					<input type='hidden' id="raeume_r_id" name='raeume_r_id'>
 					<table>
 						<tr>
 							<td><label>Raum-Nr</label></td>
-							<td><input class="form-control" type='text' id="i_room_nr" name='i_room_nr' size='20' disabled></td>
+							<td><input class="form-control" type='text' id="raeume_r_nr" name='raeume_r_nr' size='20' disabled></td>
 						</tr>
 						<tr>
 							<td><label>Raum-Bez</label></td>
-							<td><input class="form-control" type='text' id="i_room_bez" name='i_room_bez' size='20'></td>
+							<td><input class="form-control" type='text' id="raeume_r_bezeichnung" name='raeume_r_bezeichnung' size='20'></td>
 						</tr>
 						<tr>
 							<td><label>Raum-Notiz</label></td>
-							<td><input class="form-control" type='text' id="i_room_notiz" name='i_room_notiz' size='20'></td>
+							<td><input class="form-control" type='text' id="raeume_r_notiz" name='raeume_r_notiz' size='20'></td>
 						</tr>
 					</table>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-					<button type="button" class="btn btn-primary" data-dismuss="modal" id="i_room_submit" onclick="room_submit($(this), 'edit_room')">Hinzufügen</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="i_room_submit" onclick="room_submit($(this), 'edit_room')">Hinzufügen</button>
 				</div>
 			</form>
 		</div>

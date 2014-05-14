@@ -30,20 +30,23 @@
 	elseif (isset($_GET['edit_room']))
 	{
 		$changes = $_GET['edit_room'];
+		manipulation_statement("Update", $_GET);
 		var_dump($_GET);
 	}
 	elseif (isset($_GET['delete_room']))
 	{
 		$changes = $_GET['delete_room'];
+		manipulation_statement("Delete", $_GET);
 		var_dump($_GET);
 	}
 	elseif (isset($_GET['add_room']))
 	{
 		$changes = $_GET['add_room'];
+		manipulation_statement("Insert", $_GET);
 		var_dump($_GET);
 	}
 	else
 	{
-		echo('Page nor found!');
+		echo('Page not found!');
 	}
 ?>
