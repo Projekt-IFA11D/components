@@ -40,6 +40,13 @@ echo"<pre>";
 print_r($ignoreVal);
 echo"</pre>";
 
+
+
+
+
+
+
+
 prepareToSave();
 function prepareToSave()
 {
@@ -62,126 +69,22 @@ function prepareToSave()
     
     
     //Hauptverarbeitung
-    foreach($array AS $component=>$compData)
-    {
-        
-        $lieferantID = getSupplierID($compData['lieferant']['lieferant']);
-        $raumID = getRoomID($compData['raeume']['raum']);
-        $komponentenartID = getCompTypeID($component);
-        //Existiert der Lieferant? Ja => Liefert die ID zurück; Nein=> gibt false zurück
-        if(!$lieferantID)
-        {
-            echo"Lieferant existiert nicht!";
-        }
-        
-        if(!$raumID)
-        {
-            echo"Raum existiert nicht!";
-        }
-        
-        if(!$komponentenartID)
-        {
-            echo"Komponentenart existiert nicht!";
-        }
-        
-        
-        //Datum umbauen
-        $datum = formDate($compData['main']['einkaufsdatum']);
-        
-        
-        
-        //Statement Komponente montieren
-        $sql_komponente = "INSERT INTO komponenten SET 
-                            lieferant_l_id='".mysql_real_escape_string($lieferantID)."',
-                            raeume_r_id='".mysql_real_escape_string($raumID)."',
-                            k_einkaufsdatum='".$datum."',
-                            k_gewaehrleistungsdauer='".mysql_real_escape_string($compData['main']['gewaehrleistungsdauer'])."',
-                            k_notiz='".mysql_real_escape_string($compData['main']['notiz'])."',
-                            k_hersteller='".mysql_real_escape_string($compData['main']['hersteller'])."',
-                            komponentenarten_ka_id='".mysql_real_escape_string($komponentenartID)."'
-                            ";
-        echo "<br /><br />".$sql_komponente;
-        
-        //Füge Komponente ein
-        //mysql_query($sql_komponente) or die("Komponente konnte nicht eingetragen werden!<br /><b>SQL:</b>$sql_komponente<br />Fehler:".mysql_error());
-        
-        //Hole die neue ID ab
-        //$NewCompID = mysql_insert_id();
-        
-        //Komponentenattribute
-        
-        //Validiere Attribut und Attributwert und kleb' den insert string zam'
-        $attr_string="INSERT INTO komponente_hat_attribute (komponenten_k_id,komponentenattribute_kat_id, khkat_wert) VALUES ";
-        foreach($compData['attr'] AS $attr=>$val)
-        {
-            $attrID = getAttrID($attr);
-            $zwID = getAttrValID($val);
-            $firstAttr=true;
-            
-            
-            
-            //Prüfe ob Wert Validierung nichtig ist
-            if(in_array(strtolower($attr),$ignoreVal))
-            {
-                $ignore=true;
-            }
-            else
-            {
-                $ignore=false;
-            }
-            
-            
-            
-            if(!$attrID)
-            {
-                echo"<br />Attributname '$attr' fürn arsch!";
-            }
-            
-            
-            if(!$zwID && !$ignore)
-            {
-                echo"<br />Zulässiger Wert '$val' erst recht fürn arsch!";
-            }
-            
-            
-            
-            
-            if($attrID && ($zwID || $ignore))
-            {
-                if($firstAttr)
-                {
-                    $firstAttr=false;
-                }
-                else
-                {
-                    $attr_string .= " , ";
-                }
-                
-                $attr_string .= " ('".$NewCompID."','".$attrID."','".mysql_real_escape_string($val)."') ";
-            }
-        }
-        
-        echo "<br /><br />Attributstring: ".$attr_string;
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-
-  
     for($i=1; $i <= $anzahl; $i++)
     {
-        
-        
-        
+        createSingleComp($array);
     }
 }
 
+
+function rollback($cid)
+{
+    $sql_comp = "DELETE FROM komponenten WEHRE k_id='".$cid."'";
+    $sql_compattr = "DELETE FROM komponente_hat_attribute WHERE komponenten_k_id='".$cid."'";
+    $sql_aggregat = "DELETE FROM komponente_hat_komponente WHERE komponente_hat_komponente='".$cid."'";
+    mysql_query($sql_comp);
+    mysql_query($sql_compattr);
+    mysql_query($sql_aggregat);
+}
 
 
 function getAttrValID($val)
@@ -295,6 +198,121 @@ function checkValidValue($val)
 
 
 
+
+
+function createSingleComp($array)
+{
+    global $ignoreVal,$search,$replace;
+    foreach($array AS $component=>$compData)
+    {
+        
+        $lieferantID = getSupplierID($compData['lieferant']['lieferant']);
+        $raumID = getRoomID($compData['raeume']['raum']);
+        $komponentenartID = getCompTypeID($component);
+        //Existiert der Lieferant? Ja => Liefert die ID zurück; Nein=> gibt false zurück
+        if(!$lieferantID)
+        {
+            echo"Lieferant existiert nicht!";
+        }
+        
+        if(!$raumID)
+        {
+            echo"Raum existiert nicht!";
+        }
+        
+        if(!$komponentenartID)
+        {
+            echo"Komponentenart existiert nicht!";
+        }
+        
+        
+        //Datum umbauen
+        $datum = formDate($compData['main']['einkaufsdatum']);
+        
+        
+        
+        //Statement Komponente montieren
+        $sql_komponente = "INSERT INTO komponenten SET 
+                            lieferant_l_id='".mysql_real_escape_string($lieferantID)."',
+                            raeume_r_id='".mysql_real_escape_string($raumID)."',
+                            k_einkaufsdatum='".$datum."',
+                            k_gewaehrleistungsdauer='".mysql_real_escape_string($compData['main']['gewaehrleistungsdauer'])."',
+                            k_notiz='".mysql_real_escape_string($compData['main']['notiz'])."',
+                            k_hersteller='".mysql_real_escape_string($compData['main']['hersteller'])."',
+                            komponentenarten_ka_id='".mysql_real_escape_string($komponentenartID)."'
+                            ";
+        echo "<br /><br />".$sql_komponente;
+        
+        //Füge Komponente ein
+        //mysql_query($sql_komponente) or die("Komponente konnte nicht eingetragen werden!<br /><b>SQL:</b>$sql_komponente<br />Fehler:".mysql_error());
+        
+        //Hole die neue ID ab
+        //$NewCompID = mysql_insert_id();
+        
+        //Komponentenattribute
+        
+        //Validiere Attribut und Attributwert und kleb' den insert string zam'
+        $sql_attr="INSERT INTO komponente_hat_attribute (komponenten_k_id,komponentenattribute_kat_id, khkat_wert) VALUES ";
+        
+        //Sicherheits Bool Variable die es evtl. verhindert das die Attribute nicht in die Datenbank gelangen
+        $safety_check_attr = false;
+        
+        
+        //Gehe alle Attribute der Komponente durch
+        foreach($compData['attr'] AS $attr=>$val)
+        {
+            $attrID = getAttrID($attr);
+            $zwID = getAttrValID($val);
+            $firstAttr=true;
+            
+            
+            
+            //Prüfe ob Wert Validierung nichtig ist
+            if(in_array(strtolower($attr),$ignoreVal))
+            {
+                $ignore=true;
+            }
+            else
+            {
+                $ignore=false;
+            }
+            
+            //Wenn Attribut ID true und Wert Zulässig ODER Attributwert Whitelisted ist wird der String fortgeführt  
+            if($attrID && ($zwID || $ignore))
+            {
+                if($firstAttr)
+                {
+                    $firstAttr=false;
+                }
+                else
+                {
+                    $attr_string .= " , ";
+                }
+                
+                $sql_attr .= " ('".$NewCompID."','".$attrID."','".mysql_real_escape_string($val)."') ";
+                
+                //Da min 1 Datensatz eingefügt wird, wird die Sicherheitsvariable auf true gesetzt
+                $safety_check_attr=true;
+            }
+        }
+        
+        echo "<br /><br />Attributstring: ".$attr_string;
+        
+        
+        //Wenn Sicherheitsvariable true ist, werden die Attribute hinzugefügt. Bei Fehler wird ein Rollback durchgeführt
+        if($safety_check_attr)
+        {
+            if(!mysql_query($sql_attr))
+            {
+                rollback($NewCompID);
+            }
+        }
+        else
+        {
+            rollback($NewCompID);
+        }
+    }
+}
 
 
 
