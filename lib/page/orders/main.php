@@ -1,31 +1,36 @@
 <h1 class="page-header">Bestellung</h1>
 
 <div id="step_1">
-	<h2 class="sub-header">Step 1</h2>
+	<h2 class="sub-header">Auswahl der Komponente</h2>
 	<select id="c_type" class="form-control">
 		<option id="bundle" value="pc">Komplett PC</option>
 		<option id="single" value="ram">Arbeitsspeicher</option>
 		<option id="single" value="cpu">Prozessor</option>
 		<option id="single" value="mainboard">Mainboard</option>
-		<option id="single" value="hdd">Festplatte</option>
-		<option id="single" value="gpu">Grafikkarte</option>
-		<option id="single" value="ethernet">Netzwerkkarte</option>
-		<option id="single" value="raid">Raidcontroller</option>
-		<option id="single" value="rom">Laufwerk</option>
-		<option id="single" value="power">Netzteil</option>
-		<option id="single" value="switch">Switch</option>
+		<option id="single" value="festplatte">Festplatte</option>
+		<option id="single" value="grafikkarte">Grafikkarte</option>
+		<option id="single" value="netzwerkkarte">Netzwerkkarte</option>
+		<option id="single" value="raidcontroller">Raidcontroller</option>
+		<option id="single" value="cd_rom">CD-Laufwerk</option>
+		<option id="single" value="cd_brenner">CD-Brenner</option>
+		<option id="single" value="dvd_rom">DVD-Laufwerke</option>
+		<option id="single" value="dvd_brenner">DVD-Brenner</option>
+		<option id="single" value="netzteil">Netzteil</option>
+		<option id="single" value="drucker">Drucker</option>
+		<option id="single" value="switches">Switch</option>
 		<option id="single" value="vlan">VLAN</option>
 		<option id="single" value="router">Router</option>
 		<option id="single" value="hub">Hub</option>
+		<option id="single" value="accesspoint">Accesspoint</option>
 	</select>
 </div>
 <div id="step_2">
-	<h2 class="sub-header">Step 2</h2>
+	<h2 class="sub-header">Auswahl der Teilkomponenten</h2>
 	<div id="bundle">
 	</div>
 </div>
 <div id="step_3">
-	<h2 class="sub-header">Step 3</h2>
+	<h2 class="sub-header">Eingabe der Eigenschaften</h2>
 	<div id="single">
 	</div>
 </div>
