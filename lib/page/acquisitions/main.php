@@ -1,5 +1,5 @@
 <?php
-	require_once('edit.php');
+	require_once('delete.php');
 ?>
 
 
@@ -11,35 +11,41 @@
 
 <div class="table table-responsive">
 	<table class="table table-striped">
-		<th>K-ID</th>
-		<th>Firmenname</th>
-		<th>Raum-Bez</th>
-		<th>Einkaufsdatum</th>
-		<th>Gew&auml;hrleistungsdauer</th>
-		<th>Notiz</th>
-		<th>Hersteller</th>
-		<th>Komponentenart</th>
-		<th></th>
+		<tr class="header">
+			<th>Firmenname</th>
+			<th>Raum-Bez</th>
+			<th>Einkaufsdatum</th>
+			<th>Gew&auml;hrleistungsdauer</th>
+			<th>Notiz</th>
+			<th>Hersteller</th>
+			<th>Komponentenart</th>
+			<th></th>
+			<th></th>
+		</tr>
 		<?php
-			$acquisitions = select_statement("acquisitions");
-			foreach ($acquisitions as $acquisition)
+			$components = select_statement("acquisitions"); //TODO: RAUM = neu
+			foreach ($components as $component)
 			{ ?>
 					<tr>
-						<td><?php echo($acquisition['k_id']) ?></td>
-						<td><?php echo($acquisition['l_firmenname']) ?></td>
-						<td><?php echo($acquisition['r_bezeichnung'])?></td>
-						<td><?php echo($acquisition['k_einkaufsdatum']) ?></td>
-						<td><?php echo($acquisition['k_gewaehrleistungsdauer']) ?></td>
-						<td><?php echo($acquisition['k_notiz'])?></td>
-						<td><?php echo($acquisition['k_hersteller'])?></td>
-						<td><?php echo($acquisition['ka_komponentenart'])?></td>
-						<td class="col-md-1 edit_acq"><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_acq_modal" onclick="<?php echo('edit_acquisition($(this), '.$acquisition['k_id'].')') ?>">Editieren</button></td>
+						<td><?php echo($component['l_firmenname']) ?></td>
+						<td><?php echo($component['r_bezeichnung'])?></td>
+						<td><?php echo($component['k_einkaufsdatum']) ?></td>
+						<td><?php echo($component['k_gewaehrleistungsdauer'])." Jahre"?></td>
+						<td><?php echo($component['k_notiz'])?></td>
+						<td><?php echo($component['k_hersteller'])?></td>
+						<td><?php echo($component['ka_komponentenart'])?></td>
+						<td class="col-md-1">
+							<button type="button" class="btn btn-primary btn-xs"
+							onclick="<?php echo('edit_components($(this), '.$component['ka_id'].')') ?>">Details</button>
+						</td>
+						<td class="col-md-1">
+						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_components_modal"
+							onclick="<?php echo('delete_components('.$component['k_id'].')') ?>">L&ouml;schen</button>
+						</td>
 					</tr>
 			<?php }
 		?>
 	<table>
 </div>
 
-<script src="lib/page/acquisitions/script.js"></script>
-
-
+<script src="lib/page/components/script.js"></script>

@@ -12,17 +12,17 @@
 
 <div class="table table-responsive">
 	<table class="table table-striped">
-            <tr class="header">
-		<th>Firmenname</th>
-		<th>Raum-Bez</th>
-		<th>Einkaufsdatum</th>
-		<th>Gew&auml;hrleistungsdauer</th>
-		<th>Notiz</th>
-		<th>Hersteller</th>
-		<th>Komponentenart</th>
-		<th></th>
-		<th></th>
-            </tr>
+		<tr class="header">
+			<th>Firmenname</th>
+			<th>Raum-Bez</th>
+			<th>Einkaufsdatum</th>
+			<th>Gew&auml;hrleistungsdauer</th>
+			<th>Notiz</th>
+			<th>Hersteller</th>
+			<th>Komponentenart</th>
+			<th></th>
+			<th></th>
+		</tr>
 		<?php
 			$components = select_statement("acquisitions");
 			foreach ($components as $component)
