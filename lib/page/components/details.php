@@ -12,10 +12,10 @@
 
 	if(!empty ($_GET["component"]))
 	{
-		switch $_GET["component"]
+		switch ($_GET["component"])
 		{
 			case 1:
-			form_bundle_pc.php
+			require_once('lib\forms\form_bundle_pc.php');
 			break;
 
 			case 2:
