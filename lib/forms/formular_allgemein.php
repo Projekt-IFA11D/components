@@ -27,32 +27,32 @@ function form_general($type)
     
     		<tr>
     		<td align='right'>Hersteller: </td>
-    		<td><input name='".$type."_hersteller' type='text' size='30'></td>
+    		<td><input name='".$type."_main_hersteller' type='text' size='30'></td>
     		</tr>
     
     		<tr>
     		<td align='right'>Raum: </td>
-    		<td><input name='".$type."_raum' type='text' size='30'></td>
+    		<td><input name='".$type."_raeume_raum' type='text' size='30'></td>
     		</tr>
     
     		<tr>
     		<td align='right'>Kaufdatum: </td>
-    		<td><input name='".$type."_kaufdatum' type='text' size='30'></td>
+    		<td><input name='".$type."_main_einkaufsdatum' type='text' size='30'></td>
     		</tr>
     
     		<tr>
     		<td align='right'>Gewaehrleistungsdauer: </td>
-    		<td><input name='".$type."_gewaehr_dauer' type='text' size='30'></td>
+    		<td><input name='".$type."_main_gewaehrleistungsdauer' type='text' size='30'></td>
     		</tr>
     
     		<tr>
     		<td align='right'>Lieferant: </td>
-    		<td><input name='".$type."_lieferant' type='text' size='30'></td>
+    		<td><input name='".$type."_lieferant_lieferant' type='text' size='30'></td>
     		</tr>
     
     		<tr>
     		<td align='right'>Notiz: </td>
-    		<td><input name='".$type."_notiz' type='text' size='30'></td>
+    		<td><input name='".$type."_main_notiz' type='text' size='30'></td>
     		</tr>
     
     	  </table>";
