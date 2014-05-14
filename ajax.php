@@ -90,6 +90,14 @@
 			require_once('lib/page/components/details.php');
 		}
 	}
+    elseif (isset($_GET['search']))
+	{
+		$page = $_GET['search'];
+		if (file_exists('lib/mysql/suchfilter.php'))
+		{
+			require_once('lib/mysql/suchfilter.php');
+		}
+	}
 	elseif (isset($_GET['edit_room']))
 	{
 		manipulation_statement("Update", $_GET);

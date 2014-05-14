@@ -1,4 +1,4 @@
-<h1 class="page-header">Bestellung</h1>
+<h1 class="page-header">Erfassung</h1>
 
 <div id="step_1">
 	<h2 class="sub-header">Auswahl der Komponente</h2>
