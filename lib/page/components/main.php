@@ -12,7 +12,7 @@
 
 <div class="table table-responsive">
 	<table class="table table-striped">
-		<tr class="header">
+		<tr class="sticky">
 			<th>Firmenname</th>
 			<th>Raum-Bez</th>
 			<th>Einkaufsdatum</th>
@@ -56,33 +56,28 @@ $(document).ready(function() {
 	    var data = this.value.split(" ");
 	    var jo = $(".table").find("tr");
 	    if (this.value == "") {
-		jo.show();
-		return;
+		      jo.show();
+		      return;
 	    }
-            if (jo.parent(".header").length > 0) {
-                return;
-            } else {
-	        jo.hide();
-            }
+      $(".table tr:not(:first-child)").hide(); 
 
-	    jo.filter(function (i, v) {
-		var $t = $(this);
-		for (var d = 0; d < data.length; ++d) {
-		    if ($t.is(":contains('" + data[d] + "')")) {
-			return true;
-		    }
-		}
-		return false;
-	    })
-	    .show();
+      jo.filter(function (i, v) {
+		      var $t = $(this);
+		      for (var d = 0; d < data.length; ++d) {
+		          if ($t.is(":contains('" + data[d] + "')")) {
+		            	return true;
+		          }
+	      	}
+	        return false;
+	    }).show();
 	}).focus(function () {
 	    this.value = "";
 	    $(this).css({
-		"color": "black"
+	       "color": "black"
 	    });
 	    $(this).unbind('focus');
 	}).css({
-	    "color": "#C0C0C0"
+	   "color": "#C0C0C0"
 	});
 });
 </script>
