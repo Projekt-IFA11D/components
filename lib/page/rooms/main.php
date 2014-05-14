@@ -24,10 +24,10 @@
 			$rooms = select_statement("rooms");
 			foreach ($rooms as $room)
 			{ ?>
-				<tr class="room_detailed_components" style="cursor: pointer;" r_id="<?php echo($room['r_id']) ?>">
-					<td><?php echo($room['r_nr']) ?></td>
-					<td><?php echo($room['r_bezeichnung'])?></td>
-					<td><?php echo($room['r_notiz']) ?></td>
+				<tr style="cursor: pointer;" r_id="<?php echo($room['r_id']) ?>">
+					<td class="room_detailed_components"><?php echo($room['r_nr']) ?></td>
+					<td class="room_detailed_components"><?php echo($room['r_bezeichnung'])?></td>
+					<td class="room_detailed_components"><?php echo($room['r_notiz']) ?></td>
 					<td class="col-md-1">
 						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_room_modal"
 							onclick="<?php echo('edit_room($(this), '.$room['r_id'].')') ?>">Editieren</button>

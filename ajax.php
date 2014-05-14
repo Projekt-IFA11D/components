@@ -68,15 +68,19 @@
 	elseif (isset($_GET['edit_room']))
 	{
 		manipulation_statement("Update", $_GET);
+		require_once('lib/page/rooms/main.php');
+
 	}
 	elseif (isset($_GET['delete_room']))
 	{
 		manipulation_statement("Delete", $_GET);
+		require_once('lib/page/rooms/main.php');
 		var_dump($_GET);
 	}
 	elseif (isset($_GET['add_room']))
 	{
 		manipulation_statement("Insert", $_GET);
+		require_once('lib/page/rooms/main.php');
 		var_dump($_GET);
 	}
 	elseif (isset($_GET['edit_supplier']))
