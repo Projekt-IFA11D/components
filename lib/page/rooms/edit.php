@@ -8,7 +8,7 @@
 			</div>
 			<form method="POST">
 				<div class="modal-body">
-					<input type='hidden' id="raeume_r_id" name='raeume_r_id'>
+					<input type='text' class="raeume_r_id" name='raeume_r_id'>
 					<table>
 						<tr>
 							<td><label>Raum-Nr</label></td>
