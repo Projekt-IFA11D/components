@@ -11,35 +11,35 @@
 					<table table-striped>
 						<tr>
 							<td><label>Firma</label></td>
-							<td><input class="form-control" type='text' name='lieferant__l_firmenname' size='20'></td>
+							<td><input class="form-control" type='text' name='lieferant-l_firmenname' size='20'></td>
 						</tr>
 						<tr>
 							<td><label>Strasse</label></td>
-							<td><input class="form-control" type='text' name='lieferant__l_strasse' size='20'>
+							<td><input class="form-control" type='text' name='lieferant-l_strasse' size='20'>
 						</tr>
 						<tr>
 							<td><label>Ort</label></td>
-							<td><input class="form-control" type='text' name='plz_zurordnung__ORT' size='20'>
+							<td><input class="form-control" type='text' name='plz_zuordnung-plz_ort' size='20'>
 						</tr>
 						<tr>
 							<td><label>PLZ</label></td>
-							<td><input class="form-control" type='text' name='plz_zurordnung__PLZ' size='6'>
+							<td><input class="form-control" type='text' name='plz_zuordnung-plz_plz' size='6'>
 						</tr>
 						<tr>
 							<td><label>Telefon</label></td>
-							<td><input class="form-control" type='text' name='lieferant__l_tel' size='20'>
+							<td><input class="form-control" type='text' name='lieferant-l_tel' size='20'>
 						</tr>
 						<tr>
 							<td><label>Mobil</label></td>
-							<td><input class="form-control" type='text' name='lieferant__l_mobil' size='20'>
+							<td><input class="form-control" type='text' name='lieferant-l_mobil' size='20'>
 						</tr>
 						<tr>
 							<td><label>Fax</label></td>
-							<td><input class="form-control" type='text' name='lieferant__l_fax' size='20'>
+							<td><input class="form-control" type='text' name='lieferant-l_fax' size='20'>
 						</tr>
 						<tr>
 							<td><label>Email</label></td>
-							<td><input class="form-control" type='text' name='lieferant__l_email' size='20'>
+							<td><input class="form-control" type='text' name='lieferant-l_email' size='20'>
 						</tr>
 					</table>
 				</div>

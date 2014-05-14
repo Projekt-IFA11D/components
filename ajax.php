@@ -86,7 +86,6 @@
 	elseif (isset($_GET['edit_supplier']))
 	{
 		manipulation_statement("Update", $_GET);
-		var_dump($_GET);
 	}
 	elseif (isset($_GET['delete_supplier']))
 	{
@@ -96,7 +95,6 @@
 	elseif (isset($_GET['add_supplier']))
 	{
 		manipulation_statement("Insert", $_GET);
-		var_dump($_GET);
 	}
 	else
 	{

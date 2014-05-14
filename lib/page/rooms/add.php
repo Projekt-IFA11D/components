@@ -11,15 +11,15 @@
 					<table table-striped>
 						<tr>
 							<td><label>Raum-Nr</label></td>
-							<td><input class="form-control" type='text' name='raeume_r_nr' size='20'></td>
+							<td><input class="form-control" type='text' name='raeume-r_nr' size='20'></td>
 						</tr>
 						<tr>
 							<td><label>Raum-Bez</label></td>
-							<td><input class="form-control" type='text' name='raeume_r_bezeichnung' size='20'></td>
+							<td><input class="form-control" type='text' name='raeume-r_bezeichnung' size='20'></td>
 						</tr>
 						<tr>
 							<td><label>Raum-Notiz</label></td>
-							<td><input class="form-control" type='text' name='raeume_r_notiz' size='20'></td>
+							<td><input class="form-control" type='text' name='raeume-r_notiz' size='20'></td>
 						</tr>
 					</table>
 				</div>
