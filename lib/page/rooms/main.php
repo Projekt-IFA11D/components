@@ -38,6 +38,7 @@
 					</td>
 				</tr>
 			<?php }
+			
 		?>
 	<table>
 </div>

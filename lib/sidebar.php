@@ -6,6 +6,7 @@
 			<li><a href="#rooms">R&auml;ume</a></li>
 		</ul>
 	</li>
+	<li><a href="#components">Komponenten</a></li>
 	<li><a href="#orders">Bestellungen</a></li>
 	<li><a href="#acquisitions">Neubeschaffungen</a></li>
   </ul>
