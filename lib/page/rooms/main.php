@@ -24,7 +24,7 @@
 			$rooms = select_statement("rooms");
 			foreach ($rooms as $room)
 			{ ?>
-				<tr class="room_detailed_components" style="cursor: pointer;">
+				<tr class="room_detailed_components" style="cursor: pointer;" r_id="<?php echo($room['r_id']) ?>">
 					<td><?php echo($room['r_nr']) ?></td>
 					<td><?php echo($room['r_bezeichnung'])?></td>
 					<td><?php echo($room['r_notiz']) ?></td>
@@ -38,10 +38,9 @@
 					</td>
 				</tr>
 			<?php }
-			
 		?>
 	<table>
 </div>
-	
+
 <script src="lib/page/rooms/script.js"></script>
 

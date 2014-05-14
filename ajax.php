@@ -1,6 +1,5 @@
 <?php
 	require_once('global.php');
-	var_dump($_GET);
 
     if (isset($_GET['page']))
 	{
@@ -78,6 +77,14 @@ elseif (isset($_GET['wizzard']))
 		
 		
 		
+	}
+    elseif (isset($_GET['room_component']))
+	{
+		$page = $_GET['room_component'];
+		if (file_exists('lib/page/rooms/room_component.php'))
+		{
+			require_once('lib/page/rooms/room_component.php');
+		}
 	}
 	elseif (isset($_GET['edit_room']))
 	{
