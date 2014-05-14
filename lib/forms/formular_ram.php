@@ -1,22 +1,14 @@
-<?php
-
-echo "<h1>Komponente: RAM</h1><br><br>";
-echo "<table border = '1' cellpadding = '0' cellspacing='4'>
-		
-		<tr>
-		<td align='right'>Interne Bezeichnung/Name: </td>
-		<td><input name='ram_name' type='text' size='30'></td>
-		</tr>
-		
-		<tr>
-		<td align='right'>Groesse: </td>
-		<td><input name='ram_groesse' type='text' size='30'></td>
-		</tr>
-		
-		<tr>
-		<td align='right'>Taktfrequenz: </td>
-		<td><input name='ram_taktfrequenz' type='text' size='30'></td>
-		</tr> 
-		
-	  </table>";
-?>
+<form role="form" type="text">
+    <div class="form-group">
+        <label for="ram_name">Interne Bezeichnung/Name:</label>
+        <input type="text" id="ram_name" class="form-control" name="ram_name" style="width:300px;">
+    </div>
+    <div class="form-group">
+        <label for="ram_groesse">Groesse:</label>
+        <input type="text" id="ram_groesse" class="form-control" name="ram_groesse" style="width:300px;">
+    </div>
+    <div class="form-group">
+        <label for="ram_taktfrequenz">Taktfrequenz:</label>
+        <input type="text" id="ram_taktfrequenz" class="form-control" name="ram_taktfrequenz" style="width:300px;">
+    </div>
+</form>

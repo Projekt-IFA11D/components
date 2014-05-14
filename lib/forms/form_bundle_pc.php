@@ -1,4 +1,4 @@
-<?php
+<!--
 /*+--------------------------------------------------+*/
 /*|													 |*/
 /*|	Formularname:									 |*/
@@ -7,11 +7,12 @@
 /*|													 |*/
 /*| Version:										 |*/
 /*|	========										 |*/
-/*|	1.0												 |*/
+/*|	2.0												 |*/
 /*|													 |*/
 /*|	Autor:											 |*/
 /*|	======											 |*/
 /*|	Marco Stecher 									 |*/
+/*| Bootstrap by Matthias Grießmeier                 |*/
 /*|													 |*/
 /*| Beschreibung:									 |*/
 /*|	=============									 |*/
@@ -19,63 +20,56 @@
 /*| eines PCs. Verwendung im Bestellungswizzard.	 |*/
 /*|													 |*/
 /*+--------------------------------------------------+*/
-
-
-echo"
-		
-	<form method='POST' action='#' name='pc_bundle'>
-	<table border='0'>
-	<tr>
-		<td><input type='checkbox' name='form' value='cpu'></td>
-		<td>CPU</td>
-	</tr>
-
-	<tr>
-		<td><input type='checkbox' name='form' value='mainboard'></td>
-		<td>Mainboard</td>
-	</tr>
-		
-
-	<tr>
-		<td><input type='checkbox' name='form' value='ram'></td>
-		<td>Arbeitsspeicher</td>
-	</tr>	
-
-	<tr>
-		<td><input type='checkbox' name='form' value='hdd'></td>
-		<td>Festplatte</td>
-	</tr>
-
-	<tr>
-		<td><input type='checkbox' name='form' value='raidcontroller'></td>
-		<td>Raidcontroller</td>
-	</tr>
-	
-	<tr>
-		<td><input type='checkbox' name='form' value='laufwerk'></td>
-		<td>Laufwerk</td>
-	</tr>
-	
-	<tr>
-		<td><input type='checkbox' name='form' value='netzteil'></td>
-		<td>Netzteil</td>
-	</tr>	
-	
-	<tr>
-		<td><input type='checkbox' name='form' value='grafikkarte'></td>
-		<td>Grafikkarte</td>
-	</tr>
-
-	<tr>
-		<td><input type='checkbox' name='form' value='netzwerkkarte'></td>
-		<td>Netzwerkkarte</td>
-	</tr>
-		
-	</table>
+-->	
+	<form role="form" method="POST" action="#" name="pc_bundle">
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" name="form" value="cpu"> CPU
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" name="form" value="mainboard"> Mainboard
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" name="form" value="ram"> Arbeitsspeicher
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" name="form" value="hdd"> Festplatte
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" name="form" value="raidcontroller"> Raidcontroller
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" name="form" value="laufwerk"> Laufwerk
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" name="form" value="netzteil"> Netzteil
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" name="form" value="grafikkarte"> Grafikkarte
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" name="form" value="netzwerkkarte"> Netzwerkkarte
+            </label>
+        </div>
+    </div>
 	</form>
-	";
 
 
 
-
-?>
