@@ -65,6 +65,14 @@
 			require_once('lib/page/rooms/room_components.php');
 		}
 	}
+    elseif (isset($_GET['component']))
+	{
+		$page = $_GET['component'];
+		if (file_exists('lib/page/components/details.php'))
+		{
+			require_once('lib/page/components/details.php');
+		}
+	}
 	elseif (isset($_GET['edit_room']))
 	{
 		manipulation_statement("Update", $_GET);
