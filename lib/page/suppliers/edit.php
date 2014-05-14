@@ -8,39 +8,39 @@
 			</div>
 			<form>
 				<div class="modal-body">
-					<input type='hidden' class="supplier_s_id" name='lieferanten_l_id'>
+					<input type='hidden' class="supplier_s_id" name='lieferanten-l_id'>
 					<table table-striped>
 						<tr>
 							<td><label>Firma</label></td>
-							<td><input class="form-control" type='text' id='lieferant_l_firmenname' name='lieferant_l_firmenname' size='20'></td>
+							<td><input class="form-control" type='text' id='lieferant-l_firmenname' name='lieferant-l_firmenname' size='20'></td>
 						</tr>
 						<tr>
 							<td><label>Strasse</label></td>
-							<td><input class="form-control" type='text' id='lieferant_l_strasse' name='lieferant_l_strasse' size='20'>
+							<td><input class="form-control" type='text' id='lieferant-l_strasse' name='lieferant-l_strasse' size='20'>
 						</tr>
 						<tr>
 							<td><label>Ort</label></td>
-							<td><input class="form-control" type='text' id='plz_zurordnung_ORT' name='plz_zurordnung_ORT' size='20'>
+							<td><input class="form-control" type='text' id='plz_zuordnung-plz_ort' name='plz_zuordnung-plz_ort' size='20'>
 						</tr>
 						<tr>
 							<td><label>PLZ</label></td>
-							<td><input class="form-control" type='text' id='plz_zurordnung_PLZ' name='plz_zurordnung_PLZ' size='6'>
+							<td><input class="form-control" type='text' id='plz_zuordnung-plz_plz' name='plz_zuordnung-plz_plz' size='6'>
 						</tr>
 						<tr>
 							<td><label>Telefon</label></td>
-							<td><input class="form-control" type='text' id='lieferant_l_tel' name='lieferant_l_tel' size='20'>
+							<td><input class="form-control" type='text' id='lieferant-l_tel' name='lieferant-l_tel' size='20'>
 						</tr>
 						<tr>
 							<td><label>Mobil</label></td>
-							<td><input class="form-control" type='text' id='lieferant_l_mobil' name='lieferant_l_mobil' size='20'>
+							<td><input class="form-control" type='text' id='lieferant-l_mobil' name='lieferant-l_mobil' size='20'>
 						</tr>
 						<tr>
 							<td><label>Fax</label></td>
-							<td><input class="form-control" type='text' id='lieferant_l_fax' name='lieferant_l_fax' size='20'>
+							<td><input class="form-control" type='text' id='lieferant-l_fax' name='lieferant-l_fax' size='20'>
 						</tr>
 						<tr>
 							<td><label>Email</label></td>
-							<td><input class="form-control" type='text' id='lieferant_l_email' name='lieferant_l_email' size='20'>
+							<td><input class="form-control" type='text' id='lieferant-l_email' name='lieferant-l_email' size='20'>
 						</tr>
 					</table>
 				</div>

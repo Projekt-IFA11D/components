@@ -95,7 +95,6 @@
 	elseif (isset($_GET['add_supplier']))
 	{
 		manipulation_statement("Insert", $_GET);
-		var_dump($_GET);
 	}
 	else
 	{
