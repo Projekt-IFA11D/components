@@ -1,48 +1,19 @@
-<?php
-
-/*+--------------------------------------------------+*/
-/*|													 |*/
-/*|	Formularname:									 |*/
-/*|	=============									 |*/
-/*|	formular_netzteil.php							 |*/
-/*|													 |*/
-/*| Version:										 |*/
-/*|	========										 |*/
-/*|	1.0												 |*/
-/*|													 |*/
-/*|	Autor:											 |*/
-/*|	======											 |*/
-/*|	Maximilian Drescher								 |*/
-/*|													 |*/
-/*| Beschreibung:									 |*/
-/*|	=============									 |*/
-/*|	Formular fuer die Komponente 'Netzteil'			 |*/
-/*|													 |*/
-/*+--------------------------------------------------+*/
-
-echo "<h1>Komponente: Netzteil</h1><br><br>";
-echo "<table border = '1' cellpadding = '0' cellspacing='4'>
-
-		<tr>
-		<td align='right'>Leistung: </td>
-		<td><input name='nt_leistung' type='text' size='30'></td>
-		</tr>
-
-		<tr>
-		<td align='right'>Steckertyp zum Mainboard: </td>
-		<td><input name='nt_stecker_mb' type='text' size='30'></td>
-		</tr>
-
-		<tr>
-		<td align='right'>Steckertyp zur CPU: </td>
-		<td><input name='nt_stecker_cpu' type='text' size='30'></td>
-		</tr>
-		
-		<tr>
-		<td align='right'>Anschluss-Anzahl: </td>
-		<td><input name='nt_anz_anschlauss' type='text' size='30'></td>
-		</tr>
-
-	  </table>";
-
-?>
+<h1>Komponente: Netzteil</h1><br><br>
+<form role="form" type="text">    
+    <div class="form-group">    
+        <label for="nt_leistung">Leistung:</label>
+        <input type="text" id="nt_leistung" class="form-control" name="nt_leistung" style="width:300px;">
+    </div>    
+    <div class="form-group">    
+        <label for="nt_stecker_mb">Steckertyp zum Mainboard:</label>
+        <input type="text" id="nt_stecker_mb" class="form-control" name="nt_stecker_mb" style="width:300px;">
+    </div>    
+    <div class="form-group">    
+        <label for="nt_stecker_cpu">Steckertyp zur CPU:</label>
+        <input type="text" id="nt_stecker_cpu" class="form-control" name="nt_stecker_cpu" style="width:300px;">
+    </div>   
+    <div class="form-group">    
+        <label for="nt_anz_anschlauss">Anschluss-Anzahl:</label>
+        <input type="text" id="nt_anz_anschlauss" class="form-control" name="nt_anz_anschlauss" style="width:300px;">
+    </div>    
+</form>    

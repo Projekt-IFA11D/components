@@ -1,43 +1,20 @@
-<?php
-
-/*+--------------------------------------------------+*/
-/*|													 |*/
-/*|	Formularname:									 |*/
-/*|	=============									 |*/
-/*|	formular_vlan.php								 |*/
-/*|													 |*/
-/*| Version:										 |*/
-/*|	========										 |*/
-/*|	1.0												 |*/
-/*|													 |*/
-/*|	Autor:											 |*/
-/*|	======											 |*/
-/*|	Maximilian Drescher								 |*/
-/*|													 |*/
-/*| Beschreibung:									 |*/
-/*|	=============									 |*/
-/*|	Formular fuer die Komponente 'VLAN'				 |*/
-/*|													 |*/
-/*+--------------------------------------------------+*/
-
-echo "<h1>Komponente: VLAN</h1><br><br>";
-echo "<table border = '1' cellpadding = '0' cellspacing='4'>
-
-		<tr>
-		<td align='right'>Interne Bezeichnung/Name: </td>
-		<td><input name='vlan_name' type='text' size='30'></td>
-		</tr>
-
-		<tr>
-		<td align='right'>ID des VLANS: </td>
-		<td><input name='vlan_id' type='text' size='30'></td>
-		</tr>
-
-		<tr>
-		<td align='right'>Portzahl: </td>
-		<td><input name='vlan_ports' type='text' size='30'></td>
-		</tr>
-
-	  </table>";
-
-?>
+<!--
+### form for VLANs                       ##
+### based on php/html by Max Drescher    ##
+### bootstrapped by Matthias Griessmeier ##
+#-->
+<h1>Komponente: VLAN</h1><br><br>
+<form role="form" type="text">
+    <div class="form-group">
+        <label for="vlan_name">Interne Bezeichnung/Name:</label>
+        <input type="text" id="vlan_name" class="form-control" name="vlan_name" style="width:300px;">
+    </div>
+    <div class="form-group">
+        <label for="vlan_id">ID des VLANS:</label>
+        <input type="text" id="vlan_id" class="form-control" name="vlan_id" style="width:300px;">
+    </div>
+    <div class="form-group">
+        <label for="vlan_ports">Portzahl:</label>
+        <input type="text" id="vlan_ports" class="form-control" name="vlan_ports" style="width:300px;">
+    </div>
+</form>

@@ -1,3 +1,10 @@
+<!--
+### form for HDD                         ##
+### based on php/html by Max Drescher    ##
+### bootstrapped by Matthias Griessmeier ##
+###
+--> 
+
 <h1>Komponente: Festplatte</h1><br><br>
 <form role="form" type="text">
     <div class="form-group">

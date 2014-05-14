@@ -1,3 +1,10 @@
+<!--
+### form for bundle                      ##
+### based on php/html by Max Drescher    ##
+### bootstrapped by Matthias Griessmeier ##
+###
+--> 
+
 <h1>Komplettsystem</h1><br><br>
 	<form role="form" method="POST" action="#" name="pc_bundle">
     <div class="form-group">

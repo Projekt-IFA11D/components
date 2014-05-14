@@ -1,43 +1,22 @@
-<?php
+<!--
+### form for CD-Burner                   ##
+### based on php/html by Max Drescher    ##
+### bootstrapped by Matthias Griessmeier ##
+###
+--> 
 
-/*+--------------------------------------------------+*/
-/*|													 |*/
-/*|	Formularname:									 |*/
-/*|	=============									 |*/
-/*|	formular_cd_brenner.php							 |*/
-/*|													 |*/
-/*| Version:										 |*/
-/*|	========										 |*/
-/*|	1.0												 |*/
-/*|													 |*/
-/*|	Autor:											 |*/
-/*|	======											 |*/
-/*|	Maximilian Drescher								 |*/
-/*|													 |*/
-/*| Beschreibung:									 |*/
-/*|	=============									 |*/
-/*|	Formular fuer die Komponente 'CD-Brenner'		 |*/
-/*|													 |*/
-/*+--------------------------------------------------+*/
-
-echo "<h1>Komponente: CD-Brenner</h1><br><br>";
-echo "<table border = '1' cellpadding = '0' cellspacing='4'>
-
-		<tr>
-		<td align='right'>Lesegeschwindigkeit: </td>
-		<td><input name='cdb_lese_geschw' type='text' size='30'></td>
-		</tr>
-		
-		<tr>
-		<td align='right'>Schreibgeschwindigkeit: </td>
-		<td><input name='cdb_schreib_geschw' type='text' size='30'></td>
-		</tr>
-
-		<tr>
-		<td align='right'>Schnittstelle: </td>
-		<td><input name='cdb_if' type='text' size='30'></td>
-		</tr>
-
-	  </table>";
-
-?>
+<h1>Komponente: CD-Brenner</h1><br><br>
+<form role="form" type="text">    
+    <div class="form-group">    
+        <label for="cdb_lese_geschw">Lesegeschwindigkeit:</label>
+        <input type="text" id="cdb_lese_geschw" class="form-control" name="cdb_lese_geschw" style="width:300px;">
+    </div>    
+    <div class="form-group">    
+        <label for="cdb_schreib_geschw">Schreibgeschwindigkeit:</label>
+        <input type="text" id="cdb_schreib_geschw" class="form-control" name="cdb_schreib_geschw" style="width:300px;">
+    </div>    
+    <div class="form-group">    
+        <label for="cdb_if">Schnittstelle:</label>
+        <input type="text" id="cdb_if" class="form-control" name="cdb_if" style="width:300px;">
+    </div>    
+</form> 

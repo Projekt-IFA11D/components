@@ -1,53 +1,47 @@
-<?php
+<!--
+### form for Printer                      ##
+### based on php/html by Max Drescher    ##
+### bootstrapped by Matthias Griessmeier ##
+###
+--> 
 
-/*+--------------------------------------------------+*/
-/*|													 |*/
-/*|	Formularname:									 |*/
-/*|	=============									 |*/
-/*|	formular_drucker.php							 |*/
-/*|													 |*/
-/*| Version:										 |*/
-/*|	========										 |*/
-/*|	1.0												 |*/
-/*|													 |*/
-/*|	Autor:											 |*/
-/*|	======											 |*/
-/*|	Maximilian Drescher								 |*/
-/*|													 |*/
-/*| Beschreibung:									 |*/
-/*|	=============									 |*/
-/*|	Formular fuer die Komponente 'Drucker'			 |*/
-/*|													 |*/
-/*+--------------------------------------------------+*/
+<h1>Komponente: Drucker</h1><br><br>
+<form role="form" type="text">    
+    <div class="form-group">    
+        <label for="drucker_ip">Drucker:</label>
+        <input type="text" id="drucker_ip" class="form-control" name="drucker_ip" style="width:300px;">
+    </div>
 
-echo "<h1>Komponente: Drucker</h1><br><br>";
-echo "<table border = '1' cellpadding = '0' cellspacing='4'>
+    <label for="name">Druckertyp: </label>
+    <div class="radio">
+       <label><input type="radio" name="drucker_typ" value="drucker_typ_tinte"> Tinte</label>
+    </div>
+    <div class="radio">
+       <label><input type="radio" name="drucker_typ" value="drucker_typ_laser"> Laser</label>
+    </div>
+    <div class="radio">
+       <label><input type="radio" name="drucker_typ" value="drucker_typ_nadel"> Nadel</label>
+    </div>
 
-		<tr>
-		<td align='right'>Drucker: </td>
-		<td><input name='drucker_ip' type='text' size='30'></td>
-		</tr>
+    <label for="name">Druckerart: </label>
+    <div class="radio">
+       <label><input type="radio" name="drucker_art" value="drucker_art_farbe"> Farbe</label>
+    </div>
+    <div class="radio">
+       <label><input type="radio" name="drucker_art" value="drucker_art_sw"> Schwarz-Weiss</label>
+    </div>
 
-		<tr>
-		<td align='right'>Druckertyp: </td>
-		<td><input type='radio' name='drucker_typ' value='drucker_typ_tinte'> Tinte<br>
-    	<input type='radio' name='drucker_typ' value='drucker_typ_laser'> Laser<br>
-		<input type='radio' name='drucker_typ' value='drucker_typ_nadel'> Nadel<br></td>
-		</tr>
-		
-		<tr>
-		<td align='right'>Druckerart: </td>
-		<td><input type='radio' name='drucker_art' value='drucker_art_farbe'>Farbe<br>
-    	<input type='radio' name='drucker_art' value='drucker_art_sw'>Schwarz-Weiss<br></td>
-		</tr>
-		
-		<tr>
-		<td align='right'>Anschluss-Art: </td>
-		<td><input type='checkbox' name='drucker_anschluss' value='drucker_anschluss_lan'>LAN<br>
-		<input type='checkbox' name='drucker_anschluss' value='drucker_anschluss_usb'>USB<br>
-		Sonstiges: <input name='drucker_sontiges' type='text' size='30'></td>
-		</tr>
+    <label for="name"> </label>Anschluss-Art:
+    <div class="checkbox">
+       <label><input type="checkbox" name="drucker_anschluss" value="drucker_anschluss_lan"> LAN</label>
+    </div>
+    <div class="checkbox">
+       <label><input type="checkbox" name="drucker_anschluss_usb" value="drucker_anschluss_usb"> USB</label>
+    </div>
+    <div class="form-group">
+        <label for="">Sonstiges: <input type="text" name="drucker_sonstiges" style="width:300px;">
+    </div>
 
-	  </table>";
 
-?>
+
+</form>
