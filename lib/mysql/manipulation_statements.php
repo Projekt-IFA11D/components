@@ -138,7 +138,7 @@ function attribution_manipulation_statement($Type, $Form_Data) {
   } */
 
 function not_really_delete($Index) {
-  mysql_query("UPDATE komponenten SET raeume_r_id=\"ausgemustert\" WHERE $Index");
+  mysql_query("UPDATE komponenten SET raeume_r_id=8 WHERE $Index");
 }
 
 ?>
