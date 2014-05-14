@@ -65,13 +65,50 @@ function prepareToSave()
     print_r($array);
     echo"</pre>";
     
+    //Überprüfe ob es sich um ein Komplettsystem handelt
+    $is_bundle=checkForBundle($array);
     
     
+    if($is_bundle)
+    {
+        echo"<br /><h2>Komplettsystem</h2>";
+    }
+    else
+    {
+        echo"<br /><h2>KEIN Komplettsystem</h2>";
+    }
     
     //Hauptverarbeitung
     for($i=1; $i <= $anzahl; $i++)
     {
-        createSingleComp($array);
+             
+        $compID = createSingleComp($array);
+        
+        if($is_bundle)
+        {
+            //$bundleID = createGroupComp();
+            //createAggregation($bundleID,$compID);
+        }
+        
+    }
+}
+
+
+function checkForBundle($array)
+{
+    $comps=array();
+    foreach($array AS $comp=>$ignoreVal)
+    {
+        $comps[$comp]=1;
+    }
+    
+    if(count($comps) > 1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
@@ -296,7 +333,7 @@ function createSingleComp($array)
             }
         }
         
-        echo "<br /><br />Attributstring: ".$attr_string;
+        echo "<br /><br />Attributstring: ".$sql_attr;
         
         
         //Wenn Sicherheitsvariable true ist, werden die Attribute hinzugefügt. Bei Fehler wird ein Rollback durchgeführt
