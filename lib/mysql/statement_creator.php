@@ -10,10 +10,9 @@
 // Expects Index to contain key for WHERE condition
 // Build an SQL statement for data manipulation
 function create_statement($Values, $Type, $Index) {
-  
+
   foreach ($Values as $Table => $Columns) {
     switch ($Type) {
-
     case "Insert":
       $keys=array_keys($Columns);
       $values=array_values($Columns);
@@ -30,7 +29,7 @@ function create_statement($Values, $Type, $Index) {
       $Statement[$Table]=substr($Statement[$Table], 0, -2);
       $Statement[$Table].=")";
       break;
-
+      
     case "Update":
       $Statement[$Table]="UPDATE $Table SET ";
       foreach ($Columns as $key => $value) {
@@ -39,7 +38,7 @@ function create_statement($Values, $Type, $Index) {
       $Statement[$Table]=substr($Statement[$Table], 0, -2);
       $Statement[$Table].=" WHERE ";
       foreach ($Index as $value) {
-	$Statement[$Table].="\"$value\" AND ";
+	$Statement[$Table].="$value AND ";
       }
       $Statement[$Table]=substr($Statement[$Table], 0, -5);
       break;
@@ -47,9 +46,10 @@ function create_statement($Values, $Type, $Index) {
     case "Delete":
       $Statement[$Table]="DELETE FROM $Table WHERE ";
       foreach ($Index as $value) {
-	$Statement[$Table].="\"$value\" AND ";
+	$Statement[$Table].="$value AND ";
       }
       $Statement[$Table]=substr($Statement[$Table], 0, -5);
+      break;
     }
   }
   return $Statement;
