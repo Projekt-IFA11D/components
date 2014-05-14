@@ -6,6 +6,6 @@
 	//MySQL
 	define('MYSQL_HOST', 'localhost');
 	define('MYSQL_USER', 'root');
-	define('MYSQL_PASSWORD', '');
+	define('MYSQL_PASSWORD', 'linux');
 	define('MYSQL_DATABASE', 'itv_v1');
 ?>

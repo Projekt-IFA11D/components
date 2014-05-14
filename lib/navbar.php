@@ -7,7 +7,7 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="#"><?php echo(PROJEKT_NAME." ".PROJEKT_VERSION) ?></a>
+	  <a class="navbar-brand" href="#dashboard"><?php echo(PROJEKT_NAME." ".PROJEKT_VERSION) ?></a>
 	</div>
   </div>
 </div>
