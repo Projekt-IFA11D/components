@@ -1,7 +1,8 @@
 <?php
-require_once('global.php');
+	require_once('global.php');
+	var_dump($_GET);
 
-        if (isset($_GET['page']))
+    if (isset($_GET['page']))
 	{
 		$page = $_GET['page'];
 		if (file_exists('lib/page/'.$page.'/main.php'))
