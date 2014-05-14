@@ -72,26 +72,55 @@ function prepareToSave()
     if($is_bundle)
     {
         echo"<br /><h2>Komplettsystem</h2>";
+        //Separiere PC vom Rest!
+        $pc = $array['pc'];
+        unset($array['pc']);
+        $teilkomponenten = $array;
     }
     else
     {
         echo"<br /><h2>KEIN Komplettsystem</h2>";
+        $teilkomponenten = $array;
     }
     
     //Hauptverarbeitung
     for($i=1; $i <= $anzahl; $i++)
     {
              
-        $compID = createSingleComp($array);
+        $compID = createSingleComp($teilkomponenten);
         
         if($is_bundle)
         {
-            //$bundleID = createGroupComp();
-            //createAggregation($bundleID,$compID);
+            $bundleID = createSingleComp($pc);
+            createAggregation($bundleID,$compID,formDate($pc['main']['einkaufsdatum']));
         }
         
     }
 }
+
+
+function createAggregation($parent,$child,$kaufdatum)
+{
+    $sql = "INSERT INTO komponente_hat_komponente SET
+            komponenten_k_id_aggregat = '".$parent."',
+           	komponenten_k_id_teil = '".$child."',
+            vorgangsarten_v_id = '1',
+            khk_datum ='".$kaufdatum."'
+            ";
+            
+    if(!mysql_query($sql))
+    {
+        rollback($child);
+    }
+    
+}
+
+
+
+
+
+
+
 
 
 function checkForBundle($array)
@@ -117,10 +146,12 @@ function rollback($cid)
 {
     $sql_comp = "DELETE FROM komponenten WEHRE k_id='".$cid."'";
     $sql_compattr = "DELETE FROM komponente_hat_attribute WHERE komponenten_k_id='".$cid."'";
-    $sql_aggregat = "DELETE FROM komponente_hat_komponente WHERE komponente_hat_komponente='".$cid."'";
+    $sql_aggregat = "DELETE FROM komponente_hat_komponente WHERE komponenten_k_id_teil='".$cid."'";
     mysql_query($sql_comp);
     mysql_query($sql_compattr);
     mysql_query($sql_aggregat);
+    
+    echo"<h1>ROLLBACK DURCHGEFÜHRT!";
 }
 
 
@@ -281,10 +312,10 @@ function createSingleComp($array)
         echo "<br /><br />".$sql_komponente;
         
         //Füge Komponente ein
-        //mysql_query($sql_komponente) or die("Komponente konnte nicht eingetragen werden!<br /><b>SQL:</b>$sql_komponente<br />Fehler:".mysql_error());
+        mysql_query($sql_komponente) or die("Komponente konnte nicht eingetragen werden!<br /><b>SQL:</b>$sql_komponente<br />Fehler:".mysql_error());
         
         //Hole die neue ID ab
-        //$NewCompID = mysql_insert_id();
+        $NewCompID = mysql_insert_id();
         
         //Komponentenattribute
         
@@ -294,13 +325,13 @@ function createSingleComp($array)
         //Sicherheits Bool Variable die es evtl. verhindert das die Attribute nicht in die Datenbank gelangen
         $safety_check_attr = false;
         
-        
+         $firstAttr=true;
         //Gehe alle Attribute der Komponente durch
         foreach($compData['attr'] AS $attr=>$val)
         {
             $attrID = getAttrID($attr);
             $zwID = getAttrValID($val);
-            $firstAttr=true;
+           
             
             
             
@@ -323,7 +354,8 @@ function createSingleComp($array)
                 }
                 else
                 {
-                    $attr_string .= " , ";
+                    $firstAttr=false;
+                    $sql_attr .= " , ";
                 }
                 
                 $sql_attr .= " ('".$NewCompID."','".$attrID."','".mysql_real_escape_string($val)."') ";
@@ -341,6 +373,7 @@ function createSingleComp($array)
         {
             if(!mysql_query($sql_attr))
             {
+                echo"<br />Attribute nicht angelegt!<br />".mysql_error();
                 rollback($NewCompID);
             }
         }
