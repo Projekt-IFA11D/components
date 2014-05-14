@@ -21,19 +21,19 @@
 		<th>Komponentenart</th>
 		<th></th>
 		<?php
-			$acqisitions = select_statement("acqisitions");
-			foreach ($acqisitions as $acqisition)
+			$acquisitions = select_statement("acquisitions");
+			foreach ($acquisitions as $acquisition)
 			{ ?>
 					<tr>
-						<td><?php echo($acqisition['k_id']) ?></td>
-						<td><?php echo($acqisition['l_firmenname']) ?></td>
-						<td><?php echo($acqisition['r_bezeichnung'])?></td>
-						<td><?php echo($acqisition['k_einkaufsdatum']) ?></td>
-						<td><?php echo($acqisition['k_gewaehrleistungsdauer']) ?></td>
-						<td><?php echo($acqisition['k_notiz'])?></td>
-						<td><?php echo($acqisition['k_hersteller'])?></td>
-						<td><?php echo($acqisition['ka_komponentenart'])?></td>
-						<td class="col-md-1 edit_acq"><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_acq_modal" onclick="<?php echo('edit_acquisition($(this), '.$acqisition['k_id'].')') ?>">Editieren</button></td>
+						<td><?php echo($acquisition['k_id']) ?></td>
+						<td><?php echo($acquisition['l_firmenname']) ?></td>
+						<td><?php echo($acquisition['r_bezeichnung'])?></td>
+						<td><?php echo($acquisition['k_einkaufsdatum']) ?></td>
+						<td><?php echo($acquisition['k_gewaehrleistungsdauer']) ?></td>
+						<td><?php echo($acquisition['k_notiz'])?></td>
+						<td><?php echo($acquisition['k_hersteller'])?></td>
+						<td><?php echo($acquisition['ka_komponentenart'])?></td>
+						<td class="col-md-1 edit_acq"><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_acq_modal" onclick="<?php echo('edit_acquisition($(this), '.$acquisition['k_id'].')') ?>">Editieren</button></td>
 					</tr>
 			<?php }
 		?>
