@@ -44,24 +44,18 @@ function select_statement($Table, $Index = 0) {
 
 // Handle multiple select statements which need to be returned in a single array
 // Index contains the column name for the where condition
-/*function complex_select_statement($Table, $Index = 0) {
-
-
-  $Server = "10.0.1.14";
-  $User = "Gast";
-  $PW = "";
-  $Data = array();
-  mysql_connect($Server, $User, $PW);
-  mysql_select_db("itv_v1");
+function complex_select_statement($Table, $Index = 0) {
 
   $Data = array();
   $Sub_Data = array();
   $Sub_Index = "";
+  // Contains the keyword/column which is used for the second query
+  $Statements_keyword = ["components" => "k_id"];
   // Still needs the correct select statements for each table
   $Statements = ["components" => ["SELECT *
 FROM Komponenten Komp
 LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil
-WHERE KhK.komponenten_k_id_teil IS NULL AND raeume_r_id=$Index[0]",
+WHERE KhK.komponenten_k_id_teil IS NULL AND raeume_r_id=$Index",
 
 "SELECT r_nr as RaumNr ,r_bezeichnung,k_id,ka_komponentenart,kat_beschreibung,khkat_wert, (SELECT KA.ka_komponentenart FROM komponenten K 
 INNER JOIN komponentenarten KA ON K.komponentenarten_ka_id=KA.ka_id WHERE K.k_id=komponenten_k_id_aggregat) as AggregatBez,komponenten_k_id_aggregat as AggregatNr 
@@ -69,17 +63,18 @@ FROM komponenten RIGHT JOIN raeume ON raeume_r_id=r_id
 INNER JOIN Komponentenarten ON komponentenarten_ka_id=ka_id 
 LEFT JOIN komponente_hat_attribute ON komponenten_k_id=k_id 
 LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id 
-LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE $Index[1] 
+LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE '".$Statements_keyword["components"]."'=
 ORDER BY  `komponenten`.`k_id` ASC"
 ]];
 
   // Escape all special characters inside the string
-  if($Index!=0) {
+  // NEEDS TO BE REWRITTEN FOR NON ARRAYS
+  /*  if($Index!=0) {
     $safe_Index = array();
     foreach($Index as $unsafe_index) {
       $safe_Index[] = sql_quote($unsafe_index);
     }
-  }
+    } */
   
   $Result = mysql_query($Statements[$Table][0]);
   while($Data[] = mysql_fetch_assoc($Result));
@@ -87,8 +82,8 @@ ORDER BY  `komponenten`.`k_id` ASC"
 
   // Replacing the $Index with the actual condition
   foreach ($Data as $key => $piece) {
-    $Sub_Index=" ".$Index[1]."=".$piece[$Index[1]];
-    $tmp_Statement=str_replace(" ".$Index[1]." ", $Sub_Index, $Statements[$Table][1]);
+    $Sub_Index=" ".$Statements_keyword[$Table]."=".$piece[$Statements_keyword[$Table]];
+    $tmp_Statement=str_replace(" '".$Statements_keyword[$Table]."'=", $Sub_Index, $Statements[$Table][1]);
     $Sub_Result = mysql_query($tmp_Statement);
     while($Sub_Data[] = mysql_fetch_assoc($Sub_Result));
     array_pop($Sub_Data);
@@ -99,7 +94,7 @@ ORDER BY  `komponenten`.`k_id` ASC"
   mysql_close();
   return nice_empty_values($Data);
   
-}*/
+}
 
 // Replace NULL values with visual empty signs
 function nice_empty_values($Data) {
@@ -119,6 +114,4 @@ function nice_empty_values($Data) {
 
   return $nice_Data;
 }
-
-//var_dump(complex_select_statement("components",["2", "k_id"]));
 ?>
