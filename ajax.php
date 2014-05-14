@@ -23,16 +23,19 @@
 			}
 			echo "<br>";
 			echo "</form>";
-			echo "<input type='button' id='bundle_next' onclick=\"bundle_next('wizzard=showForms')\" value='Weiter'>";
+			echo "<input type='button' id='bundle_next' onclick=\"bundle_next('showForms','compForm')\" value='Weiter'>";
 		}
 		elseif($wiz == "save")
 		{
-			//order_wizzard_save();
+			echo"<pre>";
+                print_r($_POST);
+            echo"</pre>";
+            
 		}
 		else
 		{
 		    require_once('lib/forms/formular_allgemein.php');
-			echo "<form name='compForm'>";
+			echo "<form id='compNextForm'>";
 			echo "Menge: <input type='text' name='anzahl' value='1'>";
 			if(is_array($_POST['form']))
 			{
@@ -67,8 +70,8 @@
 			}
 			
 			echo "<br>";
-			echo "<input type='button' id='bundle_next' onclick=\"bundle_next('wizzard=checkInput')\" value='Anlegen'>";
 			echo "</form>";
+            echo "<input type='button' id='comp_next' onclick=\"bundle_next('save','compNextForm')\"  value='Anlegen'>";
 		}
 	}
     elseif (isset($_GET['room_component']))
