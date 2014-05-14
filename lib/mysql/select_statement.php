@@ -57,8 +57,7 @@ function complex_select_statement($Table, $Index = 0) {
   $Sub_Index = "";
   // Contains the keyword/column which is used for the second query
   $Statements_keyword = ["components" => "k_id"];
-  // Still needs the correct select statements for each table
-  
+  // Still needs the correct select statements for each table 
  $Statements = ["components" => ["SELECT 
 raeume.r_bezeichnung, lieferant.l_firmenname, komp.k_id, komponentenarten.ka_komponentenart, komp.k_einkaufsdatum, komp.k_gewaehrleistungsdauer, komp.k_notiz, komp.k_hersteller
 FROM Komponenten Komp 
@@ -70,7 +69,7 @@ inner join lieferant
 on komp.lieferant_l_id = lieferant.l_id
 inner join komponentenarten
 on komp.komponentenarten_ka_id = komponentenarten.ka_id
-WHERE KhK.komponenten_k_id_teil IS NULL AND raeume_r_id=".$index."
+WHERE KhK.komponenten_k_id_teil IS NULL AND raeume_r_id=".$_GET['room_component']."
 ",
 
 "SELECT r_nr as RaumNr ,r_bezeichnung,k_id,ka_komponentenart,kat_beschreibung,khkat_wert, (SELECT KA.ka_komponentenart FROM komponenten K 
