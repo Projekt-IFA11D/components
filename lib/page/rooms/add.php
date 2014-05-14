@@ -6,22 +6,26 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title">Raum hinzuf&uuml;gen</h4>
 			</div>
-			<form method="POST">
-				<div class="modal-body">
-					<table table-striped>
-						<tr>
-							<td><label>Raum-Nr</label></td>
-							<td><input class="form-control" type='text' name='raeume-r_nr' size='20'></td>
-						</tr>
-						<tr>
-							<td><label>Raum-Bez</label></td>
-							<td><input class="form-control" type='text' name='raeume-r_bezeichnung' size='20'></td>
-						</tr>
-						<tr>
-							<td><label>Raum-Notiz</label></td>
-							<td><input class="form-control" type='text' name='raeume-r_notiz' size='20'></td>
-						</tr>
-					</table>
+			<form class="form-horizontal" role="form" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="raeume_r_nr" class="col-sm2 control-label">Raum-Nr.</label>
+                         <div class="col-sm-8">
+                            <input type="text" class="form-control" name="raeume_r_nr" id="raeume_r_nr">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="raeume_r_bezeichnung" class="col-sm2 control-label">Raum-Bez.</label>
+                         <div class="col-sm-8">
+                            <input type="text" class="form-control" name="raeume_r_bezeichnung" id="raeume_r_bezeichnung">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="raeume_r_notiz" class="col-sm2 control-label">Raum-Notiz</label>
+                         <div class="col-sm-8">
+                            <input type="text" class="form-control" name="raeume_r_notiz" id="raeume_r_notiz">
+                        </div>
+                    </div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>

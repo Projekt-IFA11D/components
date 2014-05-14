@@ -6,47 +6,61 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title">Lieferant hinzuf&uuml;gen</h4>
 			</div>
-			<form>
+            <form class="form-horizontal" role="form">
 				<div class="modal-body">
-					<table table-striped>
-						<tr>
-							<td><label>Firma</label></td>
-							<td><input class="form-control" type='text' name='lieferant-l_firmenname' size='20'></td>
-						</tr>
-						<tr>
-							<td><label>Strasse</label></td>
-							<td><input class="form-control" type='text' name='lieferant-l_strasse' size='20'>
-						</tr>
-						<tr>
-							<td><label>Ort</label></td>
-							<td><input class="form-control" type='text' name='plz_zuordnung-plz_ort' size='20'>
-						</tr>
-						<tr>
-							<td><label>PLZ</label></td>
-							<td><input class="form-control" type='text' name='plz_zuordnung-plz_plz' size='6'>
-						</tr>
-						<tr>
-							<td><label>Telefon</label></td>
-							<td><input class="form-control" type='text' name='lieferant-l_tel' size='20'>
-						</tr>
-						<tr>
-							<td><label>Mobil</label></td>
-							<td><input class="form-control" type='text' name='lieferant-l_mobil' size='20'>
-						</tr>
-						<tr>
-							<td><label>Fax</label></td>
-							<td><input class="form-control" type='text' name='lieferant-l_fax' size='20'>
-						</tr>
-						<tr>
-							<td><label>Email</label></td>
-							<td><input class="form-control" type='text' name='lieferant-l_email' size='20'>
-						</tr>
-					</table>
-				</div>
+                    <div class="form-group">
+                        <label for="lieferant__l_firmenname" class="col-sm2 control-label">Firma</label>
+                         <div class="col-sm-9">
+                            <input type="text" class="form-control" id="lieferant__l_firmenname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lieferant__l_strasse" class="col-sm2 control-label">Strasse</label>
+                         <div class="col-sm-9">
+                            <input type="text" class="form-control" id="lieferant__l_strasse">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="plz_zuordnung__ORT" class="col-sm2 control-label">Ort</label>
+                         <div class="col-sm-9">
+                            <input type="text" class="form-control" id="plz_zuordnung__ORT">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="plz_zuordnung__PLZ" class="col-sm2 control-label">PLZ</label>
+                         <div class="col-sm-9">
+                            <input type="text" class="form-control" id="plz_zuordnung__PLZ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lieferant__l_tel" class="col-sm2 control-label">Telefon</label>
+                         <div class="col-sm-9">
+                            <input type="text" class="form-control" id="lieferant__l_tel">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lieferant__l_mobil" class="col-sm2 control-label">Mobil</label>
+                         <div class="col-sm-9">
+                            <input type="text" class="form-control" id="lieferant__l_mobil">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lieferant__l_fax" class="col-sm2 control-label">Fax</label>
+                         <div class="col-sm-9">
+                            <input type="text" class="form-control" id="lieferant__l_fax">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lieferant__l_email" class="col-sm2 control-label">E-Mail</label>
+                         <div class="col-sm-9">
+                            <input type="email" class="form-control" id="lieferant__l_email">
+                        </div>
+                    </div>
+                </div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="supplier_submit($(this), 'add_supplier')">Hinzuf&uuml;gen</button>
-				</form>
+            </form>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
