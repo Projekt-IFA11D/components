@@ -1,3 +1,4 @@
+<h1>Komponente: Arbeitsspeicher</h1><br><br>
 <form role="form" type="text">
     <div class="form-group">
         <label for="ram_name">Interne Bezeichnung/Name:</label>

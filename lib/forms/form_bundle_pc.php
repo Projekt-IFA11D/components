@@ -1,26 +1,4 @@
-<!--
-/*+--------------------------------------------------+*/
-/*|													 |*/
-/*|	Formularname:									 |*/
-/*|	=============									 |*/
-/*|	form_bundle_pc.php								 |*/
-/*|													 |*/
-/*| Version:										 |*/
-/*|	========										 |*/
-/*|	2.0												 |*/
-/*|													 |*/
-/*|	Autor:											 |*/
-/*|	======											 |*/
-/*|	Marco Stecher 									 |*/
-/*| Bootstrap by Matthias Grießmeier                 |*/
-/*|													 |*/
-/*| Beschreibung:									 |*/
-/*|	=============									 |*/
-/*|	Formular für die Vorauswahl der Komponenten		 |*/
-/*| eines PCs. Verwendung im Bestellungswizzard.	 |*/
-/*|													 |*/
-/*+--------------------------------------------------+*/
--->	
+<h1>Komplettsystem</h1><br><br>
 	<form role="form" method="POST" action="#" name="pc_bundle">
     <div class="form-group">
         <div class="checkbox">

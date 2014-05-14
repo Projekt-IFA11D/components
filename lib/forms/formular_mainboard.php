@@ -1,3 +1,4 @@
+<h1>Komponente: Mainboard</h1><br><br>
 <form role="form" type="text">
     <div class="form-group">
         <label for="mb_name">Interne Bezeichnung/Name:</label>

@@ -1,43 +1,16 @@
-<?php
+<h1>Komponente: Grafikkarte</h1><br><br>
+<form role="form" type="text">
+    <div class="form-group">
+        <label for="gk_name">Interne Bezeichnung/Name:</label>
+        <input type="text" id="gk_name" class="form-control" name="gk_name" style="width:300px;">
+    </div>
+    <div class="form-group">
+        <label for="gk_intern_if">Interne Schnittstelle:</label>
+        <input type="text" id="gk_intern_if" class="form-control" name="gk_intern_if" style="width:300px;">
+    </div>
+    <div class="form-group">
+        <label for="gk_speicher">Speicher:</label>
+        <input type="text" id="gk_speicher" class="form-control" name="gk_speicher" style="width:300px;">
+    </div>
+</form>
 
-/*+--------------------------------------------------+*/
-/*|													 |*/
-/*|	Formularname:									 |*/
-/*|	=============									 |*/
-/*|	formular_grafikkarte.php						 |*/
-/*|													 |*/
-/*| Version:										 |*/
-/*|	========										 |*/
-/*|	1.0												 |*/
-/*|													 |*/
-/*|	Autor:											 |*/
-/*|	======											 |*/
-/*|	Maximilian Drescher								 |*/
-/*|													 |*/
-/*| Beschreibung:									 |*/
-/*|	=============									 |*/
-/*|	Formular fuer die Komponente 'Grafikkarte'		 |*/
-/*|													 |*/
-/*+--------------------------------------------------+*/
-
-echo "<h1>Komponente: Grafikkarte</h1><br><br>";
-echo "<table border = '1' cellpadding = '0' cellspacing='4'>
-
-		<tr>
-		<td align='right'>Interne Bezeichnung/Name: </td>
-		<td><input name='gk_name' type='text' size='30'></td>
-		</tr>
-
-		<tr>
-		<td align='right'>Interne Schnittstelle: </td>
-		<td><input name='gk_intern_if' type='text' size='30'></td>
-		</tr>
-		
-		<tr>
-		<td align='right'>Speicher: </td>
-		<td><input name='gk_speicher' type='text' size='30'></td>
-		</tr>
-
-	  </table>";
-
-?>
