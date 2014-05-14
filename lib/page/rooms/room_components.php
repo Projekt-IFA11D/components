@@ -31,8 +31,8 @@
 					<td><?php echo($room_component['k_notiz']) ?></td>
 					<td><?php echo($room_component['k_hersteller']) ?></td>
 					<td class="col-md-1">
-						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_room_components_modal"
-							onclick="<?php echo('edit_room_components($(this), '.$room_component['k_id'].')') ?>">Editieren</button>
+						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".details_room_components_modal"
+							onclick="<?php echo('edit_room_components($(this), '.$room_component['k_id'].')') ?>">Details</button>
 					</td>
 					<td class="col-md-1">
 						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_components_modal"
