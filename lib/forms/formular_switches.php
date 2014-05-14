@@ -7,32 +7,29 @@
 <form role="form" type="text">
     <div class="form-group">
         <label for="sw_name">Interne Bezeichnung/Name:</label>
-        <input type="text" id="sw_name" class="form-control" name="sw_name" style="width:300px;">
+        <input type="text" id="sw_name" class="form-control" name="switches_attr_interne bezeichnung" style="width:300px;">
     </div>
     <div class="form-group">
         <label for="sw_ip">IP:</label>
-        <input type="text" id="sw_ip" class="form-control" name="sw_ip" style="width:300px;">
+        <input type="text" id="sw_ip" class="form-control" name="switches_attr_ip-adresse" style="width:300px;">
     </div>
     <div class="form-group">
         <label for="sw_anz_port">Anzahl Ports:</label>
-        <input type="text" id="sw_anz_port" class="form-control" name="sw_anz_port" style="width:300px;">
+        <input type="text" id="sw_anz_port" class="form-control" name="switches_attr_anzahl ports" style="width:300px;">
     </div>
 
     <label for="name">Uplinktyp: </label>
     <div class="checkbox">
-       <label><input type="checkbox" id="sw_uplink" value="sw_uplink_lwl"> LWL</label>
+       <label><input type="checkbox" id="switches_attr_uplinktyp" value="lwl"> LWL</label>
     </div>
     <div class="checkbox">
-       <label><input type="checkbox" id="sw_uplink" value="sw_uplink_rj45"> RJ45</label>
+       <label><input type="checkbox" id="switches_attr_uplinktyp" value="rj45"> RJ45</label>
     </div>
 
 
     <div class="form-group">
         <label for="sw_geschw">Geschwindigkeit (des Uplinks/der Ports im Raum):</label>
-        <input type="text" id="sw_geschw" class="form-control" name="sw_geschw" style="width:300px;">
+        <input type="text" id="switches_attr_uplink geschwindigkeit" class="form-control" name="sw_geschw" style="width:300px;">
     </div>
-    <div class="form-group">
-        <label for="sw_config">Pfad der Konfigdatei:</label>
-        <input type="text" id="sw_config" class="form-control" name="sw_config" style="width:300px;">
-    </div>
+
 </form>
