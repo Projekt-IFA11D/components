@@ -13,8 +13,8 @@
 	</div>
 </div>
 
-<div class="table table-responsive">
-	<table class="table table-striped">
+<div class="table table-responsive" id="mark_row1">
+	<table class="table table-striped table-hover">
 		<th>Raum-Nr</th>
 		<th>Raum-Bez</th>
 		<th>Raum-Notiz</th>
@@ -24,7 +24,7 @@
 			$rooms = select_statement("rooms");
 			foreach ($rooms as $room)
 			{ ?>
-				<tr>
+				<tr class="room_detailed_components" style="cursor: pointer;">
 					<td><?php echo($room['r_nr']) ?></td>
 					<td><?php echo($room['r_bezeichnung'])?></td>
 					<td><?php echo($room['r_notiz']) ?></td>
@@ -44,3 +44,4 @@
 </div>
 	
 <script src="lib/page/rooms/script.js"></script>
+

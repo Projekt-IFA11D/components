@@ -1,55 +1,33 @@
-<?php
+<h1>Komponente: Netzwerkkarte</h1><br><br>
+<form role="form" type="text">
+    <div class="form-group">
+        <label for="nk_name">Interne Bezeichnung/Name:</label>
+        <input type="text" id="nk_name" class="form-control" name="nk_name" style="width:300px;">
+    </div>
+    
+    <div class="form-group">
+        <label for="nk_bandbreite">Bandbreite/Geschwindigkeit:</label>
+        <input type="text" id="nk_bandbreite" class="form-control" name="nk_bandbreite" style="width:300px;">
+    </div>
 
-/*+--------------------------------------------------+*/
-/*|													 |*/
-/*|	Formularname:									 |*/
-/*|	=============									 |*/
-/*|	formular_netzwerkkarte.php						 |*/
-/*|													 |*/
-/*| Version:										 |*/
-/*|	========										 |*/
-/*|	1.0												 |*/
-/*|													 |*/
-/*|	Autor:											 |*/
-/*|	======											 |*/
-/*|	Maximilian Drescher								 |*/
-/*|													 |*/
-/*| Beschreibung:									 |*/
-/*|	=============									 |*/
-/*|	Formular fuer die Komponente 'Netzwerkkarte'	 |*/
-/*|													 |*/
-/*+--------------------------------------------------+*/
+    <label for=""> Externe Schnittstelle:</label>
+    <div class="checkbox">
+        <label><input type="checkbox" name="nk_ext_if" value="nk_ext_if_rj45"> RJ45</label>
+    </div>    
+    <div class="checkbox">
+        <label><input type="checkbox" name="nk_ext_if" value="nk_ext_if_lwl"> LWL</label>
+    </div>   
 
-echo "<h1>Komponente: Netzwerkkarte</h1><br><br>";
-echo "<table border = '1' cellpadding = '0' cellspacing='4'>
+    <label for=""> Interne Schnittstelle:</label>
+    <div class="checkbox">
+        <label><input type="checkbox" name="nk_int_if" value="nk_int_if_pci"> PCI</label>
+    </div>    
+    <div class="checkbox">
+        <label><input type="checkbox" name="nk_int_if" value="nk_int_if_pcie"> PCI-E</label>
+    </div>    
 
-		<tr>
-		<td align='right'>Interne Bezeichnung/Name: </td>
-		<td><input name='nk_name' type='text' size='30'></td>
-		</tr>
-
-		<tr>
-		<td align='right'>Bandbreite/Geschwindigkeit: </td>
-		<td><input name='nk_bandbreite' type='text' size='30'></td>
-		</tr>
-
-		<tr>
-		<td align='right'>Externe Schnittstelle: </td>
-		<td><input type='checkbox' name='nk_ext_if' value='nk_ext_if_rj45'>RJ45<br>
-		<input type='checkbox' name='nk_ext_if' value='nk_ext_if_lwl'>LWL<br></td>
-		</tr>
-		
-		<tr>
-		<td align='right'>Interne Schnittstelle: </td>
-		<td><input type='checkbox' name='nk_int_if' value='nk_int_if_pci'>PCI<br>
-		<input type='checkbox' name='nk_int_if' value='nk_int_if_pcie'>PCI-E<br></td>
-		</tr>
-		
-		<tr>
-		<td align='right'>Anzahl externer Ports: </td>
-		<td><input name='nk_anz_ports' type='text' size='30'></td>
-		</tr>
-
-	  </table>";
-
-?>
+    <div class="form-group">
+        <label for="nk_anz_ports">Anzahl externer Ports:</label>
+        <input type="number" id="nk_anz_ports" class="form-control" name="nk_anz_ports" style="width:300px;">
+    </div>
+</form>
