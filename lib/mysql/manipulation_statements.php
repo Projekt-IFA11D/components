@@ -34,7 +34,11 @@ function check_column_names($Data) {
 
 // Build a data manipulation statement from the form data
 function manipulation_statement($Type, $Form_Data) {
-
+  
+  // Unsetting the timestamp as we don't need it here
+  if(isset($Form_Data["_"])) {
+    unset($Form_Data["_"]);
+  }
   if(isset($Form_Data["Anzahl"]) && $Form_Data["Anzahl"] > 0) {
     $Anzahl = $Form_Data["Anzahl"];
     unset($Form_Data["Anzahl"]);
@@ -43,11 +47,13 @@ function manipulation_statement($Type, $Form_Data) {
     unset($Form_Data["Anzahl"]);
   }
 
+  // Needs regex for the part after _
+  $regex = "/^.*_/U";
   if(isset($Form_Data["delete_room"])) {
-    $Index = $Form_Data["delete_room"];
+    $Index = preg_replace($regex, "", $Form_Data["delete_room"]);
     unset($Form_Data["delete_room"]);
   } else if(isset($Form_Data["edit_room"])) {
-    $Index = $Form_Data["edit_room"];
+    $Index = preg_replace($regex, "", $Form_Data["edit_room"]);
     unset($Form_Data["edit_room"]);
   } else if($Type!="Insert") {
       // raise some kind of error
@@ -60,14 +66,12 @@ function manipulation_statement($Type, $Form_Data) {
     // Raise some kind of error
   }
   
-  $Statements=create_statement($Table_Columns, $Type, $Index);
+  $Statements = create_statement($Table_Columns, $Type, [$Index]);
   for($i=0;$i<$Anzahl;$i++) {
     foreach ($Statements as $Statement) {
-      print $Statement;
       mysql_query($Statement);
     }
   }
-  mysql_close();
 }
 
 ?>
