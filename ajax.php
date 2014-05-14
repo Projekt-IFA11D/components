@@ -83,24 +83,37 @@
 	{
 		manipulation_statement("Delete", $_GET);
 		require_once('lib/page/rooms/main.php');
-		var_dump($_GET);
 	}
 	elseif (isset($_GET['add_room']))
 	{
 		manipulation_statement("Insert", $_GET);
 		require_once('lib/page/rooms/main.php');
-		var_dump($_GET);
 	}
 	elseif (isset($_GET['edit_supplier']))
 	{
 		manipulation_statement("Update", $_GET);
+		require_once('lib/page/suppliers/main.php');
 	}
 	elseif (isset($_GET['delete_supplier']))
 	{
 		manipulation_statement("Delete", $_GET);
-		var_dump($_GET);
+		require_once('lib/page/suppliers/main.php');
 	}
 	elseif (isset($_GET['add_supplier']))
+	{
+		manipulation_statement("Insert", $_GET);
+		require_once('lib/page/suppliers/main.php');
+	}
+	elseif (isset($_GET['edit_component']))
+	{
+		manipulation_statement("Update", $_GET);
+	}
+	elseif (isset($_GET['delete_component']))
+	{
+		manipulation_statement("Delete", $_GET);
+		require_once('lib/page/components/main.php');
+	}
+	elseif (isset($_GET['add_component']))
 	{
 		manipulation_statement("Insert", $_GET);
 	}
