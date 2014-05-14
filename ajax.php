@@ -11,16 +11,16 @@
 	elseif (isset($_GET['wizzard']))
 	{
 		$wiz = $_GET['wizzard'];
+		$type = $_GET['type'];
 		if ($wiz == 'bundle')
 		{
-			if (file_exists('lib/forms/form_bundle_pc.php'))
+			if (file_exists('lib/forms/form_bundle_'.$type.'.php'))
 			{
-				require_once('lib/forms/form_bundle_pc.php');
+				require_once('lib/forms/form_bundle_'.$type.'.php');
 			}
 		}
 		else
 		{
-			$type = $_GET['type'];
 			if (file_exists('lib/forms/formular_'.$type.'.php'))
 			{
 				require_once('lib/forms/formular_'.$type.'.php');
