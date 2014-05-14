@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 10.0.1.14
--- Generation Time: May 13, 2014 at 03:47 PM
+-- Generation Time: May 14, 2014 at 09:02 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -31,7 +31,7 @@ USE `itv_v1`;
 CREATE TABLE IF NOT EXISTS `komponenten` (
   `k_id` int(11) NOT NULL AUTO_INCREMENT,
   `lieferant_l_id` int(11) NOT NULL,
-  `lieferant_r_id` int(11) NOT NULL,
+  `raeume_r_id` int(11) NOT NULL,
   `k_einkaufsdatum` date DEFAULT NULL,
   `k_gewaehrleistungsdauer` int(11) DEFAULT NULL,
   `k_notiz` varchar(1024) DEFAULT NULL,
@@ -39,15 +39,15 @@ CREATE TABLE IF NOT EXISTS `komponenten` (
   `komponentenarten_ka_id` int(11) NOT NULL,
   PRIMARY KEY (`k_id`),
   KEY `fk_komponenten_haendler` (`lieferant_l_id`),
-  KEY `fk_komponenten_raeume1` (`lieferant_r_id`),
+  KEY `fk_komponenten_raeume1` (`raeume_r_id`),
   KEY `fk_komponenten_komponentenarten1` (`komponentenarten_ka_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Dumping data for table `komponenten`
 --
 
-INSERT INTO `komponenten` (`k_id`, `lieferant_l_id`, `lieferant_r_id`, `k_einkaufsdatum`, `k_gewaehrleistungsdauer`, `k_notiz`, `k_hersteller`, `komponentenarten_ka_id`) VALUES
+INSERT INTO `komponenten` (`k_id`, `lieferant_l_id`, `raeume_r_id`, `k_einkaufsdatum`, `k_gewaehrleistungsdauer`, `k_notiz`, `k_hersteller`, `komponentenarten_ka_id`) VALUES
 (1, 3, 2, '2014-01-01', 2, '', 'LENOVO', 1),
 (2, 3, 2, '2014-01-01', 2, '', 'LENOVO', 3),
 (3, 3, 2, '2014-01-01', 2, '', 'LENOVO', 2),
@@ -70,9 +70,9 @@ INSERT INTO `komponenten` (`k_id`, `lieferant_l_id`, `lieferant_r_id`, `k_einkau
 (25, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 23),
 (26, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 24),
 (27, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 25),
-(28, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 21),
-(29, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 22),
-(30, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 7);
+(28, 2, 2, '2014-03-02', 2, NULL, 'MICROSOFT', 21),
+(30, 2, 2, '2014-03-02', 2, NULL, 'LENOVO', 7),
+(31, 3, 2, '2014-01-01', 2, NULL, 'LENOVO', 7);
 
 -- --------------------------------------------------------
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `komponentenattribute` (
   `kat_id` int(11) NOT NULL AUTO_INCREMENT,
   `kat_beschreibung` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`kat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `komponentenattribute`
@@ -163,7 +163,9 @@ INSERT INTO `komponentenattribute` (`kat_id`, `kat_beschreibung`) VALUES
 (32, 'Lizenztyp'),
 (33, 'Lizenzlaufzeit'),
 (35, 'Lizenzinformationen'),
-(36, 'Installationshinweis');
+(36, 'Installationshinweis'),
+(37, 'Auflösung'),
+(38, 'Bildformat');
 
 -- --------------------------------------------------------
 
@@ -266,7 +268,15 @@ INSERT INTO `komponentenattribut_hat_zulaessige_werte` (`komponentenattribute_ka
 (26, 82),
 (26, 83),
 (26, 84),
-(26, 85);
+(26, 85),
+(37, 92),
+(37, 93),
+(37, 95),
+(37, 96),
+(37, 97),
+(38, 98),
+(38, 99),
+(38, 100);
 
 -- --------------------------------------------------------
 
@@ -282,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `komponente_hat_attribute` (
   PRIMARY KEY (`ID`),
   KEY `fk_komponenten_has_komponentenattribute_komponentenattribute1` (`komponentenattribute_kat_id`),
   KEY `fk_komponenten_has_komponentenattribute_komponenten1` (`komponenten_k_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
 -- Dumping data for table `komponente_hat_attribute`
@@ -303,13 +313,13 @@ INSERT INTO `komponente_hat_attribute` (`komponenten_k_id`, `komponentenattribut
 (5, 8, 'PCIe', 12),
 (5, 8, 'ATX', 13),
 (5, 8, 'IDE', 14),
-(5, 8, 'USB 2.0', 15),
-(5, 8, 'USB 3.0', 16),
-(5, 8, 'VGA', 18),
-(5, 8, 'Displayport', 19),
-(5, 8, 'RJ45', 20),
+(5, 9, 'USB 2.0', 15),
+(5, 9, 'USB 3.0', 16),
+(5, 9, 'VGA', 18),
+(5, 9, 'Displayport', 19),
+(5, 9, 'RJ45', 20),
 (5, 11, '4', 21),
-(5, 8, 'HDMI', 22),
+(5, 9, 'HDMI', 22),
 (6, 13, '32x', 23),
 (6, 17, 'DVD-ROM', 24),
 (7, 8, 'ATX', 25),
@@ -320,7 +330,43 @@ INSERT INTO `komponente_hat_attribute` (`komponenten_k_id`, `komponentenattribut
 (7, 26, '500 Watt', 30),
 (14, 27, 'Office 2014', 31),
 (14, 32, 'Einzelplatzlizenz', 32),
-(14, 33, '2 Jahre', 33);
+(14, 33, '2 Jahre', 33),
+(8, 9, 'PS/2', 34),
+(9, 9, 'USB 2.0', 35),
+(25, 9, 'USB 2.0', 36),
+(26, 9, 'USB 2.0', 37),
+(18, 18, 'i5', 39),
+(18, 4, '1150', 40),
+(20, 10, 'DDR4', 41),
+(20, 5, '4GB', 42),
+(20, 2, '1600MHz', 43),
+(21, 7, 'HDD', 44),
+(21, 6, '7200', 45),
+(21, 5, '250 GB', 46),
+(21, 3, '2,5"', 47),
+(22, 9, 'USB 2.0', 48),
+(22, 8, 'IDE', 49),
+(22, 9, 'HDMI', 50),
+(22, 8, 'ATX', 51),
+(22, 11, '4', 52),
+(22, 8, 'PCIe', 53),
+(22, 9, 'RJ45', 54),
+(22, 8, 'PCI', 55),
+(22, 9, 'Displayport', 56),
+(22, 8, 'SATA', 57),
+(22, 9, 'VGA', 58),
+(22, 9, 'USB 3.0', 59),
+(23, 17, 'DVD-ROM', 60),
+(23, 13, '32x', 61),
+(24, 8, 'ATX', 62),
+(24, 26, '500 Watt', 63),
+(24, 8, 'SATA', 64),
+(24, 8, 'PCIe', 65),
+(24, 8, 'IDE', 66),
+(27, 1, '17"', 67),
+(28, 33, '2 Jahre', 68),
+(28, 32, 'Einzelplatzlizenz', 69),
+(28, 27, 'Office 2014', 70);
 
 -- --------------------------------------------------------
 
@@ -338,7 +384,7 @@ CREATE TABLE IF NOT EXISTS `komponente_hat_komponente` (
   KEY `fk_komponenten_has_komponenten_komponenten2` (`komponenten_k_id_teil`),
   KEY `fk_komponenten_has_komponenten_komponenten1` (`komponenten_k_id_aggregat`),
   KEY `fk_komponente_hat_komponente_vorgangsarten1` (`vorgangsarten_v_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `komponente_hat_komponente`
@@ -362,12 +408,11 @@ INSERT INTO `komponente_hat_komponente` (`komponenten_k_id_aggregat`, `komponent
 (16, 23, 19, 1, '2014-03-02'),
 (16, 24, 20, 1, '2014-03-02'),
 (16, 25, 21, 1, '2014-03-02'),
-(16, 25, 22, 1, '2014-03-02'),
 (16, 26, 23, 1, '2014-03-02'),
 (16, 27, 24, 1, '2014-03-02'),
 (16, 28, 25, 1, '2014-03-02'),
-(16, 29, 26, 1, '2014-03-02'),
-(16, 30, 27, 1, '2014-03-02');
+(16, 30, 27, 1, '2014-03-02'),
+(1, 31, 28, 1, '2014-01-01');
 
 -- --------------------------------------------------------
 
@@ -15469,6 +15514,8 @@ INSERT INTO `wird_beschrieben_durch` (`komponentenarten_ka_id`, `komponentenattr
 (7, 9),
 (13, 9),
 (14, 9),
+(23, 9),
+(24, 9),
 (2, 10),
 (4, 10),
 (4, 11),
@@ -15509,7 +15556,11 @@ INSERT INTO `wird_beschrieben_durch` (`komponentenarten_ka_id`, `komponentenattr
 (21, 32),
 (21, 33),
 (21, 35),
-(21, 36);
+(21, 36),
+(22, 37),
+(25, 37),
+(22, 38),
+(25, 38);
 
 -- --------------------------------------------------------
 
@@ -15521,7 +15572,7 @@ CREATE TABLE IF NOT EXISTS `zulaessige_werte` (
   `zw_id` int(11) NOT NULL AUTO_INCREMENT,
   `zw_wert` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`zw_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=96 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
 
 --
 -- Dumping data for table `zulaessige_werte`
@@ -15620,8 +15671,12 @@ INSERT INTO `zulaessige_werte` (`zw_id`, `zw_wert`) VALUES
 (91, 'Verwaltung'),
 (92, '1024x768'),
 (93, '800x600'),
-(94, NULL),
-(95, '1920x1080');
+(95, '1920x1080'),
+(96, '1280x720'),
+(97, '1280x800'),
+(98, '16:9'),
+(99, '16:10'),
+(100, '4:3');
 
 --
 -- Constraints for dumped tables
@@ -15633,7 +15688,7 @@ INSERT INTO `zulaessige_werte` (`zw_id`, `zw_wert`) VALUES
 ALTER TABLE `komponenten`
   ADD CONSTRAINT `fk_komponenten_haendler` FOREIGN KEY (`lieferant_l_id`) REFERENCES `lieferant` (`l_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_komponenten_komponentenarten1` FOREIGN KEY (`komponentenarten_ka_id`) REFERENCES `komponentenarten` (`ka_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_komponenten_raeume1` FOREIGN KEY (`lieferant_r_id`) REFERENCES `raeume` (`r_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_komponenten_raeume1` FOREIGN KEY (`raeume_r_id`) REFERENCES `raeume` (`r_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `komponentenattribut_hat_zulaessige_werte`
