@@ -23,7 +23,7 @@
 			}
 			echo "<br>";
 			echo "</form>";
-			echo "<input type='button' id='bundle_next' onclick=\"bundle_next('showForms','compForm')\" value='Weiter'>";
+			echo "<button class='btn btn-primary' type='button' id='bundle_next' onclick=\"bundle_next('showForms','compForm')\">Weiter</button>";
 		}
 		elseif($wiz == "save")
 		{
