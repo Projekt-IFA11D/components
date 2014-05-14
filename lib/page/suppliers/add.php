@@ -9,51 +9,51 @@
             <form class="form-horizontal" role="form">
 				<div class="modal-body">
                     <div class="form-group">
-                        <label for="lieferant_l_firmenname" class="col-sm2 control-label">Firma</label>
+                        <label for="add-lieferant-l_firmenname" class="col-sm2 control-label">Firma</label>
                          <div class="col-sm-9">
-                            <input type="text" class="form-control" id="lieferant_l_firmenname">
+                            <input type="text" class="form-control" id="add-lieferant-l_firmenname">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lieferant_l_strasse" class="col-sm2 control-label">Strasse</label>
+                        <label for="add-lieferant-l_strasse" class="col-sm2 control-label">Strasse</label>
                          <div class="col-sm-9">
-                            <input type="text" class="form-control" id="lieferant_l_strasse">
+                            <input type="text" class="form-control" id="add-lieferant-l_strasse">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="plz_zuordnung_ORT" class="col-sm2 control-label">Ort</label>
+                        <label for="add-plz_zuordnung-plz_ort" class="col-sm2 control-label">Ort</label>
                          <div class="col-sm-9">
-                            <input type="text" class="form-control" id="plz_zuordnung_ORT">
+                            <input type="text" class="form-control" id="add-plz_zuordnung-plz_ort">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="plz_zuordnung_PLZ" class="col-sm2 control-label">PLZ</label>
+                        <label for="add-plz_zuordnung-plz_plz" class="col-sm2 control-label">PLZ</label>
                          <div class="col-sm-9">
-                            <input type="text" class="form-control" id="plz_zuordnung_PLZ">
+                            <input type="text" class="form-control" id="add-plz_zuordnung-plz_plz">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lieferant_l_tel" class="col-sm2 control-label">Telefon</label>
+                        <label for="add-lieferant-l_tel" class="col-sm2 control-label">Telefon</label>
                          <div class="col-sm-9">
-                            <input type="text" class="form-control" id="lieferant_l_tel">
+                            <input type="text" class="form-control" id="add-lieferant-l_tel">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lieferant_l_mobil" class="col-sm2 control-label">Mobil</label>
+                        <label for="add-lieferant-l_mobil" class="col-sm2 control-label">Mobil</label>
                          <div class="col-sm-9">
-                            <input type="text" class="form-control" id="lieferant_l_mobil">
+                            <input type="text" class="form-control" id="add-lieferant-l_mobil">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lieferant_l_fax" class="col-sm2 control-label">Fax</label>
+                        <label for="add-lieferant-l_fax" class="col-sm2 control-label">Fax</label>
                          <div class="col-sm-9">
-                            <input type="text" class="form-control" id="lieferant_l_fax">
+                            <input type="text" class="form-control" id="add-lieferant-l_fax">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lieferant_l_email" class="col-sm2 control-label">E-Mail</label>
+                        <label for="add-lieferant-l_email" class="col-sm2 control-label">E-Mail</label>
                          <div class="col-sm-9">
-                            <input type="email" class="form-control" id="lieferant_l_email">
+                            <input type="email" class="form-control" id="add-lieferant-l_email">
                         </div>
                     </div>
                 </div>
