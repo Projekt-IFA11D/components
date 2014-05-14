@@ -36,7 +36,8 @@
 		{
 		    require_once('lib/forms/formular_allgemein.php');
 			echo "<form id='compNextForm'>";
-			echo "Menge: <input type='text' name='anzahl' value='1'>";
+			echo "<label>Menge: </label>";
+			echo "<input class='form-control' type='text' name='anzahl' value='1' style='width:10%'>";
 			if(isset($_POST['form']) && is_array($_POST['form']))
 			{
 				
@@ -71,7 +72,7 @@
 			
 			echo "<br>";
 			echo "</form>";
-            echo "<input type='button' id='comp_next' onclick=\"bundle_next('save','compNextForm')\"  value='Anlegen'>";
+            echo "<button class='btn btn-primary' type='button' id='comp_next' onclick=\"bundle_next('save','compNextForm')\">Anlegen</button>";
 		}
 	}
     elseif (isset($_GET['room_component']))
