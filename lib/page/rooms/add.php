@@ -9,21 +9,21 @@
 			<form class="form-horizontal" role="form" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="raeume_r_nr" class="col-sm2 control-label">Raum-Nr.</label>
+                        <label for="add-raeume-r_nr" class="col-sm2 control-label">Raum-Nr.</label>
                          <div class="col-sm-8">
-                            <input type="text" class="form-control" name="raeume_r_nr" id="raeume_r_nr">
+                            <input type="text" class="form-control" name="add-raeume-r_nr" id="add-add-raeume-r_nr">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="raeume_r_bezeichnung" class="col-sm2 control-label">Raum-Bez.</label>
+                        <label for="add-raeume-r_bezeichnung" class="col-sm2 control-label">Raum-Bez.</label>
                          <div class="col-sm-8">
-                            <input type="text" class="form-control" name="raeume_r_bezeichnung" id="raeume_r_bezeichnung">
+                            <input type="text" class="form-control" name="add-raeume-r_bezeichnung" id="add-add-raeume-r_bezeichnung">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="raeume_r_notiz" class="col-sm2 control-label">Raum-Notiz</label>
+                        <label for="add-raeume-r_notiz" class="col-sm2 control-label">Raum-Notiz</label>
                          <div class="col-sm-8">
-                            <input type="text" class="form-control" name="raeume_r_notiz" id="raeume_r_notiz">
+                            <input type="text" class="form-control" name="add-raeume-r_notiz" id="add-add-raeume-r_notiz">
                         </div>
                     </div>
 				</div>

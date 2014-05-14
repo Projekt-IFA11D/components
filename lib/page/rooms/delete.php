@@ -9,7 +9,7 @@
 			<div class="modal-body">Sind Sie sicher?</div>
 			<form method="POST">
 				<div class="modal-footer">
-					<input type='hidden' class="raeume_r_id" name='raeume_r_id'>
+					<input type='hidden' id="delete-raeume-r_id" name='delete-raeume-r_id'>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="room_submit($(this), 'delete_room')">L&ouml;schen</button>
 				</div>
