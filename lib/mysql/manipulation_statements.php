@@ -2,7 +2,6 @@
 /* 
  * Handler for manipulation statements
  * @author = Kilian Petsch
- * @license = 
  * @date = 2014-05-12
 */
 
@@ -44,9 +43,12 @@ function manipulation_statement($Type, $Form_Data) {
     unset($Form_Data["Anzahl"]);
   }
 
-  if(isset($Form_Data["Index"])) {
-    $Index = $Form_Data["Index"];
-    unset($Form_Data["Index"]);
+  if(isset($Form_Data["delete_room"])) {
+    $Index = $Form_Data["delete_room"];
+    unset($Form_Data["delete_room"]);
+  } else if(isset($Form_Data["edit_room"])) {
+    $Index = $Form_Data["edit_room"];
+    unset($Form_Data["edit_room"]);
   } else if($Type!="Insert") {
       // raise some kind of error
   } else {
