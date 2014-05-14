@@ -5,7 +5,7 @@
 ###
 --> 
 
-<h1>Komponente: Festplatte</h1><br><br>
+<h1>Festplatte</h1><br><br>
 <form role="form" type="text">
     <div class="form-group">
         <label for="fp_name">Interne Bezeichnung/Name:</label>

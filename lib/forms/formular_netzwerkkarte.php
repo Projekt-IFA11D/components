@@ -5,7 +5,7 @@
 ###
 --> 
 
-<h1>Komponente: Netzwerkkarte</h1><br><br>
+<h1>Netzwerkkarte</h1><br><br>
 <form role="form" type="text">
     <div class="form-group">
         <label for="nk_name">Interne Bezeichnung/Name:</label>

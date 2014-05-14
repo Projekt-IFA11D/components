@@ -1,4 +1,4 @@
-<h1>Komponente: Netzteil</h1><br><br>
+<h1>Netzteil</h1><br><br>
 <form role="form" type="text">    
     <div class="form-group">    
         <label for="nt_leistung">Leistung:</label>

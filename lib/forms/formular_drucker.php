@@ -5,7 +5,7 @@
 ###
 --> 
 
-<h1>Komponente: Drucker</h1><br><br>
+<h1>Drucker</h1><br><br>
 <form role="form" type="text">    
     <div class="form-group">    
         <label for="drucker_ip">Drucker:</label>

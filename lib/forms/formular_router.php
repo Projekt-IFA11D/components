@@ -5,7 +5,7 @@
 ##
 -->
 
-<h1>Komponente: Router</h1><br><br>
+<h1>Router</h1><br><br>
 <form role="form" type="text">
     <div class="form-group">
         <label for="router_name">Interne Bezeichnung/Name:</label>

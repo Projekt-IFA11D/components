@@ -3,7 +3,7 @@
 ## based on php/html by Max Drescher    ##
 ## bootstrapped by Matthias Griessmeier ##
 -->
-<h1>Komponente: Switches</h1><br><br>
+<h1>Switches</h1><br><br>
 <form role="form" type="text">
     <div class="form-group">
         <label for="sw_name">Interne Bezeichnung/Name:</label>

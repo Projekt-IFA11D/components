@@ -20,7 +20,7 @@
 /*|													 |*/
 /*+--------------------------------------------------+*/
 
-echo "<h1>Komponente: Accesspoints</h1><br><br>";
+echo "<h1>Accesspoints</h1><br><br>";
 echo "<table border = '1' cellpadding = '0' cellspacing='4'>
 
 		<tr>

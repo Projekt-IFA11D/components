@@ -5,7 +5,7 @@
 ###
 --> 
 
-<h1>Komponente: CPU</h1><br><br>
+<h1>CPU</h1><br><br>
 <form role="form" type="text">
     <div class="form-group">
         <label for="cpu_name">Interne Bezeichnung/Name:</label>

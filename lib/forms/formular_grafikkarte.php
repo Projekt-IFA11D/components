@@ -5,7 +5,7 @@
 ###
 --> 
 
-<h1>Komponente: Grafikkarte</h1><br><br>
+<h1>Grafikkarte</h1><br><br>
 <form role="form" type="text">
     <div class="form-group">
         <label for="gk_name">Interne Bezeichnung/Name:</label>
