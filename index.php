@@ -11,6 +11,9 @@
 
     <title><?php echo(PROJEKT_NAME) ?></title>
 
+    <!-- Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 

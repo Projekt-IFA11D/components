@@ -1,7 +1,7 @@
 <?php
 	//General
 	define('PROJEKT_NAME', 'Components');
-	define('PROJEKT_VERSION', '0.1_alpha1');
+	define('PROJEKT_VERSION', '0.1');
 
 	//MySQL
 	define('MYSQL_HOST', 'localhost');

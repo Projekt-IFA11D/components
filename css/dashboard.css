@@ -102,4 +102,8 @@ body {
   background-color: #ccc;
 }
 
-
+#page_title {
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+  color: #FFFF81;
+}

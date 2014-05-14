@@ -7,7 +7,7 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="#dashboard"><?php echo(PROJEKT_NAME." ".PROJEKT_VERSION) ?></a>
+	  <a class="navbar-brand" id="page_title" href="#dashboard"><?php echo(PROJEKT_NAME." v".PROJEKT_VERSION) ?></a>
 	</div>
 	<div class="col-sm-3 col-md-3 pull-right">
        		 <form class="navbar-form" role="search" id="search-input-field">
