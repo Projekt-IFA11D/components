@@ -1,3 +1,9 @@
+<?php
+	require_once('delete.php');
+?>
+
+
+
 <div class="row">
 	<div class="col-md-2">
 		<h1 class="page-header">Komponenten</h1>
@@ -18,24 +24,24 @@
 		<th></th>
             </tr>
 		<?php
-			$acquisitions = select_statement("acquisitions");
-			foreach ($acquisitions as $acquisition)
+			$components = select_statement("acquisitions");
+			foreach ($components as $component)
 			{ ?>
 					<tr>
-						<td><?php echo($acquisition['l_firmenname']) ?></td>
-						<td><?php echo($acquisition['r_bezeichnung'])?></td>
-						<td><?php echo($acquisition['k_einkaufsdatum']) ?></td>
-						<td><?php echo($acquisition['k_gewaehrleistungsdauer'])." Jahre"?></td>
-						<td><?php echo($acquisition['k_notiz'])?></td>
-						<td><?php echo($acquisition['k_hersteller'])?></td>
-						<td><?php echo($acquisition['ka_komponentenart'])?></td>
+						<td><?php echo($component['l_firmenname']) ?></td>
+						<td><?php echo($component['r_bezeichnung'])?></td>
+						<td><?php echo($component['k_einkaufsdatum']) ?></td>
+						<td><?php echo($component['k_gewaehrleistungsdauer'])." Jahre"?></td>
+						<td><?php echo($component['k_notiz'])?></td>
+						<td><?php echo($component['k_hersteller'])?></td>
+						<td><?php echo($component['ka_komponentenart'])?></td>
 						<td class="col-md-1">
-							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
-							onclick="<?php echo('edit_components($(this), '.$acquisition['k_id'].')') ?>">Details</button>
+							<button type="button" class="btn btn-primary btn-xs"
+							onclick="<?php echo('edit_components($(this), '.$component['k_id'].')') ?>">Details</button>
 						</td>
 						<td class="col-md-1">
 						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_components_modal"
-							onclick="<?php echo('delete_components('.$acquisition['k_id'].')') ?>">L&ouml;schen</button>
+							onclick="<?php echo('delete_components('.$component['k_id'].')') ?>">L&ouml;schen</button>
 						</td>
 					</tr>
 			<?php }
