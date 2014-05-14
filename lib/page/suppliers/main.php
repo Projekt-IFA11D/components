@@ -38,10 +38,18 @@
 					<td><?php echo($supplier['l_mobil']) ?></td>
 					<td><?php echo($supplier['l_fax']) ?></td>
 					<td><?php echo($supplier['l_email']) ?></td>
-					<td class="col-md-1"><button type="button" class="btn btn-primary btn-xs">Editieren</button></td>
-					<td class="col-md-1"><button type="button" class="btn btn-danger btn-xs">L&ouml;schen</button></td>
+					<td class="col-md-1">
+						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_supplier_modal"
+							onclick="<?php echo('edit_supplier($(this), '.$supplier['l_id'].')') ?>">Editieren</button>
+					</td>
+					<td class="col-md-1">
+						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_supplier_modal"
+							onclick="<?php echo('delete_supplier('.$supplier['l_id'].')') ?>">L&ouml;schen</button>
+					</td>
 				</tr>
 			<?php }
 		?>
   </table>
 </div>
+
+<script src="lib/page/suppliers/script.js"></script>
