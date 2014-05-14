@@ -37,7 +37,7 @@
 						<td><?php echo($component['ka_komponentenart'])?></td>
 						<td class="col-md-1">
 							<button type="button" class="btn btn-primary btn-xs"
-							onclick="<?php echo('edit_components($(this), '.$component['k_id'].')') ?>">Details</button>
+							onclick="<?php echo('edit_components($(this), '.$component['ka_id'].')') ?>">Details</button>
 						</td>
 						<td class="col-md-1">
 						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_components_modal"

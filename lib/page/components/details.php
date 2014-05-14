@@ -19,82 +19,102 @@
 			break;
 
 			case 2:
-			formular_ram.php
+			require_once('lib\forms\formular_ram.php');
+			
 			break;
 
 			case 3:
-			formular_cpu.php
+			require_once('lib\forms\formular_cpu.php');
+
 			break;
 
 			case 4:
-			formular_mainboard.php
+			require_once('lib\forms\formular_mainboard.php');
+
 			break;
 
 			case 5:
-			formular_festplatte.php
+			require_once('lib\forms\formular_festplatte.php');
+
 			break;
 
 			case 6:
-			formular_grafikkarte.php
+			require_once('lib\forms\formular_grafikkarte.php');
+
 			break;
 
 			case 7:
-			formular_netzwerkkarte.php
+			require_once('lib\forms\formular_netzwerkkarte.php');
+
 			break;
 
 			case 8:
-			formular_raidcontroller.php
+			require_once('lib\forms\formular_raidcontroller.php');
+
 			break;
 
 			case 13:
-			formular_netzteil.php
+			require_once('lib\forms\formular_netzteil.php');
+
 			break;
 
 			case 14:
-			formular_switches.php
+			require_once('lib\forms\formular_switches.php');
+
 			break;
 
 			case 15:
-			formular_vlan.php
+			require_once('lib\forms\formular_vlan.php');
+	
 			break;
 
 			case 16:
-			formular_router.php
+			require_once('lib\forms\formular_router.php');
+		
 			break;
 
 			case 17:
-			formular_hubs.php
+			require_once('lib\forms\formular_hubs.php');
+		
 			break;
 
 			case 18:
-			formular_accesspoints.php
+			require_once('lib\forms\formular_accesspoints.php');
+		
 			break;
 	
 			case 19:
-			formular_drucker.php
+			require_once('lib\forms\formular_drucker.php');
+			
 			break;
 			
 			case 20:
+			require_once('lib\forms\form_bundle_pc.php');
 			//todo: optisches laufwerk muss von formular_cd/dvd + brenner abgefangen werden. 1 Vorgang - 4 Formulare?
 			break;
 
 			case 21:
-			formular_software.php
+			require_once('lib\forms\formular_software.php');
+
 			break;
 			
 			case 22:
+			require_once('lib\forms\form_bundle_pc.php');
 			//todo: Formular für Beamer fehlt
 			break;
 
 			case 23:
+			require_once('lib\forms\form_bundle_pc.php');
 			//todo: Formular für Maus fehlt
 			break;
 
 			case 24:
+			require_once('lib\forms\form_bundle_pc.php');
 			//todo: Formular für Tastatur fehlt
 			break;
 			
 			case 25:
+			require_once('lib\forms\form_bundle_pc.php');
 			//todo: Formular für Monitor fehlt
 			break;
 			

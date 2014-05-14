@@ -18,7 +18,7 @@ function select_statement($Table, $Index = 0) {
 			   "suppliers" => "SELECT L.l_firmenname, L.l_strasse, L.l_tel, L.l_mobil, L.l_fax, L.l_email, plz.plz_plz, plz.plz_ort FROM lieferant
 							   AS L INNER JOIN plz_zuordnung AS plz ON (L.l_plz_id=plz.plz_id)",
 			   "acquisitions" => "SELECT komponenten.k_id, lieferant.l_firmenname, raeume.r_bezeichnung, komponenten.k_einkaufsdatum,
-							komponenten.k_gewaehrleistungsdauer, komponenten.k_notiz, k_hersteller, komponentenarten.ka_komponentenart
+							komponenten.k_gewaehrleistungsdauer, komponenten.k_notiz, k_hersteller, komponentenarten.ka_komponentenart, komponentenarten.ka_id
 							FROM komponenten
 								INNER JOIN lieferant ON komponenten.lieferant_l_id = lieferant.l_id
 								INNER JOIN raeume ON komponenten.raeume_r_id = raeume.r_id
