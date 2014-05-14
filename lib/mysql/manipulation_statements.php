@@ -47,8 +47,7 @@ function manipulation_statement($Type, $Form_Data) {
     unset($Form_Data["Anzahl"]);
   }
 
-  $pattern = "/^[delete_|edit_].*/U";
-  $table_key = preg_grep($pattern, array_keys($Form_Data));
+  $table_key = preg_grep("/^[delete_|edit_].*/U", array_keys($Form_Data));
   if(isset($Form_Data[$table_key[0]])) {
     $Index = preg_replace("/^.*_/U", "", $Form_Data[$table_key[0]]);
 
@@ -60,6 +59,8 @@ function manipulation_statement($Type, $Form_Data) {
   } else if($Type!="Insert") {
       // raise some kind of error
   } else {
+    // Ignore this line
+    $Form_Data[preg_replace("/=.*$/U", "", $Form_Data[preg_grep("/^[add_].*/U", array_keys($Form_Data))[0]])] = preg_replace("/^.*=/U", "", $Form_Data[preg_grep("/^[add_].*/U", array_keys($Form_Data))[0]]);
       $Index = "";
   }
 
@@ -72,7 +73,6 @@ function manipulation_statement($Type, $Form_Data) {
   for($i=0;$i<$Anzahl;$i++) {
     foreach ($Statements as $Statement) {
       mysql_query($Statement);
-      var_dump($Statement);
     }
   }
 }
