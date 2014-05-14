@@ -10,49 +10,49 @@
 				<div class="modal-body">
 					<input type='hidden' class="supplier_s_id" name='raeume_r_id'>
                     <div class="form-group">
-                        <label for="lieferant__l_firmenname" class="col-sm2 control-label">Firma</label>
+                        <label for="lieferant_l_firmenname" class="col-sm2 control-label">Firma</label>
                          <div class="col-sm-9">
                             <input type="text" class="form-control" name="lieferant_l_firmenname" id="lieferant_l_firmenname">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lieferant__l_strasse" class="col-sm2 control-label">Strasse</label>
+                        <label for="lieferant_l_strasse" class="col-sm2 control-label">Strasse</label>
                          <div class="col-sm-9">
                             <input type="text" class="form-control" name="lieferant_l_strasse" id="lieferant_l_strasse">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="plz_zuordnung__ORT" class="col-sm2 control-label">Ort</label>
+                        <label for="plz_zuordnung_ORT" class="col-sm2 control-label">Ort</label>
                          <div class="col-sm-9">
                             <input type="text" class="form-control" name="plz_zuordnung_ORT" id="plz_zuordnung_ORT">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="plz_zuordnung__PLZ" class="col-sm2 control-label">PLZ</label>
+                        <label for="plz_zuordnung_PLZ" class="col-sm2 control-label">PLZ</label>
                          <div class="col-sm-9">
                             <input type="text" class="form-control" name="plz_zuordnung_PLZ" id="plz_zuordnung_PLZ">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lieferant__l_tel" class="col-sm2 control-label">Telefon</label>
+                        <label for="lieferant_l_tel" class="col-sm2 control-label">Telefon</label>
                          <div class="col-sm-9">
                             <input type="text" class="form-control" name="lieferant_l_tel" id="lieferant_l_tel">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lieferant__l_mobil" class="col-sm2 control-label">Mobil</label>
+                        <label for="lieferant_l_mobil" class="col-sm2 control-label">Mobil</label>
                          <div class="col-sm-9">
                             <input type="text" class="form-control" name="lieferant_l_mobil" id="lieferant_l_mobil">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lieferant__l_fax" class="col-sm2 control-label">Fax</label>
+                        <label for="lieferant_l_fax" class="col-sm2 control-label">Fax</label>
                          <div class="col-sm-9">
                             <input type="text" class="form-control" name="lieferant_l_fax" id="lieferant_l_fax">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lieferant__l_email" class="col-sm2 control-label">E-Mail</label>
+                        <label for="lieferant_l_email" class="col-sm2 control-label">E-Mail</label>
                          <div class="col-sm-9">
                             <input type="email" class="form-control" id="lieferant_l_email" name="lieferant_l_email">
                         </div>
