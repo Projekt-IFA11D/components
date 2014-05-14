@@ -3,7 +3,7 @@
 <div id="step_1">
 	<h2 class="sub-header">Auswahl der Komponente</h2>
 	<select id="c_type" class="form-control">
-		<option id="" value="">Bitte Komponente ausw&auml;hlen</option>
+		<option id="" value="">Bitte Komponente auswählen</option>
 		<option id="bundle" value="pc">Komplett PC</option>
 		<option id="single" value="ram">Arbeitsspeicher</option>
 		<option id="single" value="cpu">Prozessor</option>
@@ -12,10 +12,7 @@
 		<option id="single" value="grafikkarte">Grafikkarte</option>
 		<option id="single" value="netzwerkkarte">Netzwerkkarte</option>
 		<option id="single" value="raidcontroller">Raidcontroller</option>
-		<option id="single" value="cd_rom">CD-Laufwerk</option>
-		<option id="single" value="cd_brenner">CD-Brenner</option>
-		<option id="single" value="dvd_rom">DVD-Laufwerke</option>
-		<option id="single" value="dvd_brenner">DVD-Brenner</option>
+		<option id="single" value="Optisches Laufwerk">Optisches Laufwerk</option>
 		<option id="single" value="netzteil">Netzteil</option>
 		<option id="single" value="drucker">Drucker</option>
 		<option id="single" value="switches">Switch</option>
