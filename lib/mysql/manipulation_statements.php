@@ -48,10 +48,12 @@ function manipulation_statement($Type, $Form_Data) {
   }
 
   // Needs regex for the part after _
-  $regex = "/^.*_/U";
-  if(isset($Form_Data["delete_room"])) {
-    $Index = preg_replace($regex, "", $Form_Data["delete_room"]);
-    unset($Form_Data["delete_room"]);
+  $pattern = "/^[delete_|edit_].*/U";
+  $table_key = preg_grep($pattern, array_keys($Form_Data));
+  if(isset($Form_Data[$table_key])) {
+    $Index = preg_replace($regex, "", $Form_Data[$table_key]);
+    var_dump($Index);
+    unset($Form_Data[$table_key]);
   } else if(isset($Form_Data["edit_room"])) {
     $Index = preg_replace($regex, "", $Form_Data["edit_room"]);
     unset($Form_Data["edit_room"]);
