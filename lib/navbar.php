@@ -9,12 +9,5 @@
 	  </button>
 	  <a class="navbar-brand" href="#"><?php echo(PROJEKT_NAME." ".PROJEKT_VERSION) ?></a>
 	</div>
-	<div class="navbar-collapse collapse">
-	  <ul class="nav navbar-nav navbar-right">
-		<li><a href="#">Dashboard</a></li>
-		<li><a href="#">Settings</a></li>
-		<li><a href="#">Profile</a></li>
-	  </ul>
-	</div>
   </div>
 </div>

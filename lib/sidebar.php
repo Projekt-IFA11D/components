@@ -7,7 +7,6 @@
 		</ul>
 	</li>
 	<li><a href="#orders">Bestellungen</a></li>
-	<li><a href="#reporting">Reporting</a></li>
 	<li><a href="#acquisitions">Neubeschaffungen</a></li>
   </ul>
 </div>

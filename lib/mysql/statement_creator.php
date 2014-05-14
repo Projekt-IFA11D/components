@@ -2,12 +2,13 @@
 /*
  * Statement creator for DELETE, INSERT and UPDATE
  * @author = Kilian Petsch 
- * @license = 
  * @date = 2014-05-12
  * Create sql statements
- * Expects Values to follow $Values[TABLE]=[COLUMNS => VALUES]
- * Expectes Index to contain key for WHERE condition
 */
+
+// Expects Values to follow $Values[TABLE]=[COLUMNS => VALUES]
+// Expects Index to contain key for WHERE condition
+// Build an SQL statement for data manipulation
 function create_statement($Values, $Type, $Index) {
   
   foreach ($Values as $Table => $Columns) {
@@ -37,16 +38,16 @@ function create_statement($Values, $Type, $Index) {
       }
       $Statement[$Table]=substr($Statement[$Table], 0, -2);
       $Statement[$Table].=" WHERE ";
-      foreach ($Index as $key => $value) {
-	$Statement[$Table].="$key=\"$value\" AND ";
+      foreach ($Index as $value) {
+	$Statement[$Table].="\"$value\" AND ";
       }
       $Statement[$Table]=substr($Statement[$Table], 0, -5);
       break;
 
     case "Delete":
       $Statement[$Table]="DELETE FROM $Table WHERE ";
-      foreach ($Index as $key => $value) {
-	$Statement[$Table].="$key=\"$value\" AND ";
+      foreach ($Index as $value) {
+	$Statement[$Table].="\"$value\" AND ";
       }
       $Statement[$Table]=substr($Statement[$Table], 0, -5);
     }
