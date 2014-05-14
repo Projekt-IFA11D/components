@@ -23,37 +23,51 @@
 			}
 			echo "<br>";
 			echo "</form>";
-			echo "<input type='button' id='bundle_next' onclick='bundle_next()' value='Weiter'>";
+			echo "<input type='button' id='bundle_next' onclick=\"bundle_next('wizzard=showForms')\" value='Weiter'>";
 		}
 		elseif($wiz == "save")
 		{
-			order_wizzard_save();
+			//order_wizzard_save();
 		}
 		else
 		{
+		    require_once('lib/forms/formular_allgemein.php');
 			echo "<form name='compForm'>";
 			echo "Menge: <input type='text' name='anzahl' value='1'>";
-			if(isset($_POST['form']))
+			if(is_array($_POST['form']))
 			{
-				/*
+				
 				echo"<pre>";
 					print_r($_POST);
-				echo"</pre>";*/
+				echo"</pre>";
+                
+                echo"<table border='0'>";
+                     
+                
 				foreach($_POST['form'] AS $val)
 				{
-					require_once('lib/forms/formular_'.$val.'.php');
-				}
+				    echo"<tr>";
+					echo"<td>";require_once('lib/forms/formular_'.$val.'.php');echo"</td>";
+                    echo"<td valign='top'>".form_general($val)."</td>";
+				    echo"</tr>";
+                }
+                echo"</table>";
 			}
 			else
 			{
+			     echo"<table border='0'>
+                        <tr>
+                     ";
 				if (file_exists('lib/forms/formular_'.$type.'.php'))
 				{
-					require_once('lib/forms/formular_'.$type.'.php');
+					echo"<td>";require_once('lib/forms/formular_'.$type.'.php');echo"</td>";
+                    echo"<td valign='top'>".form_general($type)."</td>";
 				}
+                echo"</tr></table>";
 			}
-			require_once('lib/forms/formular_allgemein.php');
+			
 			echo "<br>";
-			echo "<input type='submit' name='send_comps' value='Anlegen'>";
+			echo "<input type='button' id='bundle_next' onclick=\"bundle_next('wizzard=checkInput')\" value='Anlegen'>";
 			echo "</form>";
 		}
 	}
