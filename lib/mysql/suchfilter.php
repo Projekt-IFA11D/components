@@ -66,7 +66,7 @@
 				$arr_notiz, $arr_lieferant, $arr_raum;
 		echo "
 		<h1> Suchfilter </h1><br><br><br>		
-		<form action='' method='post'>			
+		<form action='such_select.php' method='post'>			
 			<table border = '0' cellpadding = '0' cellspacing='4'>
 				<tr>
 					<td width='200px'>Hersteller</td>
@@ -76,17 +76,17 @@
 				</tr>
 				<tr>
 					<td>
-						<select name='sel_hersteller' size='5'>"
+						<select name='sel_hersteller[]' size='5' multiple>"
 					      .print_data($arr_hersteller).
 						"</select>		
 					</td>			
 					<td>
-						<select name='sel_raum' size='5'>"
+						<select name='sel_raum[]' size='5' multiple>"
  					      .print_data($arr_raum).
 						"</select>		
 					</td>			
 					<td>
-						<select name='sel_kaufdatum' size='5'>"
+						<select name='sel_kaufdatum[]' size='5' multiple>"
    					     .print_data($arr_kaufdatum).
 						"</select>		
 					</td>    
@@ -100,22 +100,23 @@
 				</tr>
 				<tr>						
 					<td>
-						<select name='sel_gewaehrdauer' size='5'>"
+						<select name='sel_gewaehrdauer[]' size='5' multiple>"
  					      .print_data($arr_gewaehrdauer).
 						"</select>		
 					</td>			
 					<td>
-						<select name='sel_lieferant' size='5'>"
+						<select name='sel_lieferant[]' size='5' multiple>"
  					      .print_data($arr_lieferant).
 						"</select>		
 					</td>			
 					<td>
-						<select name='sel_notiz' size='5'>"
+						<select name='sel_notiz[]' size='5' multiple>"
  					      .print_data($arr_notiz).
 						"</select>		
 					</td>			
 				</tr>    
-			</table>			
+			</table>
+			<input type = 'Submit' Name = 'submit' VALUE = 'Submit'>			
 		</form>";
 		
 	} /** end of create_search_mask */
