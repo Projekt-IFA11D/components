@@ -1,3 +1,4 @@
+			
 <div class="row">
 	<div class="col-md-6">
 		<h1 class="page-header">Komponenten des Raumes <?php echo $_GET['room_component']?></h1>
@@ -40,10 +41,9 @@
 					</td>
 				</tr>
 			<?php }
-			
 		?>
 	<table>
 </div>
-	
+
 <script src="lib/page/rooms/script.js"></script>
 
