@@ -1,7 +1,3 @@
-<?php
-	require_once('details.php');
-?>
-
 <div class="row">
 	<div class="col-md-2">
 		<h1 class="page-header">Komponenten</h1>
@@ -18,6 +14,7 @@
 		<th>Notiz</th>
 		<th>Hersteller</th>
 		<th>Komponentenart</th>
+		<th></th>
 		<th></th>
             </tr>
 		<?php

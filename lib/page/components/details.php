@@ -6,7 +6,7 @@
 
 <?php
 
-	print_r($_GET["component"]);
+	//print_r($_GET["component"]);
 
 
 ?>
