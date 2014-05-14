@@ -53,7 +53,11 @@ $(document).ready(function() {
 		jo.show();
 		return;
 	    }
-	    jo.hide();
+            if (jo.parent(".header").length > 0) {
+                return;
+            } else {
+	        jo.hide();
+            }
 
 	    jo.filter(function (i, v) {
 		var $t = $(this);
