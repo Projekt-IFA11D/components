@@ -8,7 +8,7 @@
 			</div>
 			<form>
 				<div class="modal-body">
-					<input type='hidden' class="supplier_s_id" name='raeume_r_id'>
+					<input type='hidden' class="supplier_s_id" name='lieferanten_l_id'>
 					<table table-striped>
 						<tr>
 							<td><label>Firma</label></td>
