@@ -47,17 +47,20 @@ function manipulation_statement($Type, $Form_Data) {
     unset($Form_Data["Anzahl"]);
   }
 
-  // Needs regex for the part after _
-  $regex = "/^.*_/U";
-  if(isset($Form_Data["delete_room"])) {
-    $Index = preg_replace($regex, "", $Form_Data["delete_room"]);
-    unset($Form_Data["delete_room"]);
-  } else if(isset($Form_Data["edit_room"])) {
-    $Index = preg_replace($regex, "", $Form_Data["edit_room"]);
-    unset($Form_Data["edit_room"]);
+  $table_key = preg_grep("/^[delete_|edit_].*/U", array_keys($Form_Data));
+  if(isset($Form_Data[$table_key[0]])) {
+    $Index = preg_replace("/^.*_/U", "", $Form_Data[$table_key[0]]);
+
+    // We need a dummy element in the array for the extraction of the table name
+    if($Type=="Delete") {
+      $Form_Data[preg_replace("/=.*$/U", "", $Form_Data[$table_key[0]])] = 1;
+    }
+    unset($Form_Data[$table_key[0]]);
   } else if($Type!="Insert") {
       // raise some kind of error
   } else {
+    // Ignore this line
+    $Form_Data[preg_replace("/=.*$/U", "", $Form_Data[preg_grep("/^[add_].*/U", array_keys($Form_Data))[0]])] = preg_replace("/^.*=/U", "", $Form_Data[preg_grep("/^[add_].*/U", array_keys($Form_Data))[0]]);
       $Index = "";
   }
 
