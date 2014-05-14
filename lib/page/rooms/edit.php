@@ -8,19 +8,19 @@
 			</div>
 			<form method="POST">
 				<div class="modal-body">
-					<input type='hidden' id="edit-raeume-r_id" name='edit-raeume-r_id'>
+					<input type='hidden' id="edit-raeume-r_id" name='raeume-r_id'>
 					<table>
 						<tr>
 							<td><label>Raum-Nr</label></td>
-							<td><input class="form-control" type='text' id="edit-raeume-r_nr" name='edit-raeume-r_nr' size='20' disabled></td>
+							<td><input class="form-control" type='text' id="edit-raeume-r_nr" name='raeume-r_nr' size='20' disabled></td>
 						</tr>
 						<tr>
 							<td><label>Raum-Bez</label></td>
-							<td><input class="form-control" type='text' id="edit-raeume-r_bezeichnung" name='edit-raeume-r_bezeichnung' size='20'></td>
+							<td><input class="form-control" type='text' id="edit-raeume-r_bezeichnung" name='raeume-r_bezeichnung' size='20'></td>
 						</tr>
 						<tr>
 							<td><label>Raum-Notiz</label></td>
-							<td><input class="form-control" type='text' id="edit-raeume-r_notiz" name='edit-raeume-r_notiz' size='20'></td>
+							<td><input class="form-control" type='text' id="edit-raeume-r_notiz" name='raeume-r_notiz' size='20'></td>
 						</tr>
 					</table>
 				</div>
