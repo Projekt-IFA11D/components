@@ -37,7 +37,7 @@
 		    require_once('lib/forms/formular_allgemein.php');
 			echo "<form id='compNextForm'>";
 			echo "Menge: <input type='text' name='anzahl' value='1'>";
-			if(is_array($_POST['form']))
+			if(isset($_POST['form']) && is_array($_POST['form']))
 			{
 				
 				echo"<pre>";
