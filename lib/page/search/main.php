@@ -21,25 +21,9 @@
 /*+--------------------------------------------------+*/
 
 /*+--------------------------------------------------+*/
-/*|	INCLUDES										 |*/
-/*+--------------------------------------------------+*/
-
-// 	require_once "../config.inc.php";
-	require_once "select_statement.php";
-
-/*+--------------------------------------------------+*/
 /*|	DEFINE VARIABLES								 |*/
 /*+--------------------------------------------------+*/
 
-	/* variables to connect to database */
-	$SERVER     = "127.0.0.1";		
-	$USER       = "root";
-	$PASSWORD   = "";
-	$DATABASE   = "itv_v1";
-
-	@mysql_connect($SERVER, $USER, $PASSWORD) or die ("Fehler".mysql_error());
-	mysql_select_db($DATABASE);
-	
 	/* arrays containing infos about components */
 	$arr_hersteller   = array();	
 	$arr_raum         = array();
