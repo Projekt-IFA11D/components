@@ -4,12 +4,21 @@ mysql_connect("localhost","root","") or die(mysql_Error());
 mysql_select_db("itv_v1") or die(mysql_Error());
 
 
+/*Ignoriere Attributwert Validierung bei:*/
+$ignoreVal[0]="taktfrequenz";
+$ignoreVal[1]="notiz";
+$ignoreVal[2]="interne bezeichnung";
+
+//Patterns für str_replace
+$search = array(" ");
+$replace= array(" ");
+
 //WIP !! 
 /*TEST Array*/
 
 $_POST['anzahl'] = "1";
-$_POST['ram_attr_name'] = "KVR";
-$_POST['ram_attr_groesse'] = "2GB";
+$_POST['ram_attr_interne bezeichnung'] = "KVR";
+$_POST['ram_attr_speicherkapazität'] = "2GB";
 $_POST['ram_attr_taktfrequenz'] = "1333MHZ";
 
 $_POST['ram_main_hersteller'] = "Kingston";
@@ -27,9 +36,14 @@ echo"<pre>";
 echo"</pre>";
 
 
+echo"<pre>";
+print_r($ignoreVal);
+echo"</pre>";
+
 prepareToSave();
 function prepareToSave()
 {
+    global $ignoreVal,$search,$replace;
     $anzahl = $_POST['anzahl'];
     unset($_POST['anzahl']);
     
@@ -74,6 +88,9 @@ function prepareToSave()
         //Datum umbauen
         $datum = formDate($compData['main']['einkaufsdatum']);
         
+        
+        
+        //Statement Komponente montieren
         $sql_komponente = "INSERT INTO komponenten SET 
                             lieferant_l_id='".mysql_real_escape_string($lieferantID)."',
                             raeume_r_id='".mysql_real_escape_string($raumID)."',
@@ -84,6 +101,68 @@ function prepareToSave()
                             komponentenarten_ka_id='".mysql_real_escape_string($komponentenartID)."'
                             ";
         echo "<br /><br />".$sql_komponente;
+        
+        //Füge Komponente ein
+        //mysql_query($sql_komponente) or die("Komponente konnte nicht eingetragen werden!<br /><b>SQL:</b>$sql_komponente<br />Fehler:".mysql_error());
+        
+        //Hole die neue ID ab
+        //$NewCompID = mysql_insert_id();
+        
+        //Komponentenattribute
+        
+        //Validiere Attribut und Attributwert und kleb' den insert string zam'
+        $attr_string="INSERT INTO komponente_hat_attribute (komponenten_k_id,komponentenattribute_kat_id, khkat_wert) VALUES ";
+        foreach($compData['attr'] AS $attr=>$val)
+        {
+            $attrID = getAttrID($attr);
+            $zwID = getAttrValID($val);
+            $firstAttr=true;
+            
+            
+            
+            //Prüfe ob Wert Validierung nichtig ist
+            if(in_array(strtolower($attr),$ignoreVal))
+            {
+                $ignore=true;
+            }
+            else
+            {
+                $ignore=false;
+            }
+            
+            
+            
+            if(!$attrID)
+            {
+                echo"<br />Attributname '$attr' fürn arsch!";
+            }
+            
+            
+            if(!$zwID && !$ignore)
+            {
+                echo"<br />Zulässiger Wert '$val' erst recht fürn arsch!";
+            }
+            
+            
+            
+            
+            if($attrID && ($zwID || $ignore))
+            {
+                if($firstAttr)
+                {
+                    $firstAttr=false;
+                }
+                else
+                {
+                    $attr_string .= " , ";
+                }
+                
+                $attr_string .= " ('".$NewCompID."','".$attrID."','".mysql_real_escape_string($val)."') ";
+            }
+        }
+        
+        echo "<br /><br />Attributstring: ".$attr_string;
+        
     }
     
     
@@ -102,6 +181,28 @@ function prepareToSave()
         
     }
 }
+
+
+
+function getAttrValID($val)
+{
+    $sql = "SELECT zw_id FROM zulaessige_werte WHERE zw_wert LIKE '".mysql_real_escape_string($val)."'";
+    $query = mysql_query($sql) or die("Zulässiger Wert konnte nicht abgerufen werden<br /><br />".mysql_error());
+    $zw = mysql_fetch_assoc($query);
+    
+    return $zw['zw_id'];
+}
+
+function getAttrID($attr)
+{   
+    global $search,$replace;
+    $sql = "SELECT kat_id FROM komponentenattribute WHERE kat_beschreibung LIKE '".mysql_real_escape_string(str_replace($search,$replace,$attr))."'";
+    $query = mysql_query($sql) or die("Komponentenart ID konnte nicht abgerufen werden<br /><br />".mysql_error());
+    $attr = mysql_fetch_assoc($query);
+    
+    return $attr['kat_id'];
+}
+
 
 function splitSortInput($key,$value,$array)
 {
