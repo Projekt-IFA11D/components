@@ -17,12 +17,18 @@ function select_statement($Table, $Index = 0) {
   $Statements=["rooms" => "SELECT r_id, r_nr, r_bezeichnung, r_notiz FROM raeume",
 			   "suppliers" => "SELECT L.l_firmenname, L.l_strasse, L.l_tel, L.l_mobil, L.l_fax, L.l_email, plz.plz_plz, plz.plz_ort FROM lieferant
 							   AS L INNER JOIN plz_zuordnung AS plz ON (L.l_plz_id=plz.plz_id)",
-			   "acquisitions" => "SELECT komponenten.k_id, lieferant.l_firmenname, raeume.r_bezeichnung, komponenten.k_einkaufsdatum,
+			   "acqisitions" => "SELECT komponenten.k_id, lieferant.l_firmenname, raeume.r_bezeichnung, komponenten.k_einkaufsdatum,
 							komponenten.k_gewaehrleistungsdauer, komponenten.k_notiz, k_hersteller, komponentenarten.ka_komponentenart
 							FROM komponenten
 								INNER JOIN lieferant ON komponenten.lieferant_l_id = lieferant.l_id
 								INNER JOIN raeume ON komponenten.lieferant_r_id = raeume.r_id
-								INNER JOIN komponentenarten ON komponenten.komponentenarten_ka_id = komponentenarten.ka_id"
+								INNER JOIN komponentenarten ON komponenten.komponentenarten_ka_id = komponentenarten.ka_id",
+				"components_producer" => "SELECT k_hersteller FROM komponenten GROUP BY k_hersteller",
+    			"components_date" => "SELECT k_einkaufsdatum FROM komponenten GROUP BY k_einkaufsdatum",
+    			"components_guarantee" => "SELECT k_gewaehrleistungsdauer FROM komponenten GROUP BY k_gewaehrleistungsdauer",
+    			"components_note" => "SELECT k_notiz FROM komponenten GROUP BY k_notiz",
+    			"suppliers_name" => "SELECT l_firmenname FROM lieferant INNER JOIN komponenten ON lieferant.l_id = komponenten.lieferant_l_id GROUP by l_firmenname",
+    			"room_name" => "SELECT r_nr FROM raeume INNER JOIN komponenten ON raeume.r_id = komponenten.raeume_r_id GROUP by r_nr"
 			   ];
 
   // Escape all special characters inside the string
@@ -38,7 +44,7 @@ function select_statement($Table, $Index = 0) {
   // Need to delete last element of the array as fetch_assoc writes its failure into the array
   array_pop($Data);
 
-  mysql_close();
+  //mysql_close();
   return nice_empty_values($Data);
 }
 

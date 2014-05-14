@@ -24,7 +24,7 @@
 /*|	INCLUDES										 |*/
 /*+--------------------------------------------------+*/
 
-	require_once "../config.inc.php";
+// 	require_once "../config.inc.php";
 	require_once "select_statement.php";
 
 /*+--------------------------------------------------+*/
@@ -37,7 +37,9 @@
 	$PASSWORD   = "";
 	$DATABASE   = "itv_v1";
 
-
+	@mysql_connect($SERVER, $USER, $PASSWORD) or die ("Fehler".mysql_error());
+	mysql_select_db($DATABASE);
+	
 	/* arrays containing infos about components */
 	$arr_hersteller   = array();	
 	$arr_raum         = array();
@@ -51,27 +53,25 @@
 /*|	FUNCTIONS										 |*/
 /*+--------------------------------------------------+*/
 
-	@mysql_connect($SERVER, $USER, $PASSWORD) or die ("Fehler".mysql_error());
-	mysql_select_db($DATABASE);
-	
-
 	fill_arrays();
 	create_search_mask();
+	
 	
 	
 	/**
 	 * creates a mask in which you can specify your search
 	 */
 	function create_search_mask() {
-		global $arr_hersteller, $arr_kaufdatum;
+		global $arr_hersteller, $arr_kaufdatum, $arr_gewaehrdauer,
+				$arr_notiz, $arr_lieferant, $arr_raum;
 		echo "
 		<h1> Suchfilter </h1><br><br><br>		
 		<form action='' method='post'>			
-			<table border = '1' cellpadding = '0' cellspacing='4'>
+			<table border = '0' cellpadding = '0' cellspacing='4'>
 				<tr>
-					<td width='250px'>Hersteller</td>
-					<td width='250px'>Raum</td>
-					<td width='250px'>Kaufdatum</td>
+					<td width='200px'>Hersteller</td>
+					<td width='200px'>Raum</td>
+					<td width='200px'>Kaufdatum</td>
 					
 				</tr>
 				<tr>
@@ -82,8 +82,8 @@
 					</td>			
 					<td>
 						<select name='sel_raum' size='5'>"
-// 					      .print_data($arr_raum).
-						."</select>		
+ 					      .print_data($arr_raum).
+						"</select>		
 					</td>			
 					<td>
 						<select name='sel_kaufdatum' size='5'>"
@@ -91,55 +91,74 @@
 						"</select>		
 					</td>    
 			</table>	
-			<br><br>		
-			<table border = '1' cellpadding = '0' cellspacing='4'>
+				
+			<table border = '0' cellpadding = '0' cellspacing='4'>
 				<tr>
-					<td width='250px'>Gewährleistungdauer</td>
-					<td width='250px'>Lieferant</td>
-					<td width='250px'>Notiz</td>			
+					<td width='200px'>Gewährleistungdauer</td>
+					<td width='200px'>Lieferant</td>
+					<td width='200px'>Notiz</td>			
 				</tr>
 				<tr>						
 					<td>
 						<select name='sel_gewaehrdauer' size='5'>"
-// 					      .print_data($arr_gewaehrdauer).
-						."</select>		
+ 					      .print_data($arr_gewaehrdauer).
+						"</select>		
 					</td>			
 					<td>
 						<select name='sel_lieferant' size='5'>"
-// 					      .print_data($arr_lieferant).
-						."</select>		
+ 					      .print_data($arr_lieferant).
+						"</select>		
 					</td>			
 					<td>
 						<select name='sel_notiz' size='5'>"
-// 					      .print_data($arr_notiz).
-						."</select>		
+ 					      .print_data($arr_notiz).
+						"</select>		
 					</td>			
 				</tr>    
 			</table>			
 		</form>";
 		
-	}	/* end of create_search_mask */
+	} /** end of create_search_mask */
 	
 	
+	
+	/**
+	 * function which calls the function request_data to 
+	 * fill our global arrays with the necessary data
+	 */
 	function fill_arrays() {
 		global $arr_hersteller, $arr_raum, $arr_kaufdatum, 
-				$arr_gewaehrdatum, $arr_lieferant, $arr_notiz;
+				$arr_gewaehrdauer, $arr_lieferant, $arr_notiz;
 		
-		$arr_hersteller   = request_data("components_producer");
-//		$arr_raum         = request_data("raum");
- 		$arr_kaufdatum    = request_data("components_date");
-// 		$arr_gewaehrdatum = request_data("gewaehrdatum");
-// 		$arr_lieferant    = request_data("lieferant");
-// 		$arr_notiz        = request_data("notiz");
-	}
+		$arr_hersteller   = select_statement("components_producer");
+		$arr_raum         = select_statement("room_name");
+ 		$arr_kaufdatum    = select_statement("components_date");
+ 		$arr_gewaehrdauer = select_statement("components_guarantee");
+ 		$arr_lieferant    = select_statement("suppliers_name");
+ 		$arr_notiz        = select_statement("components_note");
+	} /** end of fill_arrays */
 	
 	
- 	function request_data( $search_param ) {
-		$arr_tmp = array();
-		$arr_tmp = select_statement($search_param);
-		return $arr_tmp;
- 	}
+	
+// 	/**
+// 	 * function calls select_statement, which executes the select command
+// 	 * 
+// 	 * @param  $search_param   string with the data that should be 'selected'
+// 	 * @return $arr_tmp        array containing the data
+// 	 */
+//  	function request_data( $search_param ) {
+// 		$arr_tmp = array();
+// 		$arr_tmp = select_statement($search_param);
+// 		return $arr_tmp;
+//  	} /** end of request_data */
  	
+ 	
+ 	
+ 	/**
+ 	 * function prints out the <option/> tags in the browser
+ 	 * @param  $array_name   array which should be printed
+ 	 * @return string        created output which should be printed
+ 	 */
  	function print_data( $array_name ) {
  		$output ="";
  		//echo "<pre>";print_r($array_name);
@@ -153,6 +172,6 @@
  			}
  		}
  		return $output;
- 	}
+ 	} /** end of print_data */
 
 ?>
