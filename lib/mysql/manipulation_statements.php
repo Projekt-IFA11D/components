@@ -18,16 +18,13 @@
 */
 
 // Split the form names into their respective tables and columns
+error_reporting(0);
 function read_column_names($Data) {
   
   $Table_Columns = array();
   foreach ($Data as $columns => $values) {
-    if (preg_match("/-/", $columns)) {
-	$Table_split=split("-", $columns, 2);
-	$Table_Columns[$Table_split[0]][$Table_split[1]] = sql_quote($values);
-    } else {
-      $Table_Columns[$columns][""] = sql_quote($values);
-    }
+    $Table_split=split("-", $columns, 2);
+    $Table_Columns[$Table_split[0]][$Table_split[1]] = sql_quote($values);
   }
   return $Table_Columns;
 }
@@ -141,7 +138,8 @@ function manip_edit_component($Data) {
   unset($Table_Columns["_"]);
 
   $k_Data = $Table_Columns["komponenten"];
-  $Statement = "UPDATE komponenten SET raeume_r_id=".$k_Data["raeume_r_id"]." WHERE k_id=".$K_Data["k_id"];
+  $Statement="UPDATE komponenten LEFT JOIN komponente_hat_komponente ON komponenten.k_id=komponente_hat_komponente.komponenten_k_id_teil SET komponenten.raeume_r_id=".$k_Data["raeume_r_id"]." WHERE k_id=".$K_Data["k_id"]." or komponente_hat_komponente.komponenten_k_id_aggregat=".$K_Data["k_id"];
+  //$Statement = "UPDATE komponenten SET raeume_r_id=".$k_Data["raeume_r_id"]." WHERE k_id=".$K_Data["k_id"];
   
 }
 
