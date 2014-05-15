@@ -77,22 +77,22 @@ function complex_select_statement($Table, $Index = 0) {
   // Contains the keyword/column which is used for the second query
   $Statements_keyword = ["components" => "k_id", "main_components" => "k_id"];
   // Still needs the correct select statements for each table
-  $Statements = ["components" => ["SELECT KhK.*, komp.*, komponentenarten.ka_komponentenart, komponentenarten.ka_id, lieferant.l_firmenname, raeume.r_nr
-FROM komponenten komp
-LEFT JOIN komponente_hat_komponente KhK ON komp.k_id = KhK.komponenten_k_id_teil
-INNER JOIN lieferant ON komp.lieferant_l_id = lieferant.l_id
-INNER JOIN raeume ON komp.raeume_r_id = raeume.r_id
+  $Statements = ["components" => ["SELECT KhK.*, komp.*, komponentenarten.ka_komponentenart, komponentenarten.ka_id, lieferant.l_firmenname, raeume.r_nr 
+FROM komponenten komp 
+LEFT JOIN komponente_hat_komponente KhK ON komp.k_id = KhK.komponenten_k_id_teil 
+INNER JOIN lieferant ON komp.lieferant_l_id = lieferant.l_id 
+INNER JOIN raeume ON komp.raeume_r_id = raeume.r_id 
 INNER JOIN komponentenarten ON komp.komponentenarten_ka_id = komponentenarten.ka_id
 WHERE KhK.komponenten_k_id_teil IS NULL AND raeume_r_id=$Index",
 
-"SELECT r_nr as RaumNr ,r_bezeichnung,k_id,ka_komponentenart,kat_beschreibung,khkat_wert, (SELECT KA.ka_komponentenart FROM komponenten K                              
-INNER JOIN komponentenarten KA ON K.komponentenarten_ka_id=KA.ka_id WHERE K.k_id=komponenten_k_id_aggregat) as AggregatBez,komponenten_k_id_aggregat as AggregatNr     
-FROM komponenten RIGHT JOIN raeume ON raeume_r_id=r_id                                                                                                                 
-INNER JOIN komponentenarten ON komponentenarten_ka_id=ka_id                                                                                                            
-LEFT JOIN komponente_hat_attribute ON komponenten_k_id=k_id                                                                                                            
-LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id                                                                                                   
-LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE komponenten_k_id_aggregat =".$Statements_keyword["components"]."                               
-ORDER BY  `komponenten`.`k_id` ASC "
+"SELECT r_id as RaumID,r_nr as RaumNr ,r_bezeichnung,k_id,ka_komponentenart,kat_beschreibung,khkat_wert, (SELECT KA.ka_komponentenart FROM komponenten K 
+INNER JOIN komponentenarten KA ON K.komponentenarten_ka_id=KA.ka_id WHERE K.k_id=komponenten_k_id_aggregat) as AggregatBez,komponenten_k_id_aggregat as AggregatNr 
+FROM komponenten RIGHT JOIN raeume ON raeume_r_id=r_id 
+INNER JOIN Komponentenarten ON komponentenarten_ka_id=ka_id 
+LEFT JOIN komponente_hat_attribute ON komponenten_k_id=k_id 
+LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id 
+LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE komponenten_k_id_aggregat='".$Statements_keyword["components"]."'
+ORDER BY  komponenten.k_id ASC"
 ],
 "main_components" => ["SELECT KhK.*, komp.*, komponentenarten.ka_komponentenart, komponentenarten.ka_id, lieferant.l_firmenname, raeume.r_nr 
 FROM komponenten komp 
@@ -109,7 +109,7 @@ INNER JOIN komponentenarten ON komponentenarten_ka_id=ka_id
 LEFT JOIN komponente_hat_attribute ON komponenten_k_id=k_id 
 LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id 
 LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE komponenten_k_id_aggregat =".$Statements_keyword["components"]."   
-ORDER BY  `komponenten`.`k_id` ASC "
+ORDER BY  komponenten.k_id ASC"
 ]];
 
   $Result = mysql_query($Statements[$Table][0]);
@@ -121,7 +121,7 @@ ORDER BY  `komponenten`.`k_id` ASC "
     $Sub_Index="=".$piece[$Statements_keyword[$Table]];
     $tmp_Statement=str_replace("=".$Statements_keyword[$Table]."  ", $Sub_Index, $Statements[$Table][1]);
     $Sub_Result = mysql_query($tmp_Statement);
-    var_dump($tmp_Statement);
+	echo mysql_error();
     while($Sub_Data[] = mysql_fetch_assoc($Sub_Result));
     array_pop($Sub_Data);
     $Data[$key][$Table] = $Sub_Data;
