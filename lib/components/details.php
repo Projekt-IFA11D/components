@@ -19,7 +19,7 @@
 			break;
 
 			case 3:
-			require_once('lib/forms/formular_cpu.php');
+			require_once('lib/forms/formular_prozessor.php');
 			break;
 
 			case 4:
