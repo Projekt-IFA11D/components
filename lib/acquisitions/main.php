@@ -42,5 +42,3 @@
 		?>
 	<table>
 </div>
-
-<script src="lib/page/components/script.js"></script>

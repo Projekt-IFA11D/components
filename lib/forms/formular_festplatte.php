@@ -1,4 +1,4 @@
-<!--
+﻿<!--
 ### form for HDD                         ##
 ### based on php/html by Max Drescher    ##
 ### bootstrapped by Matthias Griessmeier ##
@@ -33,8 +33,8 @@
 
 
     <div class="form-group">
-        <label for="fp_groesse">Groesse:</label>
-        <input type="text" id="fp_groesse" class="form-control" name="festplatte_attr_speicherkapazit�t" style="width:300px;">
+        <label for="fp_groesse">Speicherkapazität:</label>
+        <input type="text" id="fp_groesse" class="form-control" name="festplatte_attr_speicherkapazität style="width:300px;">
     </div>
 
     <label for="name">Speicherart: </label>
