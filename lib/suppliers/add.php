@@ -58,7 +58,7 @@
                     </div>
                 </div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="supplier_submit($(this), 'add_supplier')">Hinzuf&uuml;gen</button>
 				</div>
 			</form>

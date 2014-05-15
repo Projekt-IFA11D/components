@@ -10,8 +10,8 @@
 			<form method="POST">
 				<div class="modal-footer">
 					<input type='hidden' id="delete-lieferant-l__id" name='lieferanten-l_id'>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="supplier_submit($(this), 'delete_supplier')">Ja</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="supplier_submit($(this), 'delete_supplier')">L&ouml;schen</button>
 				</div>
 			</form>
 		</div><!-- /.modal-content -->
