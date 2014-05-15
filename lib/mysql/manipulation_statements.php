@@ -22,8 +22,12 @@ function read_column_names($Data) {
   
   $Table_Columns = array();
   foreach ($Data as $columns => $values) {
-    $Table_split=split("-", $columns, 2);
-    $Table_Columns[$Table_split[0]][$Table_split[1]] = sql_quote($values);
+    if (preg_match("/-/", $columns)) {
+	$Table_split=split("-", $columns, 2);
+	$Table_Columns[$Table_split[0]][$Table_split[1]] = sql_quote($values);
+    } else {
+      $Table_Columns[$columns][""] = sql_quote($values);
+    }
   }
   return $Table_Columns;
 }
