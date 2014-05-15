@@ -27,14 +27,14 @@
 							<td><?php echo($subcomponent['RaumNr']) ?></td>
 							<td><?php echo($subcomponent['r_bezeichnung'])?></td>
 							<td><?php echo($subcomponent['ka_komponentenart']) ?></td>
-							<td><?php echo($subcomponent['kat_beschreibung'])." Jahre"?></td>
+							<td><?php echo($subcomponent['kat_beschreibung'])?></td>
 							<td><?php echo($subcomponent['khkat_wert'])?></td>
 							<td><?php echo($subcomponent['AggregatBez'])?></td>
 							<td class="col-md-1">
 								<button type="button" class="btn btn-primary btn-xs"
 								onclick="<?php echo('edit_components($(this), '.$component['ka_id'].')') ?>">Editieren</button>
 			</td><td>
-								<button type="button" class="btn btn-primary btn-xs"
+								<button type="button" class="btn btn-danger btn-xs"
 					    onclick="<?php echo('delete_sub_components($(this), '.$component['ka_id'].')') ?>">L&ouml;schen</button>
 							</td>
 						</tr>
