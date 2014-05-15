@@ -87,9 +87,9 @@
 	}
     elseif (isset($_GET['search']))
 	{
-		if (file_exists('lib/search/search_handler.php'))
+		if (file_exists('lib/search.php'))
 		{
-			require_once('lib/search/search_handler.php');
+			require_once('lib/search.php');
 		}
 	}
     elseif (isset($_GET['component']))
