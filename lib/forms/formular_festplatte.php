@@ -9,7 +9,7 @@
 <form role="form" type="text">
     <div class="form-group">
         <label for="fp_name">Interne Bezeichnung/Name:</label>
-        <input type="text" id="fp_name" class="form-control" name="fp_name" style="width:300px;">
+        <input type="text" id="fp_name" class="form-control" name="festplatte_attr_interne bezeichnung" style="width:300px;">
     </div>
 
     <label for="name">Schnittstellenart: </label>
