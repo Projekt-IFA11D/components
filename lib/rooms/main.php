@@ -14,7 +14,6 @@
 		<th>Raum-Notiz</th>
 		<th></th>
 		<th></th>
-		<th></th>
 		<?php
 			$rooms = select_statement("rooms");
 			foreach ($rooms as $room)
@@ -30,9 +29,6 @@
 					<td class="col-md-1">
 						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_modal"
 							onclick="<?php echo('delete_room('.$room['r_id'].')') ?>">L&ouml;schen</button>
-					</td>
-					<td class="col-md-1">
-							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".move_room_component_modal">Verschieben</button>
 					</td>
 				</tr>
 			<?php }

@@ -1,50 +1,43 @@
-			
-<div class="row">
-	<div class="col-md-6">
-           <h1 class="page-header">Komponenten des Raumes <?php echo $_GET['room_component']?></h1>
-	</div>
-	<div class="col-md-6">
-		<button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target=".add_room_components_modal">Hinzuf&uuml;gen</button>
-	</div>
-</div>
+<h1 class="page-header">Komponenten des Raumes <?php echo $_GET['room_component']?></h1>
 
 <div class="table table-responsive">
 	<table class="table table-striped">
-		<th>Raum-Bez</th>
-		<th>Lieferant</th>
-		<th>Art</th>
-		<th>Einkaufsdatum</th>
-		<th>Gew&auml;hrleistungsdauer</th>
-		<th>Notiz</th>
-		<th>Hersteller</th>
-		<th></th>
-		<th></th>
+			<th>Firmenname</th>
+			<th>Raum-Nr</th>
+			<th>Einkaufsdatum</th>
+			<th>Gew&auml;hrleistungsdauer</th>
+			<th>Notiz</th>
+			<th>Hersteller</th>
+			<th>Komponentenart</th>
+			<th></th>
+			<th></th>
+			<th></th>
 		<?php
-		$room_components = complex_select_statement("components", $_GET["room_component"]);
-			foreach ($room_components as $room_component)
-			{ 
-			  var_dump($room_component);?>
-				<tr class="room_detailed_components" style="cursor: pointer;">
-					<td><?php echo($room_component['r_bezeichnung']) ?></td>
-					<td><?php echo($room_component['l_firmenname'])?></td>
-					<td><?php echo($room_component['ka_komponentenart']) ?></td>
-					<td><?php echo($room_component['k_einkaufsdatum']) ?></td>
-					<td><?php echo($room_component['k_gewaehrleistungsdauer'])." Jahre" ?></td>
-					<td><?php echo($room_component['k_notiz']) ?></td>
-					<td><?php echo($room_component['k_hersteller']) ?></td>
-					<td class="col-md-1">
-						<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".details_room_components_modal"
-							onclick="<?php echo('edit_room_components($(this), '.$room_component['k_id'].')') ?>">Details</button>
-					</td>
-					<td class="col-md-1">
-						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_components_modal"
-							onclick="<?php echo('delete_room_components('.$room_component['k_id'].')') ?>">L&ouml;schen</button>
-					</td>
-				</tr>
+			$components = complex_select_statement('main_components');
+			foreach ($components as $component)
+			{ ?>
+					<tr>
+						<td><?php echo($component['l_firmenname']) ?></td>
+						<td><?php echo($component['r_nr'])?></td>
+						<td><?php echo($component['k_einkaufsdatum']) ?></td>
+						<td><?php echo($component['k_gewaehrleistungsdauer'])." Jahre"?></td>
+						<td><?php echo($component['k_notiz'])?></td>
+						<td><?php echo($component['k_hersteller'])?></td>
+						<td><?php echo($component['ka_komponentenart'])?></td>
+						<td class="col-md-1">
+							<button type="button" class="btn btn-primary btn-xs"
+							onclick="<?php echo('edit_components($(this), '.$component['k_id'].')') ?>">Details</button>
+						</td>
+						<td class="col-md-1">
+							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".move_component_modal">Verschieben</button>
+						</td>
+						<td class="col-md-1">
+							<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_components_modal"
+							onclick="<?php echo('delete_components('.$component['k_id'].')') ?>">L&ouml;schen</button>
+						</td>
+					</tr>
 			<?php }
 		?>
 	<table>
 </div>
-
-<script src="lib/page/rooms/script.js"></script>
-
+<script src="lib/page/componets/script.js"></script>

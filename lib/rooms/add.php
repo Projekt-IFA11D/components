@@ -29,7 +29,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-					<button type="button" class="btn btn-primary" data-dismuss="modal" onclick="room_submit($(this), 'add_room')">Hinzu&uuml;en</button>
+					<button type="button" class="btn btn-primary" data-dismuss="modal" onclick="room_submit($(this), 'add_room')">Hinzuf&uuml;gen</button>
 				</div>
 			</form>
 		</div><!-- /.modal-content -->
