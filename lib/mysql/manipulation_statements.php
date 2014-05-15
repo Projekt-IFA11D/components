@@ -77,16 +77,39 @@ function manipulation_statement($Type, $Form_Data) {
   }
 }
 
-function complex_manipulation_statement($Index, $Form_Data) {
+function complex_manipulation_statement($Form_Data) {
 
-  // Array of statements
-  $Statements = ["A" => "B"];
-  mysql_query($Statements[$Index]);
+  $Table_Columns = read_column_names($Form_Data);
+  $Type = preg_grep("/^[add_].*/U", array_keys($Form_Data));
 
+  switch ($Type) {
+  case "edit_supplier":
+    $Statement = manip_edit_supplier($Table_Columns);
+    break;
+  case "add_supplier":
+    $Statement = manip_add_supplier($Table_Columns);
+    break;
+  case "edit_component":
+    $Statement = manip_edit_component($Table_Columns);
+        break;
+  case "add_component":
+    $Statement = manip_add_component($Table_Columns);
+  }
+  mysql_query($Statement);
+  
+}
+
+function manip_add_supplier($Data) {
+  
+  $Plz_Data = $Data["plz_zuordnung"];
+  $Supp_Data = $Data["lieferant"];
+  $Plz_Id = mysql_query("SELECT plz_id FROM plz_zuordnung WHERE plz_plz='".$Plz_Data["plz_plz"]."' AND plz_ort='".$Plz_Data["plz_ort"]."'");
+  var_dump($Plz_Id);
+  
 }
 
 function not_really_delete($Form_Data) {
-  $Index = $Form_Data[preg_grep("/^[delete_|edit_].*/U", array_keys($Form_Data));
+  $Index = $Form_Data[preg_grep("/^[delete_|edit_].*/U", array_keys($Form_Data))];
   mysql_query("UPDATE komponenten SET raeume_r_id=8 WHERE $Index");
 }
 
