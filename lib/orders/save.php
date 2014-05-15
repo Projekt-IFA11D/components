@@ -123,7 +123,11 @@ function prepareToSave()
     //Hauptverarbeitung
     for($i=1; $i <= $anzahl; $i++)
     {
-             
+    	//Sicherheits Bool Variable die es evtl. verhindert das die Attribute nicht in die Datenbank gelangen
+    	$safety_check_attr = false;
+    	//Handlervariable für die Trennzeichen
+    	$firstAttr=true;
+    	
         $compID = createSingleComp($teilkomponenten);
         
         if($is_bundle)
