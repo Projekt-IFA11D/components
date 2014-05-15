@@ -14,7 +14,7 @@ function select_statement($Table, $Index = 0) {
   $Data = array();
 
   // Still needs the correct select statements for each table
-  $Statements=["rooms" => "SELECT r_id, r_nr, r_bezeichnung, r_notiz FROM raeume",
+  $Statements=["rooms" => "SELECT r_id, r_nr, r_bezeichnung, r_notiz FROM raeume where r_nr not in ('new', 'deleted')",
 			   "suppliers" => "SELECT L.l_id, L.l_firmenname, L.l_strasse, L.l_tel, L.l_mobil, L.l_fax, L.l_email, plz.plz_plz, plz.plz_ort FROM lieferant
 							   AS L INNER JOIN plz_zuordnung AS plz ON (L.l_plz_id=plz.plz_id)",
 			   "acquisitions" => "SELECT komponenten.k_id, lieferant.l_firmenname, raeume.r_nr, komponenten.k_einkaufsdatum,
