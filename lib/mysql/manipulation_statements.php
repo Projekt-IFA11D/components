@@ -124,7 +124,8 @@ function manip_add_supplier($Data) {
 }
 
 function not_really_delete($Form_Data) {
-  $Index = $Form_Data[preg_grep("/^[delete_|edit_].*/U", array_keys($Form_Data))];
+  $Index = $Form_Data["delete_component"];
+  $Index = preg_replace("/^.*-/U", "", $Index);
   mysql_query("UPDATE komponenten SET raeume_r_id=8 WHERE $Index");
 }
 
