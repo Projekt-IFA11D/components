@@ -52,7 +52,7 @@
 				$arr_notiz, $arr_lieferant, $arr_raum;
 		echo "
 		<h1> Suchfilter </h1><br><br><br>		
-        <form action='such_select.php' method='post'>
+        <form> 
         <div class='container'>
             <div class='row'>
                 <div class='col-md-2'>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
             </div>
-			<input class='btn btn-primary' type='Submit' Name = 'submit' VALUE = 'Submit'>			
+			<button onclick='search_submit($(this))' class='btn btn-primary'></button>
 			<input class='btn btn-danger' type='reset' Name = 'loeschen' VALUE = 'L&ouml;schen'>			
         </div>
 		</form>";
