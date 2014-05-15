@@ -9,7 +9,7 @@
 <form role="form" type="text">
     <div class="form-group">
         <label for="cpu_attr_interne bezeichnung">Interne Bezeichnung/Name:</label>
-        <input type="text" id="prozessor_attr_name" class="form-control" name="prozessor_name" style="width:300px;">
+        <input type="text" id="prozessor_attr_name" class="form-control" name="prozessor_attr_interne bezeichnung" style="width:300px;">
     </div>
     <div class="form-group">
         <label for="cpu_attr_sockel">Sockel:</label>
