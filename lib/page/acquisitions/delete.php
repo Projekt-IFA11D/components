@@ -9,7 +9,7 @@
 			<div class="modal-body">Sind Sie sicher?</div>
 			<form method="POST">
 				<div class="modal-footer">
-					<input type='hidden' class="komponenten-k_id" name='komponenten-k_id'>
+					<input type='hidden' id="delete-komponenten-k_id" name='komponenten-k_id'>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="components_submit($(this), 'delete_component')">L&ouml;schen</button>
 				</div>
