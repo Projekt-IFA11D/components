@@ -2,8 +2,6 @@
 	require_once('delete.php');
 ?>
 
-
-
 <div class="row">
 	<div class="col-md-2">
 		<h1 class="page-header">Komponenten</h1>
@@ -47,7 +45,7 @@
 	<table>
 </div>
 
-<script src="lib/page/components/script.js"></script>
+<script src="lib/components/script.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#srch-term").keyup(function () {
