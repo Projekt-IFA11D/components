@@ -63,6 +63,7 @@
                     <th>Komponentenart</th>
                     <th></th>
                     <th></th>
+                    <th></th>
 <?php
              
                 for($i = 0; $i < count($result); $i++) 
@@ -78,13 +79,16 @@
                         echo "<td>".$result[$i]['ka_komponentenart']."</td>";
 ?>
 						<td class="col-md-1">
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_supplier_modal"
-                            onclick="<?php echo('edit_supplier($(this), '.$supplier['l_id'].')') ?>">Editieren</button>
-                    </td>
-                    <td class="col-md-1">
-                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_supplier_modal"
-                            onclick="<?php echo('delete_supplier('.$supplier['l_id'].')') ?>">L&ouml;schen</button>
-                    </td>
+							<button type="button" class="btn btn-primary btn-xs"
+							onclick="<?php echo('edit_components($(this), '.$component['k_id'].')') ?>">Details</button>
+						</td>
+						<td class="col-md-1">
+							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".move_component_modal">Verschieben</button>
+						</td>
+						<td class="col-md-1">
+							<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_component_modal"
+							onclick="<?php echo('delete_components('.$component['k_id'].')') ?>">L&ouml;schen</button>
+						</td>
 <?php					
                         echo "</tr>";
                 }
@@ -102,7 +106,6 @@
 	 */
 	function get_where_condition($select_param, $name) {
        // echo("<br><br>START:");
-       // var_dump($_GET[$select_param]);
         // echo("<br><br>EDNE");
 		global $where_condition;
 		// Delete last added 'AND' if POST is empty
