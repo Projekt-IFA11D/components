@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 10.0.1.14
--- Erstellungszeit: 15. Mai 2014 um 10:33
+-- Erstellungszeit: 15. Mai 2014 um 10:41
 -- Server Version: 5.6.16
 -- PHP-Version: 5.5.11
 
@@ -15423,15 +15423,16 @@ CREATE TABLE IF NOT EXISTS `raeume` (
 --
 
 INSERT INTO `raeume` (`r_id`, `r_nr`, `r_bezeichnung`, `r_notiz`) VALUES
-(1, 'r303', 'Klassenraum', NULL),
-(2, 'r001', 'Labor', NULL),
-(3, 'r112', 'Computerraum', NULL),
-(4, 'r102', 'Klassenraum', NULL),
-(5, 'r306', 'Klassenraum', NULL),
-(6, 'rw01', 'Werkstatt', NULL),
-(7, 'rl01', 'Lager', NULL),
-(8, 'r666', 'Ausgemustert', NULL),
-(9, 'new', 'Neuanschaffungen', 'Nur neu angeschaffte, nicht eingebuchte Objekte');
+(1, 'rl01', 'Lager', NULL),
+(2, 'new', 'Neuanschaffungen', 'Nur neu angeschaffte, nicht eingebuchte Objekte')
+(3, 'deleted', 'Ausgemustert', 'Nur ausgemusterte'),
+(4, 'r303', 'Klassenraum', NULL),
+(5, 'r001', 'Labor', NULL),
+(6, 'r112', 'Computerraum', NULL),
+(7, 'r102', 'Klassenraum', NULL),
+(8, 'r306', 'Klassenraum', NULL),
+(9, 'rw01', 'Werkstatt', NULL);
+
 
 -- --------------------------------------------------------
 
