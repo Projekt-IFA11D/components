@@ -30,7 +30,7 @@
         <label><input type="radio" name="netzwerkkarte_attr_schnittstellen (intern)" value="pci"> PCI</label>
     </div>    
     <div class="radio">
-        <label><input type="radio" name="netzwerkkarte_attr_schnittstellen (intern)" value="pci-e"> PCI-E</label>
+        <label><input type="radio" name="netzwerkkarte_attr_schnittstellen (intern)" value="pcie"> PCIe</label>
     </div>    
 
     <div class="form-group">
