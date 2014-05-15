@@ -15,12 +15,12 @@
 			<th>Komponentenart</th>
 			<th></th>
 			<th></th>
+			<th></th>
 		<?php
 			$components = complex_select_statement('main_components');
 			foreach ($components as $component)
 			{ ?>
 					<tr>
-						<?php //print_r ($component['main_components'])."<br>" ?>
 						<td><?php echo($component['l_firmenname']) ?></td>
 						<td><?php echo($component['r_nr'])?></td>
 						<td><?php echo($component['k_einkaufsdatum']) ?></td>
@@ -35,6 +35,9 @@
 						<td class="col-md-1">
 						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_components_modal"
 							onclick="<?php echo('delete_components('.$component['k_id'].')') ?>">L&ouml;schen</button>
+						</td>
+						<td class="col-md-1">
+							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".move_component_modal">Verschieben</button>
 						</td>
 					</tr>
 			<?php }
