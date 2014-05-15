@@ -18,8 +18,8 @@ SET time_zone = "+00:00";
 
 --
 -- Datenbank: `itv_v1`
-	Drop IF EXISTS Database itv_v1;
-	Create databse itv_v1;
+	Drop Database itv_v1;
+	Create database itv_v1;
 	use itv_v1;
 --
 
