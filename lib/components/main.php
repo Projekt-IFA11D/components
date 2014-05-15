@@ -16,8 +16,10 @@
 			<th></th>
 			<th></th>
 		<?php
-			$components = select_statement("acquisitions");
+			$components = complex_select_statement('main_components');
+			print_r($components);
 			foreach ($components as $component)
+			
 			{ ?>
 					<tr>
 						<td><?php echo($component['l_firmenname']) ?></td>
@@ -37,6 +39,7 @@
 						</td>
 					</tr>
 			<?php }
+			
 		?>
 	<table>
 </div>
