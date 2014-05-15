@@ -5,6 +5,5 @@
 	<li><a href="#components">Komponenten</a></li>
 	<li><a href="#orders">Erfassung</a></li>
 	<li><a href="#acquisitions">Neubeschaffungen</a></li>
-	<li><a href="#search">Suche</a></li>
   </ul>
 </div>
