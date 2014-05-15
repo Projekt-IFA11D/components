@@ -119,6 +119,28 @@ function complex_manipulation_statement($Form_Data) {
   mysql_query($Statement);
 }
 
+// Move components to a different room
+function manip_edit_component($Data) {
+
+  $Table_Columns = read_column_names($Data);  
+
+  $Type = preg_grep("/^[add_|edit_].*/U", array_keys($Data));
+  $First_Column = $Table_Columns[$Type[0]];
+  
+  // The first column is not in the same array as the rest of them,
+  // so we need to move it
+  $First_Column_Name = preg_replace("/^.*-/U", "", preg_replace("/=.*$/U", "", $First_Column));
+  $First_Column_Value = preg_replace("/^.*=/U", "", $First_Column);
+  $Table_Columns["komponenten"][$First_Column_Name[""]] = $First_Column_Value[""];
+  // Remove unneccessary arrays from the form data
+  unset($Table_Columns[$Type[0]]);
+  unset($Table_Columns["_"]);
+
+  $k_Data = $Table_Columns["komponenten"];
+  $Statement = "UPDATE komponenten SET raeume_r_id=".$k_Data["raeume_r_id"]." WHERE k_id=".$K_Data["k_id"];
+  
+}
+
 // Create an update statement for suppliers
 function manip_edit_supplier($Data) {
 
