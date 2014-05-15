@@ -1,9 +1,3 @@
-<?php
-	require_once('add.php');
-	require_once('edit.php');
-	require_once('delete.php');
-?>
-
 <div class="row">
 	<div class="col-md-2">
 		<h1 class="page-header">R&auml;ume</h1>
@@ -41,6 +35,3 @@
 		?>
 	<table>
 </div>
-
-<script src="lib/page/rooms/script.js"></script>
-
