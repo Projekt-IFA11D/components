@@ -31,33 +31,14 @@
 /*+--------------------------------------------------+*/
 /*|	DEFINE VARIABLES								 |*/
 /*+--------------------------------------------------+*/
-	
-	$where_hersteller;
-	$where_raum;
-	$where_kaufdatum;
-	$where_gewaehrdauer;
-	$where_lieferant;
-	$where_notiz;
-
-	// create WHERE conditions
-// 	$where_hersteller = get_where_condition("sel_hersteller" , "k.k_hersteller");
-// 	echo $where_hersteller;
-
-// 	$where_raum = get_where_condition("sel_raum" , "r.r_bezeichnung");
-// 	echo $where_raum;
-
-// 	$where_kaufdatum = get_where_condition("sel_kaufdatum" , "k.k_einkaufsdatum");
-// 	echo $where_kaufdatum;
-	
-// 	$where_gewaehrdauer = get_where_condition("sel_gewaehrdauer" , "k.k_gewaehrleistungsdauer");
-// 	echo $where_gewaehrdauer;
-	
-// 	$where_lieferant = get_where_condition("sel_lieferant" , "l.l_firmenname");
-// 	echo $where_lieferant;
-	
-// 	$where_notiz = get_where_condition("sel_notiz" , "k.k_notiz");
-// 	echo $where_notiz;
-
+		
+// 	$arr_selects = array();
+// 	$arr_selects = [ 0 => "sel_hersteller",
+// 					1 => "sel_raum",
+// 					2 => "sel_kaufdatum",
+// 					3 => "sel_gewaehrdauer",
+// 					4 => "sel_lieferant",
+// 					5 => "sel_notiz" ];
 	
 	$where_condition = "";
 	$where_condition .= get_where_condition("sel_hersteller" , "k.k_hersteller");	
@@ -66,14 +47,20 @@
 	$where_condition .= get_where_condition("sel_gewaehrdauer" , "k.k_gewaehrleistungsdauer");
 	$where_condition .= get_where_condition("sel_lieferant" , "l.l_firmenname");	
 	$where_condition .= get_where_condition("sel_notiz" , "k.k_notiz");
+	
+	// DEBUG
 	echo $where_condition;
 	$result = array();
 	mysql_select_db($DATABASE);
 	$result = select_statement("search_filter", $where_condition);
-	//print_r($result);
+	print_r($result);
 	echo count($result);
 	
 	print_result($result);
+	
+	
+
+	
 	
 	function print_result($result) {
 		echo "<table border = '1'>
@@ -101,6 +88,7 @@
 				echo "</table>";
 	}
 	
+	
 	/**
 	 * function creates WHERE conditions
 	 * @param  $select_param   name of the multiple select
@@ -108,18 +96,19 @@
 	 * @return string          WHERE condition
 	 */
 	function get_where_condition($select_param, $name) {
-		
+		//global $counter;
 		if (empty($_POST[$select_param])) {
+			echo "aufruf: ".$select_param."<br>";
 			return "";
 		}
 		$first = true;
 		$where_query="";
 		
 		foreach($_POST[$select_param] AS $current) {
-			
+			echo "Current: ".$current."<br>";
 			if($current != "" AND $current != "-") {
 				if(!$first) {
-					$where_query .= " AND ";
+					$where_query .= " OR ";
 				} else {
 					$first = false;
 				}
@@ -127,6 +116,13 @@
 				$where_query .= $name." = '".mysql_real_escape_string($current)."' ";
 			}
 		}
+		
+
+		echo "WHERE:".$where_query."PARAM: ".$select_param."<br><br>";
+		
+ 		if ($where_query != "") {
+ 			$where_query .= " AND ";
+ 		}
 		
 		$where_query .= "";
 		return $where_query;
