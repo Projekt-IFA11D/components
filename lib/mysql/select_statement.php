@@ -22,7 +22,8 @@ function select_statement($Table, $Index = 0) {
 							FROM komponenten
 								INNER JOIN lieferant ON komponenten.lieferant_l_id = lieferant.l_id
 								INNER JOIN raeume ON komponenten.raeume_r_id = raeume.r_id
-								INNER JOIN komponentenarten ON komponenten.komponentenarten_ka_id = komponentenarten.ka_id",
+								INNER JOIN komponentenarten ON komponenten.komponentenarten_ka_id = komponentenarten.ka_id
+							where raeume.r_nr = 'new'",
 				"components_producer" => "SELECT k_hersteller FROM komponenten GROUP BY k_hersteller",
     			"components_date" => "SELECT k_einkaufsdatum FROM komponenten GROUP BY k_einkaufsdatum",
     			"components_guarantee" => "SELECT k_gewaehrleistungsdauer FROM komponenten GROUP BY k_gewaehrleistungsdauer",

@@ -8,7 +8,6 @@
 	<table class="table table-striped">
 		<tr class="header">
 			<th>Firmenname</th>
-			<th>Raum-Nr</th>
 			<th>Einkaufsdatum</th>
 			<th>Gew&auml;hrleistungsdauer</th>
 			<th>Notiz</th>
@@ -23,7 +22,6 @@
 			{ ?>
 					<tr>
 						<td><?php echo($component['l_firmenname']) ?></td>
-						<td><?php echo($component['r_nr'])?></td>
 						<td><?php echo($component['k_einkaufsdatum']) ?></td>
 						<td><?php echo($component['k_gewaehrleistungsdauer'])." Jahre"?></td>
 						<td><?php echo($component['k_notiz'])?></td>
