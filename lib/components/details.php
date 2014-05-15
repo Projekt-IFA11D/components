@@ -72,8 +72,7 @@
 			break;
 			
 			case 20:
-			require_once('lib/forms/form_bundle_pc.php');
-			//todo: optisches laufwerk muss von formular_cd/dvd + brenner abgefangen werden. 1 Vorgang - 4 Formulare?
+			require_once('lib/forms/formular_optische_laufwerke.php');
 			break;
 
 			case 21:
