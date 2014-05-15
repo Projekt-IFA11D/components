@@ -17,7 +17,7 @@
     </div>
     <div class="form-group">
         <label for="router_ports">Portzahl:</label>
-        <input type="text" id="router_ports" class="form-control" name="router_attr_ports" style="width:300px;">
+        <input type="text" id="router_ports" class="form-control" name="router_attr_anzahl ports" style="width:300px;">
     </div>
     <div class="form-group">
         <label for="router_ip1">IP 1:</label>
