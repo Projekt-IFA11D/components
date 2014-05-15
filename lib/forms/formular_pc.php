@@ -23,7 +23,7 @@
 echo "<h1>PC</h1><br><br>";
 echo "<form role='form' type='text'>";
 echo "  <div class=\"form-group\">
-		<label for=\"pc_name\">Interne Bezeichnung/Name:</label>
+		<label for=\"pc_name\">Interne Bezeichnung:</label>
 		<input name='komplettsystem_attr_interne bezeichnung' id=\"pc_name\" class=\"form-control\" type='text' size='30'>
 		</div>
 		
