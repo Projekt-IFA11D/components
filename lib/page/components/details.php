@@ -16,14 +16,17 @@
 		{
 			case 1:
 			require_once('lib\forms\form_bundle_pc.php');
+			require_once('lib/forms/form_bundle_pc.php');
 			break;
 
 			case 2:
 			require_once('lib\forms\formular_ram.php');
+			require_once('lib/forms/formular_ram.php');
 			break;
 
 			case 3:
 			require_once('lib\forms\formular_cpu.php');
+			require_once('lib/forms/formular_cpu.php');
 			break;
 
 			case 4:
