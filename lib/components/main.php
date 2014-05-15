@@ -17,10 +17,11 @@
 			<th></th>
 		<?php
 			$components = complex_select_statement('main_components');
-			print_r($components);
+			//print_r($components);
 			foreach ($components as $component)
 			{ ?>
 					<tr>
+						<?php print_r ($component['main_components']) ?>
 						<td><?php echo($component['l_firmenname']) ?></td>
 						<td><?php echo($component['r_nr'])?></td>
 						<td><?php echo($component['k_einkaufsdatum']) ?></td>
