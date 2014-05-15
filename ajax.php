@@ -4,9 +4,9 @@
     if (isset($_GET['page']))
 	{
 		$page = $_GET['page'];
-		if (file_exists('lib/page/'.$page.'/main.php'))
+		if (file_exists('lib/'.$page.'.php'))
 		{
-		  require_once('lib/page/'.$page.'/main.php');
+		  require_once('lib/'.$page.'.php');
 		}
 	}
 	elseif (isset($_GET['wizzard']))
@@ -76,49 +76,49 @@
     elseif (isset($_GET['room_component']))
 	{
 		$page = $_GET['room_component'];
-		if (file_exists('lib/page/rooms/room_components.php'))
+		if (file_exists('lib/rooms/room_components.php'))
 		{
-			require_once('lib/page/rooms/room_components.php');
+			require_once('lib/rooms/room_components.php');
 		}
 	}
     elseif (isset($_GET['component']))
 	{
 		$page = $_GET['component'];
-		if (file_exists('lib/page/components/details.php'))
+		if (file_exists('lib/components.php'))
 		{
-			require_once('lib/page/components/details.php');
+			require_once('lib/components.php');
 		}
 	}
 	elseif (isset($_GET['edit_room']))
 	{
 		manipulation_statement("Update", $_GET);
-		require_once('lib/page/rooms/main.php');
+		require_once('lib/rooms.php');
 
 	}
 	elseif (isset($_GET['delete_room']))
 	{
 		manipulation_statement("Delete", $_GET);
-		require_once('lib/page/rooms/main.php');
+		require_once('lib/rooms.php');
 	}
 	elseif (isset($_GET['add_room']))
 	{
 		manipulation_statement("Insert", $_GET);
-		require_once('lib/page/rooms/main.php');
+		require_once('lib/rooms.php');
 	}
 	elseif (isset($_GET['edit_supplier']))
 	{
 		manipulation_statement("Update", $_GET);
-		require_once('lib/page/suppliers/main.php');
+		require_once('lib/suppliers.php');
 	}
 	elseif (isset($_GET['delete_supplier']))
 	{
 		manipulation_statement("Delete", $_GET);
-		require_once('lib/page/suppliers/main.php');
+		require_once('lib/suppliers.php');
 	}
 	elseif (isset($_GET['add_supplier']))
 	{
 		complex_manipulation_statement($_GET);
-		require_once('lib/page/suppliers/main.php');
+		require_once('lib/suppliers.php');
 	}
 	elseif (isset($_GET['edit_component']))
 	{
@@ -127,7 +127,7 @@
 	elseif (isset($_GET['delete_component']))
 	{
 		not_really_delete($_GET);
-		require_once('lib/page/components/main.php');
+		require_once('lib/components.php');
 	}
 	elseif (isset($_GET['add_component']))
 	{

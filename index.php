@@ -38,7 +38,7 @@
       <div class="row">
 		<?php require_once('lib/sidebar.php') ?>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<?php require_once('lib/page/dashboard/main.php') ?>
+			<?php require_once('lib/dashboard.php') ?>
         </div>
       </div>
     </div>

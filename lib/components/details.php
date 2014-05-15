@@ -6,10 +6,6 @@
 
 <?php
 
-	print_r($_GET["component"]);
-	
-	//1-8 & 13-25
-
 	if(!empty ($_GET["component"]))
 	{
 		switch ($_GET["component"])
@@ -23,7 +19,7 @@
 			break;
 
 			case 3:
-			require_once('lib/forms/formular_cpu.php');
+			require_once('lib/forms/formular_prozessor.php');
 			break;
 
 			case 4:
@@ -107,12 +103,3 @@
 
 	echo "<button type='submit' class='btn btn-default'>&Auml;ndern</button>";
 ?>
-			
-
-
-
-
-
-
-
-

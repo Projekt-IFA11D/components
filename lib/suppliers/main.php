@@ -1,9 +1,3 @@
-<?php
-	require_once('add.php');
-	require_once('edit.php');
-	require_once('delete.php');
-?>
-
 <div class="row">
 	<div class="col-md-2">
 		<h1 class="page-header">Lieferanten</h1>
@@ -51,5 +45,3 @@
 		?>
   </table>
 </div>
-
-<script src="lib/page/suppliers/script.js"></script>

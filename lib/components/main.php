@@ -1,9 +1,3 @@
-<?php
-	require_once('delete.php');
-?>
-
-
-
 <div class="row">
 	<div class="col-md-2">
 		<h1 class="page-header">Komponenten</h1>
@@ -13,7 +7,7 @@
 <div class="table table-responsive">
 	<table class="table table-striped">
 			<th>Firmenname</th>
-			<th>Raum-Bez</th>
+			<th>Raum-Nr</th>
 			<th>Einkaufsdatum</th>
 			<th>Gew&auml;hrleistungsdauer</th>
 			<th>Notiz</th>
@@ -27,7 +21,7 @@
 			{ ?>
 					<tr>
 						<td><?php echo($component['l_firmenname']) ?></td>
-						<td><?php echo($component['r_bezeichnung'])?></td>
+						<td><?php echo($component['r_nr'])?></td>
 						<td><?php echo($component['k_einkaufsdatum']) ?></td>
 						<td><?php echo($component['k_gewaehrleistungsdauer'])." Jahre"?></td>
 						<td><?php echo($component['k_notiz'])?></td>
@@ -46,37 +40,3 @@
 		?>
 	<table>
 </div>
-
-<script src="lib/page/components/script.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#srch-term").keyup(function () {
-	    var data = this.value.split(" ");
-	    var jo = $(".table").find("tr");
-	    if (this.value == "") {
-		      jo.show();
-		      return;
-	    }
-      $(".table tr:not(:first-child)").hide(); 
-
-      jo.filter(function (i, v) {
-		      var $t = $(this);
-		      for (var d = 0; d < data.length; ++d) {
-		          if ($t.is(":contains('" + data[d] + "')")) {
-		            	return true;
-		          }
-	      	}
-	        return false;
-	    }).show();
-	}).focus(function () {
-	    this.value = "";
-	    $(this).css({
-	       "color": "black"
-	    });
-	    $(this).unbind('focus');
-	}).css({
-	   "color": "#C0C0C0"
-	});
-});
-</script>
-
