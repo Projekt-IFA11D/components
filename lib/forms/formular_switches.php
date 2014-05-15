@@ -29,7 +29,7 @@
 
     <div class="form-group">
         <label for="sw_geschw">Geschwindigkeit (des Uplinks/der Ports im Raum):</label>
-        <input type="text" id="switches_attr_uplink geschwindigkeit" class="form-control" name="sw_geschw" style="width:300px;">
+        <input type="text" id="switches_attr_uplink geschwindigkeit" class="form-control" name="switches_attr_uplink geschwindigkeit" style="width:300px;">
     </div>
 
 </form>
