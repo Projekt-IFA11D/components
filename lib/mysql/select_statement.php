@@ -90,9 +90,9 @@ LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id
 LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE '".$Statements_keyword["components"]."'=
 ORDER BY  `komponenten`.`k_id` ASC"
 ],
-"main_components" => ["SELECT KhK.*, Komp.*, komponentenarten.ka_komponentenart, komponentenarten.ka_id, lieferant.l_firmenname, raeume.r_nr 
-FROM Komponenten Komp 
-LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil 
+"main_components" => ["SELECT KhK.*, komp.*, komponentenarten.ka_komponentenart, komponentenarten.ka_id, lieferant.l_firmenname, raeume.r_nr 
+FROM komponenten komp 
+LEFT JOIN komponente_hat_komponente KhK ON komp.k_id = KhK.komponenten_k_id_teil 
 INNER JOIN lieferant ON komp.lieferant_l_id = lieferant.l_id 
 INNER JOIN raeume ON komp.raeume_r_id = raeume.r_id 
 INNER JOIN komponentenarten ON komp.komponentenarten_ka_id = komponentenarten.ka_id
@@ -124,7 +124,6 @@ ORDER BY  `komponenten`.`k_id` ASC "
   }
   
   mysql_close();
-  var_dump($Data);
   return nice_empty_values($Data);
   
 }
