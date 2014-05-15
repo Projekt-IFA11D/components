@@ -58,8 +58,6 @@ function manipulation_statement($Type, $Form_Data) {
       $Form_Data[preg_replace("/=.*$/U", "", $Form_Data[$table_key[0]])] = 1;
     }
     unset($Form_Data[$table_key[0]]);
-  } else if($Type!="Insert") {
-      // raise some kind of error
   } else {
     // Ignore this line
     $Form_Data[preg_replace("/=.*$/U", "", $Form_Data[preg_grep("/^[add_].*/U", array_keys($Form_Data))[0]])] = preg_replace("/^.*=/U", "", $Form_Data[preg_grep("/^[add_].*/U", array_keys($Form_Data))[0]]);
@@ -77,14 +75,19 @@ function manipulation_statement($Type, $Form_Data) {
   }
 }
 
+// Function to create manipulation statements for tables which have attribution tables
 function complex_manipulation_statement($Form_Data) {
 
   $Table_Columns = read_column_names($Form_Data);
   $Type = preg_grep("/^[add_|edit_].*/U", array_keys($Form_Data));
   $First_Column = $Table_Columns[$Type[0]];
+  
+  // The first column is not in the same array as the rest of them,
+  // so we need to move it
   $First_Column_Name = preg_replace("/^.*-/U", "", preg_replace("/=.*$/U", "", $First_Column));
   $First_Column_Value = preg_replace("/^.*=/U", "", $First_Column);
   $Table_Columns["lieferant"][$First_Column_Name[""]] = $First_Column_Value[""];
+  // Remove unneccessary arrays from the form data
   unset($Table_Columns[$Type[0]]);
   unset($Table_Columns["_"]);
 
@@ -104,15 +107,15 @@ function complex_manipulation_statement($Form_Data) {
   mysql_query($Statement);
 }
 
+// Create an update statement for suppliers
 function manip_edit_supplier($Data) {
 
-  $Plz_Data = $Data["plz_zuordnung"];
   $Supp_Data = $Data["lieferant"];
-  $Plz_Id_Result = mysql_query("SELECT plz_id FROM plz_zuordnung WHERE plz_plz='".$Plz_Data["plz_plz"]."' AND plz_ort='".$Plz_Data["plz_ort"]."'");
-  $Plz_Id = mysql_fetch_row($Plz_Id_Result);
-  $Supp_Data["l_plz_id"] = $Plz_Id[0];
+  $Supp_Data["l_plz_id"] = extract_plz_suppliers($Data);
+
   $Condition = $Supp_Data["l_id"];
   unset($Supp_Data["l_id"]);
+
   $Statement = "UPDATE lieferant SET ";
   foreach ($Supp_Data as $key => $value) {
     $Statement.=$key."=\"".$value."\", ";
@@ -123,13 +126,12 @@ function manip_edit_supplier($Data) {
   
 }
 
+// Create an insert statement for suppliers
 function manip_add_supplier($Data) {
-  
-  $Plz_Data = $Data["plz_zuordnung"];
+
   $Supp_Data = $Data["lieferant"];
-  $Plz_Id_Result = mysql_query("SELECT plz_id FROM plz_zuordnung WHERE plz_plz='".$Plz_Data["plz_plz"]."' AND plz_ort='".$Plz_Data["plz_ort"]."'");
-  $Plz_Id = mysql_fetch_row($Plz_Id_Result);
-  $Supp_Data["l_plz_id"] = $Plz_Id[0];
+  $Supp_Data["l_plz_id"] = extract_plz_suppliers($Data);
+
   $Keys = implode(', ', array_keys($Supp_Data));
   $Statement = "INSERT INTO lieferant($Keys) VALUES(";
   foreach (array_values($Supp_Data) as $val) {
@@ -142,7 +144,19 @@ function manip_add_supplier($Data) {
   
 }
 
+// function to extract the plz_id from the attribution table so we can fill all columns in lieferant
+function extract_plz_suppliers($Data) {
+
+  $Plz_Data = $Data["plz_zuordnung"];
+  $Plz_Id_Result = mysql_query("SELECT plz_id FROM plz_zuordnung WHERE plz_plz='".$Plz_Data["plz_plz"]."' AND plz_ort='".$Plz_Data["plz_ort"]."'");
+  $Plz_Id = mysql_fetch_row($Plz_Id_Result);
+  return $Plz_Id[0];
+
+}
+
+// "Delete" function for components
 function not_really_delete($Form_Data) {
+
   $Room_Result = mysql_query("SELECT r_id FROM raeume WHERE r_nr=\"deleted\"");
   $Room = mysql_fetch_row($Room_Result);
   $Index = $Form_Data["delete_component"];
