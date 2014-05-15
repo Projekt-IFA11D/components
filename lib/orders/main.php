@@ -33,7 +33,7 @@
 	</div>
 </div>
 
-<script src="lib/page/orders/script.js"></script>
+<script src="lib/orders/script.js"></script>
 
 <?php 
 
@@ -206,10 +206,7 @@ function wizzard_check_input()
 
 
 
-function wizzard_save_components()
-{
-	
-}
+
 
 
 
