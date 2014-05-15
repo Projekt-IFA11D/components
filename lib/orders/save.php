@@ -142,7 +142,7 @@ function prepareToSave()
         
     }
     
-    echo"<center><h2>Komponente gespeichert .... oder vielleicht auch nicht ...</h2></center>";
+    echo"<center><h2>Komponente gespeichert</h2></center>";
 }
 
 
