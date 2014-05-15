@@ -27,7 +27,7 @@
 		}
 		elseif($wiz == "save")
 		{
-			require_once('lib/page/orders/save.php');
+			require_once('lib/orders/save.php');
             
 		}
 		else
