@@ -1,8 +1,3 @@
-<?php
-	require_once('delete.php');
-?>
-
-
 <div class="row">
 	<div class="col-md-2">
 		<h1 class="page-header">Neubeschaffungen</h1>
@@ -13,7 +8,7 @@
 	<table class="table table-striped">
 		<tr class="header">
 			<th>Firmenname</th>
-			<th>Raum-Bez</th>
+			<th>Raum-Nr</th>
 			<th>Einkaufsdatum</th>
 			<th>Gew&auml;hrleistungsdauer</th>
 			<th>Notiz</th>
@@ -28,7 +23,7 @@
 			{ ?>
 					<tr>
 						<td><?php echo($component['l_firmenname']) ?></td>
-						<td><?php echo($component['r_bezeichnung'])?></td>
+						<td><?php echo($component['r_nr'])?></td>
 						<td><?php echo($component['k_einkaufsdatum']) ?></td>
 						<td><?php echo($component['k_gewaehrleistungsdauer'])." Jahre"?></td>
 						<td><?php echo($component['k_notiz'])?></td>
@@ -47,5 +42,3 @@
 		?>
 	<table>
 </div>
-
-<script src="lib/page/components/script.js"></script>

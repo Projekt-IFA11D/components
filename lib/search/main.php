@@ -96,7 +96,7 @@
                 <div class='col-md-2'>
                     <div class='panel panel-primary'>
                         <div class='panel-heading'>
-                            <h3 class='panel-title'>Gewaehrleistung</h3>
+                            <h3 class='panel-title'>Gew&auml;hrleistung</h3>
                         </div>
                         <ul class='list-group'>
 						<select multiple class='form-control' name='sel_gewaehrdauer[]' size='5' >"
@@ -131,7 +131,7 @@
                 </div>
             </div>
 			<input class='btn btn-primary' type='Submit' Name = 'submit' VALUE = 'Submit'>			
-			<input class='btn btn-danger' type='reset' Name = 'loeschen' VALUE = 'Loeschen'>			
+			<input class='btn btn-danger' type='reset' Name = 'loeschen' VALUE = 'L&ouml;schen'>			
         </div>
 		</form>";
 		

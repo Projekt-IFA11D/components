@@ -2,15 +2,19 @@
 
 mysql_connect("localhost","root","") or die(mysql_Error());
 mysql_select_db("itv_v1") or die(mysql_Error());
-
-
+header("Content-Type: text/html; charset=utf-8");
+mysql_query("SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'");
 /*Ignoriere Attributwert Validierung bei:*/
 $ignoreVal[0]="taktfrequenz";
 $ignoreVal[1]="notiz";
 $ignoreVal[2]="interne bezeichnung";
 $ignoreVal[3]="sockel";
 $ignoreVal[4]="Maximal Unterstuetzter RAM";
+$ignoreVal[5]="onboard-funktionalitaet";
+$ignoreVal[6]="einsatzzweck";
 
+//Sicherheits Bool Variable die es evtl. verhindert das die Attribute nicht in die Datenbank gelangen
+$safety_check_attr = false;
 
 //Patterns für str_replace
 $search = array(" ");
@@ -33,6 +37,7 @@ $_POST['ram_raeume_raum'] = "r001";
 
 $_POST['ram_lieferant_lieferant'] = "Lenovo";
 */
+/*
 $_POST['anzahl'] ="1";
 $_POST['mainboard_attr_interne_bezeichnung'] ="Asus";
 $_POST['mainboard_attr_sockel'] ="ATX";
@@ -40,23 +45,23 @@ $_POST['mainboard_attr_ram-typ'] ="DDR3";
 $_POST['mainboard_attr_maximal_unterstuetzter_ram'] ="32GB";
 $_POST['mainboard_attr_anzahl_baenke'] ="4";
 $_POST['mainboard_attr_formfaktor'] ="ATX";
-$_POST['mainboard_attr_onboard-funktionalitaet'][0] ="";
-$_POST['mainboard_attr_onboard-funktionalitaet'][1] ="mb_nic";
-$_POST['mainboard_attr_onboard-funktionalitaet'][2] ="mb_wol";
-$_POST['mainboard_attr_onboard-funktionalitaet'][3] ="mb_raidctrl";
+$_POST['mainboard_attr_onboard-funktionalitaet'][0] ="Grafikkarte";
+$_POST['mainboard_attr_onboard-funktionalitaet'][1] ="Netzwerk";
+$_POST['mainboard_attr_onboard-funktionalitaet'][2] ="Wake on LAN";
+$_POST['mainboard_attr_onboard-funktionalitaet'][3] ="Raidcontroller";
 $_POST['mainboard_attr_schnittstellen_(intern)'][0] ="sata";
 $_POST['mainboard_attr_schnittstellen_(intern)'][1] ="sas";
-$_POST['mainboard_attr_schnittstellen_(extern)'][0] ="mb_ext_if_usb_2";
-$_POST['mainboard_attr_schnittstellen_(extern)'][1] ="mb_ext_if_usb_3";
+$_POST['mainboard_attr_schnittstellen_(extern)'][0] ="USB 2.0";
+$_POST['mainboard_attr_schnittstellen_(extern)'][1] ="USB 3.0";
 $_POST['mainboard_main_hersteller'] ="asus";
 $_POST['mainboard_raeume_raum'] ="r001";
 $_POST['mainboard_main_einkaufsdatum'] ="15.05.2014";
 $_POST['mainboard_main_gewaehrleistungsdauer'] ="2";
 $_POST['mainboard_lieferant_lieferant'] ="HP";
 $_POST['mainboard_main_notiz'] ="Mainboard Test";
+*/
 
-
-
+/*
 echo"<pre>";
     print_r($_POST);
 echo"</pre>";
@@ -65,9 +70,10 @@ echo"</pre>";
 echo"<pre>";
 print_r($ignoreVal);
 echo"</pre>";
+*/
 
-
-
+//Handlervariable für die Trennzeichen
+$firstAttr=true;
 
 
 
@@ -76,7 +82,7 @@ echo"</pre>";
 prepareToSave();
 function prepareToSave()
 {
-    global $ignoreVal,$search,$replace;
+    global $ignoreVal,$search,$replace,$firstAttr;
     $anzahl = $_POST['anzahl'];
     unset($_POST['anzahl']);
     
@@ -183,7 +189,7 @@ function rollback($cid)
 
 function getAttrValID($val)
 {
-	echo "<h2>$val</h2>";
+	//echo "<h2>$val</h2>";
     if($val)
     {
 		$sql = "SELECT zw_id FROM zulaessige_werte WHERE zw_wert LIKE '".mysql_real_escape_string($val)."'";
@@ -311,7 +317,8 @@ function checkValidValue($val)
 
 function createSingleComp($array)
 {
-    global $ignoreVal,$search,$replace;
+    global $ignoreVal,$search,$replace,$safety_check_attr,$firstAttr;
+    
     foreach($array AS $component=>$compData)
     {
         
@@ -358,36 +365,49 @@ function createSingleComp($array)
         //Hole die neue ID ab
         $NewCompID = mysql_insert_id();
         
-        //Komponentenattribute
         
+        
+        
+        
+        //Komponentenattribute
         //Validiere Attribut und Attributwert und kleb' den insert string zam'
         $sql_attr="INSERT INTO komponente_hat_attribute (komponenten_k_id,komponentenattribute_kat_id, khkat_wert) VALUES ";
         
-        //Sicherheits Bool Variable die es evtl. verhindert das die Attribute nicht in die Datenbank gelangen
-        $safety_check_attr = false;
         
-        //Handlervariable für die Trennzeichen
-        $firstAttr=true;
+        
+        
          
         //Gehe alle Attribute der Komponente durch
         foreach($compData['attr'] AS $attr=>$val)
         {
-        	if(is_array($val))
+        	
+        	if($val != "" && !empty($val))
         	{
-        		foreach($val AS $value)
-        		{
-        			echo"<h2> Fuehre Array aus!";
-       				$sql_attr .= attributManagement($attr,$value,$NewCompID,$sql_attr);
-        		}
-        	}	
-        	else
-        	{
-        		$sql_attr .= attributManagement($attr,$val,$NewCompID,$sql_attr);
+	        	
+	        	if(is_array($val))
+	        	{
+	        		foreach($val AS $value)
+	        		{
+	        			if($value != "" && !empty($value))
+	        			{
+	        				$sql_attr_values ="";
+	       					$sql_attr_values .= attributManagement($attr,$value,$NewCompID,$sql_attr_values);
+	       					$sql_attr = $sql_attr.$sql_attr_values;
+	        			}
+	        		}
+	        	}	
+	        	else
+	        	{
+	        		$sql_attr_values ="";
+	        		$sql_attr_values .= attributManagement($attr,$val,$NewCompID,$sql_attr_values);
+	        		$sql_attr = $sql_attr.$sql_attr_values;
+	        	}
+	        	
+        
         	}
-        
         }
-        
     }
+    
     
     echo "<br /><br />Attributstring: ".$sql_attr;
     
@@ -396,7 +416,9 @@ function createSingleComp($array)
     {
     	if(!mysql_query($sql_attr))
     	{
-    		echo"<br />Attribute nicht angelegt!<br />".mysql_error();
+    		echo"<br />Attribute nicht angelegt!<br />SQL: $sql_attr <br>".mysql_error();
+    		
+    		
     		rollback($NewCompID);
     	}
     }
@@ -411,7 +433,7 @@ function createSingleComp($array)
 
 function attributManagement($attr,$val,$NewCompID,$sql_attr)
 {
-	global $search,$replace,$firstAttr,$safety_check_attr,$ignoreVal;
+	global $search,$replace,$firstAttr,$safety_check_attr,$ignoreVal,$firstAttr;
 	
 	//Hole Attributs ID. Wenn kein Attribut vorhanden, dann wird false zurückgegeben
 	$attrID = getAttrID($attr);
@@ -420,11 +442,16 @@ function attributManagement($attr,$val,$NewCompID,$sql_attr)
 	$zwID = getAttrValID($val);
 	
 	 
-	if(!$attrID AND $attr =="")
+	if(!$attrID)
 	{
 		echo "<br>Attribut '<b>$attr</b>' existiert nicht!";
 	}
-	 
+
+	if(!$zwID)
+	{
+		echo "<br>Wert '<b>$val</b>' existiert nicht!";
+	}
+	
 	 
 	//Prüfe ob Wert Validierung nichtig ist
 	if(in_array(strtolower($attr),$ignoreVal))

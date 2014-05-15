@@ -81,8 +81,14 @@ function complex_manipulation_statement($Form_Data) {
 
   $Table_Columns = read_column_names($Form_Data);
   $Type = preg_grep("/^[add_].*/U", array_keys($Form_Data));
+  $First_Column = $Table_Columns[$Type[0]];
+  $First_Column_Name = preg_replace("/^.*-/U", "", preg_replace("/=.*$/U", "", $First_Column));
+  $First_Column_Value = preg_replace("/^.*=/U", "", $First_Column);
+  $Table_Columns["lieferant"][$First_Column_Name[""]] = $First_Column_Value[""];
+  unset($Table_Columns[$Type[0]]);
+  unset($Table_Columns["_"]);
 
-  switch ($Type) {
+  switch ($Type[0]) {
   case "edit_supplier":
     $Statement = manip_edit_supplier($Table_Columns);
     break;
@@ -96,21 +102,33 @@ function complex_manipulation_statement($Form_Data) {
     $Statement = manip_add_component($Table_Columns);
   }
   mysql_query($Statement);
-  
 }
 
 function manip_add_supplier($Data) {
   
   $Plz_Data = $Data["plz_zuordnung"];
   $Supp_Data = $Data["lieferant"];
-  $Plz_Id = mysql_query("SELECT plz_id FROM plz_zuordnung WHERE plz_plz='".$Plz_Data["plz_plz"]."' AND plz_ort='".$Plz_Data["plz_ort"]."'");
-  var_dump($Plz_Id);
+  $Plz_Id_Result = mysql_query("SELECT plz_id FROM plz_zuordnung WHERE plz_plz='".$Plz_Data["plz_plz"]."' AND plz_ort='".$Plz_Data["plz_ort"]."'");
+  $Plz_Id = mysql_fetch_row($Plz_Id_Result);
+  $Supp_Data["l_plz_id"] = $Plz_Id[0];
+  $Keys = implode(', ', array_keys($Supp_Data));
+  $Statement = "INSERT INTO lieferant($Keys) VALUES(";
+  foreach (array_values($Supp_Data) as $val) {
+    $Statement.="'".$val."', ";
+  }
+  $Statement = substr($Statement, 0, -2);
+  $Statement.=")";
+  return $Statement;
+
   
 }
 
 function not_really_delete($Form_Data) {
-  $Index = $Form_Data[preg_grep("/^[delete_|edit_].*/U", array_keys($Form_Data))];
-  mysql_query("UPDATE komponenten SET raeume_r_id=8 WHERE $Index");
+  $Room_Result = mysql_query("SELECT r_id FROM raeume WHERE r_nr=\"deleted\"");
+  $Room = mysql_fetch_row($Room_Result);
+  $Index = $Form_Data["delete_component"];
+  $Index = preg_replace("/^.*-/U", "", $Index);
+  mysql_query("UPDATE komponenten SET raeume_r_id='".$Room[0]."' WHERE $Index");
 }
 
 ?>
