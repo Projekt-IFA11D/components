@@ -12,8 +12,8 @@
         <input type="text" id="prozessor_attr_name" class="form-control" name="prozessor_name" style="width:300px;">
     </div>
     <div class="form-group">
-        <label for="cpu_attr_sockel">Groesse:</label>
-        <input type="text" id="prozessor_sockel" class="form-control" name="prozessor_attr_sockel" style="width:300px;">
+        <label for="cpu_attr_sockel">Sockel:</label>
+        <input type="text" id="prozessor_attr_sockel" class="form-control" name="prozessor_attr_sockel" style="width:300px;">
     </div>
 </form>
 
