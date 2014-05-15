@@ -18,7 +18,7 @@
 		<option id="single" value="switches">Switch</option>
 		<option id="single" value="vlan">VLAN</option>
 		<option id="single" value="router">Router</option>
-		<option id="single" value="hub">Hub</option>
+		<option id="single" value="hubs">Hub</option>
 		<option id="single" value="accesspoint">Accesspoint</option>
 	</select>
 </div>
