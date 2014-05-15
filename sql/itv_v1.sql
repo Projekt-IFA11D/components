@@ -18,6 +18,9 @@ SET time_zone = "+00:00";
 
 --
 -- Datenbank: `itv_v1`
+	Drop IF EXISTS Database itv_v1;
+	Create databse itv_v1;
+	use itv_v1;
 --
 
 -- --------------------------------------------------------
@@ -15424,7 +15427,7 @@ CREATE TABLE IF NOT EXISTS `raeume` (
 
 INSERT INTO `raeume` (`r_id`, `r_nr`, `r_bezeichnung`, `r_notiz`) VALUES
 (1, 'rl01', 'Lager', NULL),
-(2, 'new', 'Neuanschaffungen', 'Nur neu angeschaffte, nicht eingebuchte Objekte')
+(2, 'new', 'Neuanschaffungen', 'Nur neu angeschaffte, nicht eingebuchte Objekte'),
 (3, 'deleted', 'Ausgemustert', 'Nur ausgemusterte'),
 (4, 'r303', 'Klassenraum', NULL),
 (5, 'r001', 'Labor', NULL),
