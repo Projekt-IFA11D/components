@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.1
+-- version 4.0.9
 -- http://www.phpmyadmin.net
 --
 -- Host: 10.0.1.14
--- Erstellungszeit: 15. Mai 2014 um 10:41
--- Server Version: 5.6.16
--- PHP-Version: 5.5.11
+-- Generation Time: May 14, 2014 at 09:02 AM
+-- Server version: 5.6.14
+-- PHP Version: 5.5.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,28 +17,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Datenbank: `itv_v1`
+-- Database: `itv_v1`
 --
+CREATE DATABASE IF NOT EXISTS `itv_v1` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `itv_v1`;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `komponenten`
+-- Table structure for table `komponenten`
 --
 
 CREATE TABLE IF NOT EXISTS `komponenten` (
-`k_id` int(11) NOT NULL,
+  `k_id` int(11) NOT NULL AUTO_INCREMENT,
   `lieferant_l_id` int(11) NOT NULL,
   `raeume_r_id` int(11) NOT NULL,
   `k_einkaufsdatum` date DEFAULT NULL,
   `k_gewaehrleistungsdauer` int(11) DEFAULT NULL,
   `k_notiz` varchar(1024) DEFAULT NULL,
   `k_hersteller` varchar(45) DEFAULT NULL,
-  `komponentenarten_ka_id` int(11) NOT NULL
+  `komponentenarten_ka_id` int(11) NOT NULL,
+  PRIMARY KEY (`k_id`),
+  KEY `fk_komponenten_haendler` (`lieferant_l_id`),
+  KEY `fk_komponenten_raeume1` (`raeume_r_id`),
+  KEY `fk_komponenten_komponentenarten1` (`komponentenarten_ka_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
--- Daten für Tabelle `komponenten`
+-- Dumping data for table `komponenten`
 --
 
 INSERT INTO `komponenten` (`k_id`, `lieferant_l_id`, `raeume_r_id`, `k_einkaufsdatum`, `k_gewaehrleistungsdauer`, `k_notiz`, `k_hersteller`, `komponentenarten_ka_id`) VALUES
@@ -71,55 +77,56 @@ INSERT INTO `komponenten` (`k_id`, `lieferant_l_id`, `raeume_r_id`, `k_einkaufsd
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `komponentenarten`
+-- Table structure for table `komponentenarten`
 --
 
 CREATE TABLE IF NOT EXISTS `komponentenarten` (
-`ka_id` int(11) NOT NULL,
+  `ka_id` int(11) NOT NULL AUTO_INCREMENT,
   `ka_komponentenart` varchar(45) DEFAULT NULL,
-  `ka_kann_teil_sein` tinyint(1) NOT NULL DEFAULT '1'
+  PRIMARY KEY (`ka_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
--- Daten für Tabelle `komponentenarten`
+-- Dumping data for table `komponentenarten`
 --
 
-INSERT INTO `komponentenarten` (`ka_id`, `ka_komponentenart`, `ka_kann_teil_sein`) VALUES
-(1, 'Komplettsystem', 0),
-(2, 'RAM', 1),
-(3, 'Prozessor', 1),
-(4, 'Mainboard', 1),
-(5, 'Festplatte', 1),
-(6, 'Grafikkarte', 1),
-(7, 'Netzwerkkarte', 1),
-(8, 'Raidcontroller', 1),
-(13, 'Netzteil', 1),
-(14, 'Switches', 1),
-(15, 'VLAN', 1),
-(16, 'Router', 1),
-(17, 'Hubs', 1),
-(18, 'Accesspoints', 1),
-(19, 'Drucker', 1),
-(20, 'Optisches Laufwerk', 1),
-(21, 'Software', 1),
-(22, 'Beamer', 1),
-(23, 'Maus', 1),
-(24, 'Tastatur', 1),
-(25, 'Monitor', 1);
+INSERT INTO `komponentenarten` (`ka_id`, `ka_komponentenart`) VALUES
+(1, 'Komplettsystem'),
+(2, 'RAM'),
+(3, 'Prozessor'),
+(4, 'Mainboard'),
+(5, 'Festplatte'),
+(6, 'Grafikkarte'),
+(7, 'Netzwerkkarte'),
+(8, 'Raidcontroller'),
+(13, 'Netzteil'),
+(14, 'Switches'),
+(15, 'VLAN'),
+(16, 'Router'),
+(17, 'Hubs'),
+(18, 'Accesspoints'),
+(19, 'Drucker'),
+(20, 'Optisches Laufwerk'),
+(21, 'Software'),
+(22, 'Beamer'),
+(23, 'Maus'),
+(24, 'Tastatur'),
+(25, 'Monitor');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `komponentenattribute`
+-- Table structure for table `komponentenattribute`
 --
 
 CREATE TABLE IF NOT EXISTS `komponentenattribute` (
-`kat_id` int(11) NOT NULL,
-  `kat_beschreibung` varchar(255) DEFAULT NULL
+  `kat_id` int(11) NOT NULL AUTO_INCREMENT,
+  `kat_beschreibung` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`kat_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
--- Daten für Tabelle `komponentenattribute`
+-- Dumping data for table `komponentenattribute`
 --
 
 INSERT INTO `komponentenattribute` (`kat_id`, `kat_beschreibung`) VALUES
@@ -163,16 +170,19 @@ INSERT INTO `komponentenattribute` (`kat_id`, `kat_beschreibung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `komponentenattribut_hat_zulaessige_werte`
+-- Table structure for table `komponentenattribut_hat_zulaessige_werte`
 --
 
 CREATE TABLE IF NOT EXISTS `komponentenattribut_hat_zulaessige_werte` (
   `komponentenattribute_kat_id` int(11) NOT NULL,
-  `zulaessige_werte_zw_id` int(11) NOT NULL
+  `zulaessige_werte_zw_id` int(11) NOT NULL,
+  PRIMARY KEY (`komponentenattribute_kat_id`,`zulaessige_werte_zw_id`),
+  KEY `fk_komponentenattribute_has_zulaessige_werte_zulaessige_werte1` (`zulaessige_werte_zw_id`),
+  KEY `fk_komponentenattribute_has_zulaessige_werte_komponentenattri1` (`komponentenattribute_kat_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `komponentenattribut_hat_zulaessige_werte`
+-- Dumping data for table `komponentenattribut_hat_zulaessige_werte`
 --
 
 INSERT INTO `komponentenattribut_hat_zulaessige_werte` (`komponentenattribute_kat_id`, `zulaessige_werte_zw_id`) VALUES
@@ -271,24 +281,27 @@ INSERT INTO `komponentenattribut_hat_zulaessige_werte` (`komponentenattribute_ka
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `komponente_hat_attribute`
+-- Table structure for table `komponente_hat_attribute`
 --
 
 CREATE TABLE IF NOT EXISTS `komponente_hat_attribute` (
   `komponenten_k_id` int(11) NOT NULL,
   `komponentenattribute_kat_id` int(11) NOT NULL,
   `khkat_wert` varchar(45) DEFAULT NULL,
-`ID` int(11) NOT NULL
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`),
+  KEY `fk_komponenten_has_komponentenattribute_komponentenattribute1` (`komponentenattribute_kat_id`),
+  KEY `fk_komponenten_has_komponentenattribute_komponenten1` (`komponenten_k_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
--- Daten für Tabelle `komponente_hat_attribute`
+-- Dumping data for table `komponente_hat_attribute`
 --
 
 INSERT INTO `komponente_hat_attribute` (`komponenten_k_id`, `komponentenattribute_kat_id`, `khkat_wert`, `ID`) VALUES
 (3, 2, '1600MHz', 1),
 (3, 5, '4GB', 2),
-(3, 10, 'DDR3', 3),
+(3, 10, 'DDR4', 3),
 (2, 4, '1150', 4),
 (2, 18, 'i5', 5),
 (4, 3, '2,5"', 6),
@@ -324,7 +337,7 @@ INSERT INTO `komponente_hat_attribute` (`komponenten_k_id`, `komponentenattribut
 (26, 9, 'USB 2.0', 37),
 (18, 18, 'i5', 39),
 (18, 4, '1150', 40),
-(20, 10, 'DDR3', 41),
+(20, 10, 'DDR4', 41),
 (20, 5, '4GB', 42),
 (20, 2, '1600MHz', 43),
 (21, 7, 'HDD', 44),
@@ -358,19 +371,23 @@ INSERT INTO `komponente_hat_attribute` (`komponenten_k_id`, `komponentenattribut
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `komponente_hat_komponente`
+-- Table structure for table `komponente_hat_komponente`
 --
 
 CREATE TABLE IF NOT EXISTS `komponente_hat_komponente` (
   `komponenten_k_id_aggregat` int(11) NOT NULL,
   `komponenten_k_id_teil` int(11) NOT NULL,
-`khk_id` int(11) NOT NULL,
+  `khk_id` int(11) NOT NULL AUTO_INCREMENT,
   `vorgangsarten_v_id` int(11) NOT NULL,
-  `khk_datum` date DEFAULT NULL
+  `khk_datum` date DEFAULT NULL,
+  PRIMARY KEY (`khk_id`),
+  KEY `fk_komponenten_has_komponenten_komponenten2` (`komponenten_k_id_teil`),
+  KEY `fk_komponenten_has_komponenten_komponenten1` (`komponenten_k_id_aggregat`),
+  KEY `fk_komponente_hat_komponente_vorgangsarten1` (`vorgangsarten_v_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
--- Daten für Tabelle `komponente_hat_komponente`
+-- Dumping data for table `komponente_hat_komponente`
 --
 
 INSERT INTO `komponente_hat_komponente` (`komponenten_k_id_aggregat`, `komponenten_k_id_teil`, `khk_id`, `vorgangsarten_v_id`, `khk_datum`) VALUES
@@ -400,22 +417,24 @@ INSERT INTO `komponente_hat_komponente` (`komponenten_k_id_aggregat`, `komponent
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `lieferant`
+-- Table structure for table `lieferant`
 --
 
 CREATE TABLE IF NOT EXISTS `lieferant` (
-`l_id` int(11) NOT NULL,
+  `l_id` int(11) NOT NULL AUTO_INCREMENT,
   `l_firmenname` varchar(45) DEFAULT NULL,
   `l_strasse` varchar(45) DEFAULT NULL,
   `l_tel` varchar(20) DEFAULT NULL,
   `l_mobil` varchar(20) DEFAULT NULL,
   `l_fax` varchar(20) DEFAULT NULL,
   `l_email` varchar(45) DEFAULT NULL,
-  `l_plz_id` int(11) DEFAULT NULL
+  `l_plz_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`l_id`),
+  KEY `l_plz_id_FK` (`l_plz_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Daten für Tabelle `lieferant`
+-- Dumping data for table `lieferant`
 --
 
 INSERT INTO `lieferant` (`l_id`, `l_firmenname`, `l_strasse`, `l_tel`, `l_mobil`, `l_fax`, `l_email`, `l_plz_id`) VALUES
@@ -426,17 +445,18 @@ INSERT INTO `lieferant` (`l_id`, `l_firmenname`, `l_strasse`, `l_tel`, `l_mobil`
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `plz_zuordnung`
+-- Table structure for table `plz_zuordnung`
 --
 
 CREATE TABLE IF NOT EXISTS `plz_zuordnung` (
-`plz_id` int(11) NOT NULL,
+  `plz_id` int(11) NOT NULL AUTO_INCREMENT,
   `plz_plz` int(5) DEFAULT NULL,
-  `plz_ort` varchar(255) DEFAULT NULL
+  `plz_ort` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`plz_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14957 ;
 
 --
--- Daten für Tabelle `plz_zuordnung`
+-- Dumping data for table `plz_zuordnung`
 --
 
 INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
@@ -15408,45 +15428,44 @@ INSERT INTO `plz_zuordnung` (`plz_id`, `plz_plz`, `plz_ort`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `raeume`
+-- Table structure for table `raeume`
 --
 
 CREATE TABLE IF NOT EXISTS `raeume` (
-`r_id` int(11) NOT NULL,
+  `r_id` int(11) NOT NULL AUTO_INCREMENT,
   `r_nr` varchar(20) DEFAULT NULL COMMENT 'z.B. r014, W304, etc.',
   `r_bezeichnung` varchar(45) DEFAULT NULL COMMENT 'z.B. Werkstatt, Lager,...',
-  `r_notiz` varchar(1024) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `r_notiz` varchar(1024) DEFAULT NULL,
+  PRIMARY KEY (`r_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Daten für Tabelle `raeume`
+-- Dumping data for table `raeume`
 --
 
 INSERT INTO `raeume` (`r_id`, `r_nr`, `r_bezeichnung`, `r_notiz`) VALUES
-(1, 'rl01', 'Lager', NULL),
-(2, 'new', 'Neuanschaffungen', 'Nur neu angeschaffte, nicht eingebuchte Objekte')
-(3, 'deleted', 'Ausgemustert', 'Nur ausgemusterte'),
-(4, 'r303', 'Klassenraum', NULL),
-(5, 'r001', 'Labor', NULL),
-(6, 'r112', 'Computerraum', NULL),
-(7, 'r102', 'Klassenraum', NULL),
-(8, 'r306', 'Klassenraum', NULL),
-(9, 'rw01', 'Werkstatt', NULL);
-
+(1, 'r303', 'Klassenraum', NULL),
+(2, 'r001', 'Labor', NULL),
+(3, 'r112', 'Computerraum', NULL),
+(4, 'r102', 'Klassenraum', NULL),
+(5, 'r306', 'Klassenraum', NULL),
+(6, 'rw01', 'Werkstatt', NULL),
+(7, 'rl01', 'Lager', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `vorgangsarten`
+-- Table structure for table `vorgangsarten`
 --
 
 CREATE TABLE IF NOT EXISTS `vorgangsarten` (
-`v_id` int(11) NOT NULL,
-  `v_bezeichnung` varchar(45) DEFAULT NULL COMMENT 'Einbau / Ausbau'
+  `v_id` int(11) NOT NULL AUTO_INCREMENT,
+  `v_bezeichnung` varchar(45) DEFAULT NULL COMMENT 'Einbau / Ausbau',
+  PRIMARY KEY (`v_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Daten für Tabelle `vorgangsarten`
+-- Dumping data for table `vorgangsarten`
 --
 
 INSERT INTO `vorgangsarten` (`v_id`, `v_bezeichnung`) VALUES
@@ -15457,16 +15476,19 @@ INSERT INTO `vorgangsarten` (`v_id`, `v_bezeichnung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `wird_beschrieben_durch`
+-- Table structure for table `wird_beschrieben_durch`
 --
 
 CREATE TABLE IF NOT EXISTS `wird_beschrieben_durch` (
   `komponentenarten_ka_id` int(11) NOT NULL,
-  `komponentenattribute_kat_id` int(11) NOT NULL
+  `komponentenattribute_kat_id` int(11) NOT NULL,
+  PRIMARY KEY (`komponentenarten_ka_id`,`komponentenattribute_kat_id`),
+  KEY `fk_komponentenarten_has_komponentenattribute_komponentenattri1` (`komponentenattribute_kat_id`),
+  KEY `fk_komponentenarten_has_komponentenattribute_komponentenarten1` (`komponentenarten_ka_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `wird_beschrieben_durch`
+-- Dumping data for table `wird_beschrieben_durch`
 --
 
 INSERT INTO `wird_beschrieben_durch` (`komponentenarten_ka_id`, `komponentenattribute_kat_id`) VALUES
@@ -15543,16 +15565,17 @@ INSERT INTO `wird_beschrieben_durch` (`komponentenarten_ka_id`, `komponentenattr
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `zulaessige_werte`
+-- Table structure for table `zulaessige_werte`
 --
 
 CREATE TABLE IF NOT EXISTS `zulaessige_werte` (
-`zw_id` int(11) NOT NULL,
-  `zw_wert` varchar(45) DEFAULT NULL
+  `zw_id` int(11) NOT NULL AUTO_INCREMENT,
+  `zw_wert` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`zw_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
 
 --
--- Daten für Tabelle `zulaessige_werte`
+-- Dumping data for table `zulaessige_werte`
 --
 
 INSERT INTO `zulaessige_werte` (`zw_id`, `zw_wert`) VALUES
@@ -15656,181 +15679,51 @@ INSERT INTO `zulaessige_werte` (`zw_id`, `zw_wert`) VALUES
 (100, '4:3');
 
 --
--- Indexes for dumped tables
+-- Constraints for dumped tables
 --
 
 --
--- Indexes for table `komponenten`
+-- Constraints for table `komponenten`
 --
 ALTER TABLE `komponenten`
- ADD PRIMARY KEY (`k_id`), ADD KEY `fk_komponenten_haendler` (`lieferant_l_id`), ADD KEY `fk_komponenten_raeume1` (`raeume_r_id`), ADD KEY `fk_komponenten_komponentenarten1` (`komponentenarten_ka_id`);
+  ADD CONSTRAINT `fk_komponenten_haendler` FOREIGN KEY (`lieferant_l_id`) REFERENCES `lieferant` (`l_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_komponenten_komponentenarten1` FOREIGN KEY (`komponentenarten_ka_id`) REFERENCES `komponentenarten` (`ka_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_komponenten_raeume1` FOREIGN KEY (`raeume_r_id`) REFERENCES `raeume` (`r_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Indexes for table `komponentenarten`
---
-ALTER TABLE `komponentenarten`
- ADD PRIMARY KEY (`ka_id`);
-
---
--- Indexes for table `komponentenattribute`
---
-ALTER TABLE `komponentenattribute`
- ADD PRIMARY KEY (`kat_id`);
-
---
--- Indexes for table `komponentenattribut_hat_zulaessige_werte`
+-- Constraints for table `komponentenattribut_hat_zulaessige_werte`
 --
 ALTER TABLE `komponentenattribut_hat_zulaessige_werte`
- ADD PRIMARY KEY (`komponentenattribute_kat_id`,`zulaessige_werte_zw_id`), ADD KEY `fk_komponentenattribute_has_zulaessige_werte_zulaessige_werte1` (`zulaessige_werte_zw_id`), ADD KEY `fk_komponentenattribute_has_zulaessige_werte_komponentenattri1` (`komponentenattribute_kat_id`);
+  ADD CONSTRAINT `fk_komponentenattribute_has_zulaessige_werte_komponentenattri1` FOREIGN KEY (`komponentenattribute_kat_id`) REFERENCES `komponentenattribute` (`kat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_komponentenattribute_has_zulaessige_werte_zulaessige_werte1` FOREIGN KEY (`zulaessige_werte_zw_id`) REFERENCES `zulaessige_werte` (`zw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Indexes for table `komponente_hat_attribute`
+-- Constraints for table `komponente_hat_attribute`
 --
 ALTER TABLE `komponente_hat_attribute`
- ADD PRIMARY KEY (`ID`), ADD KEY `fk_komponenten_has_komponentenattribute_komponentenattribute1` (`komponentenattribute_kat_id`), ADD KEY `fk_komponenten_has_komponentenattribute_komponenten1` (`komponenten_k_id`);
+  ADD CONSTRAINT `fk_komponenten_has_komponentenattribute_komponenten1` FOREIGN KEY (`komponenten_k_id`) REFERENCES `komponenten` (`k_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_komponenten_has_komponentenattribute_komponentenattribute1` FOREIGN KEY (`komponentenattribute_kat_id`) REFERENCES `komponentenattribute` (`kat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Indexes for table `komponente_hat_komponente`
+-- Constraints for table `komponente_hat_komponente`
 --
 ALTER TABLE `komponente_hat_komponente`
- ADD PRIMARY KEY (`khk_id`), ADD KEY `fk_komponenten_has_komponenten_komponenten2` (`komponenten_k_id_teil`), ADD KEY `fk_komponenten_has_komponenten_komponenten1` (`komponenten_k_id_aggregat`), ADD KEY `fk_komponente_hat_komponente_vorgangsarten1` (`vorgangsarten_v_id`);
+  ADD CONSTRAINT `fk_komponenten_has_komponenten_komponenten1` FOREIGN KEY (`komponenten_k_id_aggregat`) REFERENCES `komponenten` (`k_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_komponenten_has_komponenten_komponenten2` FOREIGN KEY (`komponenten_k_id_teil`) REFERENCES `komponenten` (`k_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_komponente_hat_komponente_vorgangsarten1` FOREIGN KEY (`vorgangsarten_v_id`) REFERENCES `vorgangsarten` (`v_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Indexes for table `lieferant`
+-- Constraints for table `lieferant`
 --
 ALTER TABLE `lieferant`
- ADD PRIMARY KEY (`l_id`), ADD KEY `l_plz_id_FK` (`l_plz_id`);
+  ADD CONSTRAINT `l_plz_id_FK` FOREIGN KEY (`l_plz_id`) REFERENCES `plz_zuordnung` (`plz_id`);
 
 --
--- Indexes for table `plz_zuordnung`
---
-ALTER TABLE `plz_zuordnung`
- ADD PRIMARY KEY (`plz_id`);
-
---
--- Indexes for table `raeume`
---
-ALTER TABLE `raeume`
- ADD PRIMARY KEY (`r_id`);
-
---
--- Indexes for table `vorgangsarten`
---
-ALTER TABLE `vorgangsarten`
- ADD PRIMARY KEY (`v_id`);
-
---
--- Indexes for table `wird_beschrieben_durch`
+-- Constraints for table `wird_beschrieben_durch`
 --
 ALTER TABLE `wird_beschrieben_durch`
- ADD PRIMARY KEY (`komponentenarten_ka_id`,`komponentenattribute_kat_id`), ADD KEY `fk_komponentenarten_has_komponentenattribute_komponentenattri1` (`komponentenattribute_kat_id`), ADD KEY `fk_komponentenarten_has_komponentenattribute_komponentenarten1` (`komponentenarten_ka_id`);
-
---
--- Indexes for table `zulaessige_werte`
---
-ALTER TABLE `zulaessige_werte`
- ADD PRIMARY KEY (`zw_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `komponenten`
---
-ALTER TABLE `komponenten`
-MODIFY `k_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
---
--- AUTO_INCREMENT for table `komponentenarten`
---
-ALTER TABLE `komponentenarten`
-MODIFY `ka_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
---
--- AUTO_INCREMENT for table `komponentenattribute`
---
-ALTER TABLE `komponentenattribute`
-MODIFY `kat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
---
--- AUTO_INCREMENT for table `komponente_hat_attribute`
---
-ALTER TABLE `komponente_hat_attribute`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=71;
---
--- AUTO_INCREMENT for table `komponente_hat_komponente`
---
-ALTER TABLE `komponente_hat_komponente`
-MODIFY `khk_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
---
--- AUTO_INCREMENT for table `lieferant`
---
-ALTER TABLE `lieferant`
-MODIFY `l_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `plz_zuordnung`
---
-ALTER TABLE `plz_zuordnung`
-MODIFY `plz_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14957;
---
--- AUTO_INCREMENT for table `raeume`
---
-ALTER TABLE `raeume`
-MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `vorgangsarten`
---
-ALTER TABLE `vorgangsarten`
-MODIFY `v_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `zulaessige_werte`
---
-ALTER TABLE `zulaessige_werte`
-MODIFY `zw_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=101;
---
--- Constraints der exportierten Tabellen
---
-
---
--- Constraints der Tabelle `komponenten`
---
-ALTER TABLE `komponenten`
-ADD CONSTRAINT `fk_komponenten_haendler` FOREIGN KEY (`lieferant_l_id`) REFERENCES `lieferant` (`l_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_komponenten_komponentenarten1` FOREIGN KEY (`komponentenarten_ka_id`) REFERENCES `komponentenarten` (`ka_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_komponenten_raeume1` FOREIGN KEY (`raeume_r_id`) REFERENCES `raeume` (`r_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints der Tabelle `komponentenattribut_hat_zulaessige_werte`
---
-ALTER TABLE `komponentenattribut_hat_zulaessige_werte`
-ADD CONSTRAINT `fk_komponentenattribute_has_zulaessige_werte_komponentenattri1` FOREIGN KEY (`komponentenattribute_kat_id`) REFERENCES `komponentenattribute` (`kat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_komponentenattribute_has_zulaessige_werte_zulaessige_werte1` FOREIGN KEY (`zulaessige_werte_zw_id`) REFERENCES `zulaessige_werte` (`zw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints der Tabelle `komponente_hat_attribute`
---
-ALTER TABLE `komponente_hat_attribute`
-ADD CONSTRAINT `fk_komponenten_has_komponentenattribute_komponenten1` FOREIGN KEY (`komponenten_k_id`) REFERENCES `komponenten` (`k_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_komponenten_has_komponentenattribute_komponentenattribute1` FOREIGN KEY (`komponentenattribute_kat_id`) REFERENCES `komponentenattribute` (`kat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints der Tabelle `komponente_hat_komponente`
---
-ALTER TABLE `komponente_hat_komponente`
-ADD CONSTRAINT `fk_komponenten_has_komponenten_komponenten1` FOREIGN KEY (`komponenten_k_id_aggregat`) REFERENCES `komponenten` (`k_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_komponenten_has_komponenten_komponenten2` FOREIGN KEY (`komponenten_k_id_teil`) REFERENCES `komponenten` (`k_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_komponente_hat_komponente_vorgangsarten1` FOREIGN KEY (`vorgangsarten_v_id`) REFERENCES `vorgangsarten` (`v_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints der Tabelle `lieferant`
---
-ALTER TABLE `lieferant`
-ADD CONSTRAINT `l_plz_id_FK` FOREIGN KEY (`l_plz_id`) REFERENCES `plz_zuordnung` (`plz_id`);
-
---
--- Constraints der Tabelle `wird_beschrieben_durch`
---
-ALTER TABLE `wird_beschrieben_durch`
-ADD CONSTRAINT `fk_komponentenarten_has_komponentenattribute_komponentenarten1` FOREIGN KEY (`komponentenarten_ka_id`) REFERENCES `komponentenarten` (`ka_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_komponentenarten_has_komponentenattribute_komponentenattri1` FOREIGN KEY (`komponentenattribute_kat_id`) REFERENCES `komponentenattribute` (`kat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_komponentenarten_has_komponentenattribute_komponentenarten1` FOREIGN KEY (`komponentenarten_ka_id`) REFERENCES `komponentenarten` (`ka_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_komponentenarten_has_komponentenattribute_komponentenattri1` FOREIGN KEY (`komponentenattribute_kat_id`) REFERENCES `komponentenattribute` (`kat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
