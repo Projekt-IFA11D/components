@@ -44,7 +44,11 @@
 				echo"</pre>";
                 
                 echo"<table border='0'>";
-                     
+
+                echo"<tr>";
+                echo"<td>";require_once('lib/forms/formular_pc.php');echo"</td>";
+                echo"<td valign='top'>".form_general($val)."</td>";
+                echo"</tr>";
                 
 				foreach($_POST['form'] AS $val)
 				{
