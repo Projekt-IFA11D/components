@@ -117,7 +117,7 @@
 	}
 	elseif (isset($_GET['add_supplier']))
 	{
-		manipulation_statement("Insert", $_GET);
+		complex_manipulation_statement($_GET);
 		require_once('lib/page/suppliers/main.php');
 	}
 	elseif (isset($_GET['edit_component']))
@@ -126,7 +126,7 @@
 	}
 	elseif (isset($_GET['delete_component']))
 	{
-		manipulation_statement("Delete", $_GET);
+		not_really_delete($_GET);
 		require_once('lib/page/components/main.php');
 	}
 	elseif (isset($_GET['add_component']))

@@ -8,6 +8,8 @@ mysql_select_db("itv_v1") or die(mysql_Error());
 $ignoreVal[0]="taktfrequenz";
 $ignoreVal[1]="notiz";
 $ignoreVal[2]="interne bezeichnung";
+$ignoreVal[3]="sockel";
+$ignoreVal[4]="Maximal Unterstuetzter RAM";
 
 
 //Patterns für str_replace
@@ -31,6 +33,29 @@ $_POST['ram_raeume_raum'] = "r001";
 
 $_POST['ram_lieferant_lieferant'] = "Lenovo";
 */
+$_POST['anzahl'] ="1";
+$_POST['mainboard_attr_interne_bezeichnung'] ="Asus";
+$_POST['mainboard_attr_sockel'] ="ATX";
+$_POST['mainboard_attr_ram-typ'] ="DDR3";
+$_POST['mainboard_attr_maximal_unterstuetzter_ram'] ="32GB";
+$_POST['mainboard_attr_anzahl_baenke'] ="4";
+$_POST['mainboard_attr_formfaktor'] ="ATX";
+$_POST['mainboard_attr_onboard-funktionalitaet'][0] ="";
+$_POST['mainboard_attr_onboard-funktionalitaet'][1] ="mb_nic";
+$_POST['mainboard_attr_onboard-funktionalitaet'][2] ="mb_wol";
+$_POST['mainboard_attr_onboard-funktionalitaet'][3] ="mb_raidctrl";
+$_POST['mainboard_attr_schnittstellen_(intern)'][0] ="sata";
+$_POST['mainboard_attr_schnittstellen_(intern)'][1] ="sas";
+$_POST['mainboard_attr_schnittstellen_(extern)'][0] ="mb_ext_if_usb_2";
+$_POST['mainboard_attr_schnittstellen_(extern)'][1] ="mb_ext_if_usb_3";
+$_POST['mainboard_main_hersteller'] ="asus";
+$_POST['mainboard_raeume_raum'] ="r001";
+$_POST['mainboard_main_einkaufsdatum'] ="15.05.2014";
+$_POST['mainboard_main_gewaehrleistungsdauer'] ="2";
+$_POST['mainboard_lieferant_lieferant'] ="HP";
+$_POST['mainboard_main_notiz'] ="Mainboard Test";
+
+
 
 echo"<pre>";
     print_r($_POST);
@@ -158,11 +183,18 @@ function rollback($cid)
 
 function getAttrValID($val)
 {
-    $sql = "SELECT zw_id FROM zulaessige_werte WHERE zw_wert LIKE '".mysql_real_escape_string($val)."'";
-    $query = mysql_query($sql) or die("Zulässiger Wert konnte nicht abgerufen werden<br /><br />".mysql_error());
-    $zw = mysql_fetch_assoc($query);
-    
-    return $zw['zw_id'];
+	echo "<h2>$val</h2>";
+    if($val)
+    {
+		$sql = "SELECT zw_id FROM zulaessige_werte WHERE zw_wert LIKE '".mysql_real_escape_string($val)."'";
+	    $query = mysql_query($sql) or die("Zulässiger Wert konnte nicht abgerufen werden<br /><br />".mysql_error());
+	    $zw = mysql_fetch_assoc($query);
+	    return $zw['zw_id'];
+    }
+    else 
+    {
+    	return false;
+    }
 }
 
 function getAttrID($attr)
@@ -183,7 +215,15 @@ function splitSortInput($key,$value,$array)
 	$comp = $splitted[0];
 	$section = $splitted[1];
     $attr = $splitted[2];
-
+	unset($splitted[0]);
+	unset($splitted[1]);
+	unset($splitted[2]);
+	
+	if(isset($splitted[3]))
+	{
+		$attr = $attr." ".$splitted[3];
+	}
+	
     $array[$comp][$section][$attr]=$value;
 	
 	return $array;
@@ -310,7 +350,7 @@ function createSingleComp($array)
                             k_hersteller='".mysql_real_escape_string($compData['main']['hersteller'])."',
                             komponentenarten_ka_id='".mysql_real_escape_string($komponentenartID)."'
                             ";
-        //echo "<br /><br />".$sql_komponente;
+        echo "<br /><br />".$sql_komponente;
         
         //Füge Komponente ein
         mysql_query($sql_komponente) or die("Komponente konnte nicht eingetragen werden!<br /><b>SQL:</b>$sql_komponente<br />Fehler:".mysql_error());
@@ -332,70 +372,93 @@ function createSingleComp($array)
         //Gehe alle Attribute der Komponente durch
         foreach($compData['attr'] AS $attr=>$val)
         {
-        	//Hole Attributs ID. Wenn kein Attribut vorhanden, dann wird false zurückgegeben
-            $attrID = getAttrID($attr);
-            
-            //Es wird nachgeschaut ob der Attributswert zulässig ist
-            $zwID = getAttrValID($val);
-           
-            
-            if(!$attrID AND $attr =="")
-            {
-            	echo "<br>Attribut '<b>$attr</b>' existiert nicht!";
-            }
-            
-                                    
-            //Prüfe ob Wert Validierung nichtig ist
-            if(in_array(strtolower($attr),$ignoreVal))
-            {
-                $ignore=true;
-            }
-            else
-            {
-                $ignore=false;
-            }
-            
-            //Wenn Attribut ID true und Wert Zulässig ODER Attributwert Whitelisted ist wird der String fortgeführt  
-            if($attrID && ($zwID || $ignore))
-            {
-            	//Handler ab wann ein Komma in den String eingefügt wird.
-                if($firstAttr)
-                {
-                    $firstAttr=false;
-                }
-                else
-                {
-                    $firstAttr=false;
-                    $sql_attr .= " , ";
-                }
-                //Es werden die Values hinzugefügt Komponenten ID, Attributs ID und Attributswert
-                $sql_attr .= " ('".$NewCompID."','".$attrID."','".mysql_real_escape_string($val)."') ";
-                
-                //Da min 1 Datensatz eingefügt wird, wird die Sicherheitsvariable auf true gesetzt
-                $safety_check_attr=true;
-            }
+        	if(is_array($val))
+        	{
+        		foreach($val AS $value)
+        		{
+        			echo"<h2> Fuehre Array aus!";
+       				$sql_attr .= attributManagement($attr,$value,$NewCompID,$sql_attr);
+        		}
+        	}	
+        	else
+        	{
+        		$sql_attr .= attributManagement($attr,$val,$NewCompID,$sql_attr);
+        	}
+        
         }
         
-        echo "<br /><br />Attributstring: ".$sql_attr;
-        
-        
-        //Wenn Sicherheitsvariable true ist, werden die Attribute hinzugefügt. Bei Fehler wird ein Rollback durchgeführt
-        if($safety_check_attr)
-        {
-            if(!mysql_query($sql_attr))
-            {
-                echo"<br />Attribute nicht angelegt!<br />".mysql_error();
-                rollback($NewCompID);
-            }
-        }
-        else
-        {
-            rollback($NewCompID);
-        }
+    }
+    
+    echo "<br /><br />Attributstring: ".$sql_attr;
+    
+    //Wenn Sicherheitsvariable true ist, werden die Attribute hinzugefügt. Bei Fehler wird ein Rollback durchgeführt
+    if($safety_check_attr)
+    {
+    	if(!mysql_query($sql_attr))
+    	{
+    		echo"<br />Attribute nicht angelegt!<br />".mysql_error();
+    		rollback($NewCompID);
+    	}
+    }
+    else
+    { 
+    	rollback($NewCompID);
     }
 }
 
 
+
+
+function attributManagement($attr,$val,$NewCompID,$sql_attr)
+{
+	global $search,$replace,$firstAttr,$safety_check_attr,$ignoreVal;
+	
+	//Hole Attributs ID. Wenn kein Attribut vorhanden, dann wird false zurückgegeben
+	$attrID = getAttrID($attr);
+	 
+	//Es wird nachgeschaut ob der Attributswert zulässig ist
+	$zwID = getAttrValID($val);
+	
+	 
+	if(!$attrID AND $attr =="")
+	{
+		echo "<br>Attribut '<b>$attr</b>' existiert nicht!";
+	}
+	 
+	 
+	//Prüfe ob Wert Validierung nichtig ist
+	if(in_array(strtolower($attr),$ignoreVal))
+	{
+		$ignore=true;
+	}
+	else
+	{
+		$ignore=false;
+	}
+	 
+	//Wenn Attribut ID true und Wert Zulässig ODER Attributwert Whitelisted ist wird der String fortgeführt
+	if($attrID && ($zwID || $ignore))
+	{
+		//Handler ab wann ein Komma in den String eingefügt wird.
+		if($firstAttr)
+		{
+			$firstAttr=false;
+		}
+		else
+		{
+			$firstAttr=false;
+			$sql_attr .= " , ";
+		}
+		
+		//Es werden die Values hinzugefügt Komponenten ID, Attributs ID und Attributswert
+		$sql_attr .= " ('".$NewCompID."','".$attrID."','".mysql_real_escape_string($val)."') ";
+	 
+		//Da min 1 Datensatz eingefügt wird, wird die Sicherheitsvariable auf true gesetzt
+		$safety_check_attr=true;
+	}	
+	
+	return $sql_attr;
+}
 
 
 

@@ -68,10 +68,6 @@ function manipulation_statement($Type, $Form_Data) {
   }
 
   $Table_Columns = read_column_names($Form_Data);
-  /* DOES NOT WORK
-    if(!check_column_names($Table_Columns)) {
-    // Raise some kind of error
-    } */
   
   $Statements = create_statement($Table_Columns, $Type, [$Index]);
   for($i=0;$i<$Anzahl;$i++) {
@@ -81,61 +77,39 @@ function manipulation_statement($Type, $Form_Data) {
   }
 }
 
-/* DOES NOT WORK WRITE A HARDCODED FUNCTION
-function find_attribution_table($Data) {
-  
-  $Columns = array();
-  $Attr_Tables = array();
-  foreach (array_keys($Data) as $Table) {
-    $SQL = "SELECT
-    `column_name`, 
-    `referenced_table_schema` AS foreign_db, 
-    `referenced_table_name` AS foreign_table, 
-    `referenced_column_name`  AS foreign_column 
-FROM
-    `information_schema`.`KEY_COLUMN_USAGE`
-WHERE
-    `constraint_schema` = SCHEMA()
-AND
-    `table_name` = $Table
-AND
-    `referenced_column_name` IS NOT NULL
-ORDER BY
-    `column_name`";
-    if(mysql_query($SQL)=="") {
-      $Attr_Tables[] = $Table;
-    }
+function complex_manipulation_statement($Form_Data) {
+
+  $Table_Columns = read_column_names($Form_Data);
+  $Type = preg_grep("/^[add_].*/U", array_keys($Form_Data));
+
+  switch ($Type) {
+  case "edit_supplier":
+    $Statement = manip_edit_supplier($Table_Columns);
+    break;
+  case "add_supplier":
+    $Statement = manip_add_supplier($Table_Columns);
+    break;
+  case "edit_component":
+    $Statement = manip_edit_component($Table_Columns);
+        break;
+  case "add_component":
+    $Statement = manip_add_component($Table_Columns);
   }
-  return $Attr_Tables;
+  mysql_query($Statement);
+  
 }
 
-
-function attribution_manipulation_statement($Type, $Form_Data) {
-
-  // Unsetting the timestamp as we don't need it here
-  if(isset($Form_Data["_"])) {
-    unset($Form_Data["_"]);
-  }
-  if(isset($Form_Data["Anzahl"]) && $Form_Data["Anzahl"] > 0) {
-    $Anzahl = $Form_Data["Anzahl"];
-    unset($Form_Data["Anzahl"]);
-  } else {
-    $Anzahl = 1;
-    unset($Form_Data["Anzahl"]);
-  }
+function manip_add_supplier($Data) {
   
-  $Table_Columns = read_column_names($Form_Data);
-  $Missing_Vals = check_column_names($Table_Columns);
-
-  $Attr_Tables = find_attribution_table($Table_Columns);
-  $Attr_Values = array();
-  mysql_query("SELECT $Missing_Vals FROM $Attr_Tables WHERE ")
-    
-  }
+  $Plz_Data = $Data["plz_zuordnung"];
+  $Supp_Data = $Data["lieferant"];
+  $Plz_Id = mysql_query("SELECT plz_id FROM plz_zuordnung WHERE plz_plz='".$Plz_Data["plz_plz"]."' AND plz_ort='".$Plz_Data["plz_ort"]."'");
+  var_dump($Plz_Id);
   
-  } */
+}
 
-function not_really_delete($Index) {
+function not_really_delete($Form_Data) {
+  $Index = $Form_Data[preg_grep("/^[delete_|edit_].*/U", array_keys($Form_Data))];
   mysql_query("UPDATE komponenten SET raeume_r_id=8 WHERE $Index");
 }
 
