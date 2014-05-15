@@ -12,8 +12,11 @@ $ignoreVal[3]="sockel";
 $ignoreVal[4]="Maximal Unterstuetzter RAM";
 $ignoreVal[5]="onboard-funktionalitaet";
 $ignoreVal[6]="einsatzzweck";
-$ignoreVal[7]="Uplink Geschwindigkeit";
+$ignoreVal[7]="uplink geschwindigkeit";
 $ignoreVal[8]="anzahl ports";
+$ignoreVal[9]="leistung";
+$ignoreVal[10]="ip-adresse";
+$ignoreVal[11]="id vlans";
 
 //Sicherheits Bool Variable die es evtl. verhindert das die Attribute nicht in die Datenbank gelangen
 $safety_check_attr = false;
