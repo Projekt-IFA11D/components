@@ -65,8 +65,9 @@
 		global $arr_hersteller, $arr_kaufdatum, $arr_gewaehrdauer,
 				$arr_notiz, $arr_lieferant, $arr_raum;
 		echo "
-		<h1> Suchfilter </h1><br><br><br>		
-		<form action='such_select.php' method='post'>			
+		<h1> Suchfilter </h1><br><br><br>"	
+// 		<form id='suchfilter'>	
+		."<form action='such_select.php' method='post'>			
 			<table border = '0' cellpadding = '0' cellspacing='4'>
 				<tr>
 					<td width='200px'>Hersteller</td>
@@ -115,8 +116,9 @@
 						"</select>		
 					</td>			
 				</tr>    
-			</table>
-			<input type = 'Submit' Name = 'submit' VALUE = 'Submit'>			
+			</table>"
+			//<button onclick='bundle_next('such', 'suchfilter')'></button>
+			."<input type = 'Submit' Name = 'submit' VALUE = 'Submit'>			
 		</form>";
 		
 	} /** end of create_search_mask */
@@ -139,21 +141,7 @@
  		$arr_notiz        = select_statement("components_note");
 	} /** end of fill_arrays */
 	
-	
-	
-// 	/**
-// 	 * function calls select_statement, which executes the select command
-// 	 * 
-// 	 * @param  $search_param   string with the data that should be 'selected'
-// 	 * @return $arr_tmp        array containing the data
-// 	 */
-//  	function request_data( $search_param ) {
-// 		$arr_tmp = array();
-// 		$arr_tmp = select_statement($search_param);
-// 		return $arr_tmp;
-//  	} /** end of request_data */
- 	
- 	
+
  	
  	/**
  	 * function prints out the <option/> tags in the browser
