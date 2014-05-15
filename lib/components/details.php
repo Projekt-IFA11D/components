@@ -6,38 +6,39 @@
 
 <div class="table table-responsive">
 	<table class="table table-striped">
-			<th>Firmenname</th>
 			<th>Raum-Nr</th>
-			<th>Einkaufsdatum</th>
-			<th>Gew&auml;hrleistungsdauer</th>
-			<th>Notiz</th>
-			<th>Hersteller</th>
+			<th>Raum-Bezeichnung</th>
 			<th>Komponentenart</th>
-			<th></th>
+			<th>Komponentenbeschreibung</th>
+			<th>Wert</th>
+			<th>Aggregatbez.</th>
 			<th></th>
 		<?php
+			$k_id= ($_GET["component"]);
 			$components = complex_select_statement('main_components');
-			print_r($components);
 			foreach ($components as $component)
-			{ ?>
-					<tr>
-						<td><?php echo($component['l_firmenname']) ?></td>
-						<td><?php echo($component['r_nr'])?></td>
-						<td><?php echo($component['k_einkaufsdatum']) ?></td>
-						<td><?php echo($component['k_gewaehrleistungsdauer'])." Jahre"?></td>
-						<td><?php echo($component['k_notiz'])?></td>
-						<td><?php echo($component['k_hersteller'])?></td>
-						<td><?php echo($component['ka_komponentenart'])?></td>
-						<td class="col-md-1">
-							<button type="button" class="btn btn-primary btn-xs"
-							onclick="<?php echo('edit_components($(this), '.$component['ka_id'].')') ?>">Details</button>
-						</td>
-						<td class="col-md-1">
-						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_components_modal"
-							onclick="<?php echo('delete_components('.$component['k_id'].')') ?>">L&ouml;schen</button>
-						</td>
-					</tr>
-			<?php }
+			{
+				foreach ($component['main_components'] as $subcomponent)
+				{ 
+					if ($subcomponent['AggregatNr']==($k_id)){
+					?>
+					
+						<tr>
+							<td><?php echo($subcomponent['RaumNr']) ?></td>
+							<td><?php echo($subcomponent['r_bezeichnung'])?></td>
+							<td><?php echo($subcomponent['ka_komponentenart']) ?></td>
+							<td><?php echo($subcomponent['kat_beschreibung'])." Jahre"?></td>
+							<td><?php echo($subcomponent['khkat_wert'])?></td>
+							<td><?php echo($subcomponent['AggregatBez'])?></td>
+							<td class="col-md-1">
+								<button type="button" class="btn btn-primary btn-xs"
+								onclick="<?php echo('edit_components($(this), '.$component['ka_id'].')') ?>">Editieren</button>
+							</td>
+						</tr>
+			<?php
+				}
+				} 
+				}
 			
 		?>
 	<table>
@@ -46,7 +47,7 @@
 
 	if(!empty ($_GET["component"]))
 	{
-		print_r($_GET['component']);
+		//print_r($_GET['component']);
 		switch ($_GET["component"])
 		{
 			case 1:
