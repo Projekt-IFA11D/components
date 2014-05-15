@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
         <label for="ram_groesse">Speicherkapazität:</label>
-        <input type="text" id="ram_groesse" class="form-control" name="ram_attr_speicherkapazität style="width:300px;">
+        <input type="text" id="ram_groesse" class="form-control" name="ram_attr_speicherkapazität" style="width:300px;">
     </div>
     <div class="form-group">
         <label for="ram_taktfrequenz">Taktfrequenz:</label>
