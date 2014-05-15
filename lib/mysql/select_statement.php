@@ -1,9 +1,20 @@
 <?php
 /* 
- * Handler for select statements
- * @author = Kilian Petsch
- * @date = 2014-05-12
+   Modulname:
+   ==========
+   select_statement.php
 
+   Version:
+   ========
+   1.0
+
+   Autor:
+   ======
+   Kilian Petsch
+   
+   Beschreibung:
+   =============
+   Handler for select statements
 */
 
 // Select select statements and return an array for further processing
