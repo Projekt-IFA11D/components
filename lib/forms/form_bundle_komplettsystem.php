@@ -10,7 +10,7 @@
     <div class="form-group">
         <div class="checkbox">
             <label>
-            <input type="checkbox" name="form[]" value="cpu"> CPU
+            <input type="checkbox" name="form[]" value="prozessor"> CPU
             </label>
         </div>
         <div class="checkbox">
@@ -35,7 +35,7 @@
         </div>
         <div class="checkbox">
             <label>
-            <input type="checkbox" name="form[]" value="laufwerk"> Laufwerk
+            <input type="checkbox" name="form[]" value="optisches laufwerk"> Laufwerk
             </label>
         </div>
         <div class="checkbox">
