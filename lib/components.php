@@ -1,5 +1,5 @@
 <?php
-	if (!$_GET["component"])
+	if (!isset ($_GET['component']))
 	{
 		require_once('components/delete.php');
 		require_once('components/main.php');

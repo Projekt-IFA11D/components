@@ -6,9 +6,6 @@
 
 <?php
 
-	print_r($_GET["component"]);
-	//1-8 & 13-25
-
 	if(!empty ($_GET["component"]))
 	{
 		switch ($_GET["component"])
