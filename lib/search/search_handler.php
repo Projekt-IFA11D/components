@@ -51,7 +51,7 @@
 	 * @param $result   array with searched data
 	 */
     function print_result($result) { ?>
-        <h1>Suchergebnis</h1>
+        <h1 class="page-header">Suchergebnis</h1>
         <div class="table-responsive">
                 <table class="table table-striped" id="search_result_table">
                     <th>Firmenname</th>
@@ -61,6 +61,8 @@
                     <th>Notiz</th>
                     <th>Hersteller</th>
                     <th>Komponentenart</th>
+                    <th></th>
+                    <th></th>
 <?php
              
                 for($i = 0; $i < count($result); $i++) 
@@ -73,8 +75,17 @@
 						echo "<td>".$result[$i]['k_gewaehrleistungsdauer']."</td>";
 						echo "<td>".$result[$i]['k_notiz']."</td>";
 						echo "<td>".$result[$i]['k_hersteller']."</td>";
-						echo "<td>".$result[$i]['ka_komponentenart']."</td>";
-						
+                        echo "<td>".$result[$i]['ka_komponentenart']."</td>";
+?>
+						<td class="col-md-1">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_supplier_modal"
+                            onclick="<?php echo('edit_supplier($(this), '.$supplier['l_id'].')') ?>">Editieren</button>
+                    </td>
+                    <td class="col-md-1">
+                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_supplier_modal"
+                            onclick="<?php echo('delete_supplier('.$supplier['l_id'].')') ?>">L&ouml;schen</button>
+                    </td>
+<?php					
                         echo "</tr>";
                 }
                     /** end of print_result */
