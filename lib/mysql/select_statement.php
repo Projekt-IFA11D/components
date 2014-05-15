@@ -28,7 +28,7 @@ function select_statement($Table, $Index = 0) {
     			"components_guarantee" => "SELECT k_gewaehrleistungsdauer FROM komponenten GROUP BY k_gewaehrleistungsdauer",
     			"components_note" => "SELECT k_notiz FROM komponenten GROUP BY k_notiz",
     			"suppliers_name" => "SELECT l_firmenname FROM lieferant INNER JOIN komponenten ON lieferant.l_id = komponenten.lieferant_l_id GROUP by l_firmenname",
-    			"room_name" => "SELECT r_nr FROM raeume INNER JOIN komponenten ON raeume.r_id = komponenten.raeume_r_id GROUP by r_nr",
+    			"room_name" => "SELECT r_nr FROM komponenten RIGHT JOIN raeume ON komponenten.raeume_r_id = raeume.r_id GROUP by r_nr;",
     			"search_filter" => "SELECT l.l_firmenname, r.r_bezeichnung, k.k_einkaufsdatum, k.k_gewaehrleistungsdauer, k.k_notiz, k.k_hersteller, ka.ka_komponentenart FROM komponenten AS k 
 									INNER JOIN lieferant AS l ON k.lieferant_l_id = l.l_id
 									INNER JOIN raeume AS r ON k.raeume_r_id = r.r_id
