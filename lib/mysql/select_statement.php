@@ -14,7 +14,7 @@ function select_statement($Table, $Index = 0) {
   $Data = array();
 
   // Still needs the correct select statements for each table
-  $Statements=["rooms" => "SELECT r_id, r_nr, r_bezeichnung, r_notiz FROM raeume",
+  $Statements=["rooms" => "SELECT r_id, r_nr, r_bezeichnung, r_notiz FROM raeume where r_nr not in ('new', 'deleted')",
 			   "suppliers" => "SELECT L.l_id, L.l_firmenname, L.l_strasse, L.l_tel, L.l_mobil, L.l_fax, L.l_email, plz.plz_plz, plz.plz_ort FROM lieferant
 							   AS L INNER JOIN plz_zuordnung AS plz ON (L.l_plz_id=plz.plz_id)",
 			   "acquisitions" => "SELECT komponenten.k_id, lieferant.l_firmenname, raeume.r_nr, komponenten.k_einkaufsdatum,
@@ -22,7 +22,8 @@ function select_statement($Table, $Index = 0) {
 							FROM komponenten
 								INNER JOIN lieferant ON komponenten.lieferant_l_id = lieferant.l_id
 								INNER JOIN raeume ON komponenten.raeume_r_id = raeume.r_id
-								INNER JOIN komponentenarten ON komponenten.komponentenarten_ka_id = komponentenarten.ka_id",
+								INNER JOIN komponentenarten ON komponenten.komponentenarten_ka_id = komponentenarten.ka_id
+							where raeume.r_nr = 'new'",
 				"components_producer" => "SELECT k_hersteller FROM komponenten GROUP BY k_hersteller",
     			"components_date" => "SELECT k_einkaufsdatum FROM komponenten GROUP BY k_einkaufsdatum",
     			"components_guarantee" => "SELECT k_gewaehrleistungsdauer FROM komponenten GROUP BY k_gewaehrleistungsdauer",
@@ -62,12 +63,29 @@ function complex_select_statement($Table, $Index = 0) {
   $Sub_Data = array();
   $Sub_Index = "";
   // Contains the keyword/column which is used for the second query
-  $Statements_keyword = ["components" => "k_id"];
+  $Statements_keyword = ["components" => "k_id", "main_components" => "k_id"];
   // Still needs the correct select statements for each table
   $Statements = ["components" => ["SELECT *
 FROM Komponenten Komp
 LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil
 WHERE KhK.komponenten_k_id_teil IS NULL AND raeume_r_id=$Index",
+
+"SELECT r_nr as RaumNr ,r_bezeichnung,k_id,ka_komponentenart,kat_beschreibung,khkat_wert, (SELECT KA.ka_komponentenart FROM komponenten K 
+INNER JOIN komponentenarten KA ON K.komponentenarten_ka_id=KA.ka_id WHERE K.k_id=komponenten_k_id_aggregat) as AggregatBez,komponenten_k_id_aggregat as AggregatNr 
+FROM komponenten RIGHT JOIN raeume ON raeume_r_id=r_id 
+INNER JOIN Komponentenarten ON komponentenarten_ka_id=ka_id 
+LEFT JOIN komponente_hat_attribute ON komponenten_k_id=k_id 
+LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id 
+LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE '".$Statements_keyword["components"]."'=
+ORDER BY  `komponenten`.`k_id` ASC"
+],
+"main_components" => ["SELECT KhK.*, Komp.*, lieferant.l_firmenname, raeume.r_nr FROM Komponenten Komp LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil INNER JOIN lieferant ON komp.lieferant_l_id = lieferant.l_id INNER JOIN raeume ON komp.raeume_r_id = raeume.r_id WHERE KhK.komponenten_k_id_teil IS NULL ",
+
+
+/*SELECT *
+FROM Komponenten Komp
+LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil
+WHERE KhK.komponenten_k_id_teil IS NULL*/
 
 "SELECT r_nr as RaumNr ,r_bezeichnung,k_id,ka_komponentenart,kat_beschreibung,khkat_wert, (SELECT KA.ka_komponentenart FROM komponenten K 
 INNER JOIN komponentenarten KA ON K.komponentenarten_ka_id=KA.ka_id WHERE K.k_id=komponenten_k_id_aggregat) as AggregatBez,komponenten_k_id_aggregat as AggregatNr 

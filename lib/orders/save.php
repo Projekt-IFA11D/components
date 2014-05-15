@@ -12,6 +12,8 @@ $ignoreVal[3]="sockel";
 $ignoreVal[4]="Maximal Unterstuetzter RAM";
 $ignoreVal[5]="onboard-funktionalitaet";
 $ignoreVal[6]="einsatzzweck";
+$ignoreVal[7]="Uplink Geschwindigkeit";
+$ignoreVal[8]="anzahl ports";
 
 //Sicherheits Bool Variable die es evtl. verhindert das die Attribute nicht in die Datenbank gelangen
 $safety_check_attr = false;

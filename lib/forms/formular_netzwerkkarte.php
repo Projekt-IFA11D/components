@@ -19,18 +19,18 @@
 
     <label for=""> Externe Schnittstelle:</label>
     <div class="radio">
-        <label><input type="radio" name="netzwerkkarte_attr_schnittstelle (extern)" value="rj45"> RJ45</label>
+        <label><input type="radio" name="netzwerkkarte_attr_schnittstellen (extern)" value="rj45"> RJ45</label>
     </div>    
     <div class="radio">
-        <label><input type="radio" name="netzwerkkarte_attr_schnittstelle (extern)" value="lwl"> LWL</label>
+        <label><input type="radio" name="netzwerkkarte_attr_schnittstellen (extern)" value="lwl"> LWL</label>
     </div>   
 
     <label for=""> Interne Schnittstelle:</label>
     <div class="radio">
-        <label><input type="radio" name="netzwerkkarte_attr_schnittstelle (intern)" value="pci"> PCI</label>
+        <label><input type="radio" name="netzwerkkarte_attr_schnittstellen (intern)" value="pci"> PCI</label>
     </div>    
     <div class="radio">
-        <label><input type="radio" name="netzwerkkarte_attr_schnittstelle (intern) value="pcie"> PCI-E</label>
+        <label><input type="radio" name="netzwerkkarte_attr_schnittstellen (intern)" value="pcie"> PCIe</label>
     </div>    
 
     <div class="form-group">
