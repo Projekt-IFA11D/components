@@ -5,7 +5,7 @@
     </div>
     <div class="col-sm-2 col-md-2 pull-right">
 	  <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Quick Search" name="srch-term" id="srch-term">
+        <input type="text" class="form-control" placeholder="Quick Filter" name="srch-term" id="srch-term">
       </form>
     </div>
   </div>
