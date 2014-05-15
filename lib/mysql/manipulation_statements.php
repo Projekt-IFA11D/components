@@ -50,8 +50,8 @@ function manipulation_statement($Type, $Form_Data) {
   }
 
   $table_key = preg_grep("/^[delete_|edit_].*/U", array_keys($Form_Data));
-  if(array_key_exists(0, $Form_Data)) {
-    $Index = preg_replace("/^.*_/U", "", $Form_Data[$table_key[0]]);
+  if(!empty($table_key)) {
+    $Index = preg_replace("/^.*-/U", "", $Form_Data[$table_key[0]]);
 
     // We need a dummy element in the array for the extraction of the table name
     if($Type=="Delete") {
@@ -76,9 +76,7 @@ function manipulation_statement($Type, $Form_Data) {
   $Statements = create_statement($Table_Columns, $Type, [$Index]);
   for($i=0;$i<$Anzahl;$i++) {
     foreach ($Statements as $Statement) {
-      var_dump($Statement);
       mysql_query($Statement);
-      print mysql_error();
     }
   }
 }
