@@ -85,13 +85,11 @@
 			break;
 
 			case 23:
-			require_once('lib/forms/form_bundle_pc.php');
-			//todo: Formular für Maus fehlt
+			require_once('lib/forms/formular_mouse.php');
 			break;
 
 			case 24:
-			require_once('lib/forms/form_bundle_pc.php');
-			//todo: Formular für Tastatur fehlt
+			require_once('lib/forms/tastatur.php');
 			break;
 			
 			case 25:
