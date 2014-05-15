@@ -32,7 +32,7 @@
 							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".move_component_modal">Verschieben</button>
 						</td>
 						<td class="col-md-1">
-							<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_components_modal"
+							<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_components_modal"
 							onclick="<?php echo('delete_components('.$component['k_id'].')') ?>">L&ouml;schen</button>
 						</td>
 					</tr>
@@ -40,4 +40,3 @@
 		?>
 	<table>
 </div>
-<script src="lib/page/componets/script.js"></script>

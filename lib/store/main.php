@@ -15,9 +15,10 @@
 			<th>Komponentenart</th>
 			<th></th>
 			<th></th>
+			<th></th>
 		</tr>
 		<?php
-			$components = select_statement("acquisitions"); //TODO: RAUM = neu
+			$components = select_statement("acquisitions");
 			foreach ($components as $component)
 			{ ?>
 					<tr>
@@ -32,7 +33,10 @@
 							onclick="<?php echo('edit_components($(this), '.$component['ka_id'].')') ?>">Details</button>
 						</td>
 						<td class="col-md-1">
-						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_room_components_modal"
+							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".move_component_modal">Verschieben</button>
+						</td>
+						<td class="col-md-1">
+							<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_component_modal"
 							onclick="<?php echo('delete_components('.$component['k_id'].')') ?>">L&ouml;schen</button>
 						</td>
 					</tr>

@@ -80,9 +80,9 @@
     elseif (isset($_GET['room_component']))
 	{
 		$page = $_GET['room_component'];
-		if (file_exists('lib/rooms/room_components.php'))
+		if (file_exists('lib/rooms.php'))
 		{
-			require_once('lib/rooms/room_components.php');
+			require_once('lib/rooms.php');
 		}
 	}
     elseif (isset($_GET['search']))
