@@ -1,7 +1,7 @@
 			
 <div class="row">
 	<div class="col-md-6">
-		<h1 class="page-header">Komponenten des Raumes <?php echo $_GET['room_component']?></h1>
+           <h1 class="page-header">Komponenten des Raumes <?php echo $_GET['room_component']?></h1>
 	</div>
 	<div class="col-md-6">
 		<button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target=".add_room_components_modal">Hinzuf&uuml;gen</button>
@@ -20,9 +20,10 @@
 		<th></th>
 		<th></th>
 		<?php
-			$room_components = complex_select_statement("components");
+		$room_components = complex_select_statement("components", $_GET["room_component"]);
 			foreach ($room_components as $room_component)
-			{ ?>
+			{ 
+			  var_dump($room_component);?>
 				<tr class="room_detailed_components" style="cursor: pointer;">
 					<td><?php echo($room_component['r_bezeichnung']) ?></td>
 					<td><?php echo($room_component['l_firmenname'])?></td>

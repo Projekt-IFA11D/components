@@ -77,7 +77,7 @@ function complex_select_statement($Table, $Index = 0) {
   $Statements_keyword = ["components" => "k_id", "main_components" => "k_id"];
   // Still needs the correct select statements for each table
   $Statements = ["components" => ["SELECT *
-FROM Komponenten Komp
+FROM komponenten Komp
 LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil
 WHERE KhK.komponenten_k_id_teil IS NULL AND raeume_r_id=$Index",
 
@@ -108,22 +108,6 @@ LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE komponen
 ORDER BY  `komponenten`.`k_id` ASC "
 ]];
 
-
-/*SELECT *
-FROM Komponenten Komp
-LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil
-WHERE KhK.komponenten_k_id_teil IS NULL*/
-
-
-  // Escape all special characters inside the string
-  // NEEDS TO BE REWRITTEN FOR NON ARRAYS
-  /*  if($Index!=0) {
-    $safe_Index = array();
-    foreach($Index as $unsafe_index) {
-      $safe_Index[] = sql_quote($unsafe_index);
-    }
-    } */
-  
   $Result = mysql_query($Statements[$Table][0]);
   while($Data[] = mysql_fetch_assoc($Result));
   array_pop($Data);
@@ -133,13 +117,14 @@ WHERE KhK.komponenten_k_id_teil IS NULL*/
     $Sub_Index="=".$piece[$Statements_keyword[$Table]];
     $tmp_Statement=str_replace("=".$Statements_keyword[$Table]."  ", $Sub_Index, $Statements[$Table][1]);
     $Sub_Result = mysql_query($tmp_Statement);
-	while($Sub_Data[] = mysql_fetch_assoc($Sub_Result));
+    while($Sub_Data[] = mysql_fetch_assoc($Sub_Result));
     array_pop($Sub_Data);
     $Data[$key][$Table] = $Sub_Data;
     unset($Sub_Data);
   }
-
+  
   mysql_close();
+  var_dump($Data);
   return nice_empty_values($Data);
   
 }
@@ -162,4 +147,5 @@ function nice_empty_values($Data) {
 
   return $nice_Data;
 }
+
 ?>
