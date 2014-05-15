@@ -107,7 +107,7 @@
 	}
 	elseif (isset($_GET['edit_supplier']))
 	{
-		manipulation_statement("Update", $_GET);
+	        complex_manipulation_statement($_GET);
 		require_once('lib/suppliers.php');
 	}
 	elseif (isset($_GET['delete_supplier']))

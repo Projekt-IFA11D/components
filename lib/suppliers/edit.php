@@ -8,7 +8,7 @@
 			</div>
 			<form class="form-horizontal" role="form">
 				<div class="modal-body">
-					<input type='hidden' class="supplier_s_id" name='raeume_r_id'>
+					<input type='hidden' class="supplier_s_id" id="edit-lieferant-l_id" name='lieferant-l_id'>
                     <div class="form-group">
                         <label for="edit-lieferant-l_firmenname" class="col-sm2 control-label">Firma</label>
                          <div class="col-sm-9">
