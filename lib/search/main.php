@@ -60,66 +60,79 @@
                         <div class='panel-heading'>
                             <h3 class='panel-title'>Hersteller</h3>
                         </div>
-                        <ul class='list-group'>";
-                        foreach($arr_hersteller as $h) {
-                            echo "<a href='#' class='list-group-item'>".print_data($h)."</a>"; 
-                        }
-        echo "          </ul>
+                        <ul class='list-group'>
+						<select multiple class='form-control' name='sel_hersteller[]' size='5' >"
+					      .print_data($arr_hersteller)."
+						</select>		
+                        </ul>
+                    </div>
+                </div>
+                <div class='col-md-2'>
+                    <div class='panel panel-primary'>
+                        <div class='panel-heading'>
+                            <h3 class='panel-title'>Raum</h3>
+                        </div>
+                        <ul class='list-group'>
+						<select multiple class='form-control' name='sel_raum[]' size='5' >"
+					      .print_data($arr_raum)."
+						</select>		
+                        </ul>
+                    </div>
+                </div>
+                <div class='col-md-2'>
+                    <div class='panel panel-primary'>
+                        <div class='panel-heading'>
+                            <h3 class='panel-title'>Kaufdatum</h3>
+                        </div>
+                        <ul class='list-group'>
+						<select multiple class='form-control' name='sel_kaufdatum[]' size='5' >"
+					      .print_data($arr_kaufdatum)."
+						</select>		
+                        </ul>
                     </div>
                 </div>
             </div>
+            <div class='row'>
+                <div class='col-md-2'>
+                    <div class='panel panel-primary'>
+                        <div class='panel-heading'>
+                            <h3 class='panel-title'>Gewaehrleistung</h3>
+                        </div>
+                        <ul class='list-group'>
+						<select multiple class='form-control' name='sel_gewaehrdauer[]' size='5' >"
+					      .print_data($arr_gewaehrdauer)."
+						</select>		
+                        </ul>
+                    </div>
+                </div>
+                <div class='col-md-2'>
+                    <div class='panel panel-primary'>
+                        <div class='panel-heading'>
+                            <h3 class='panel-title'>Lieferant</h3>
+                        </div>
+                        <ul class='list-group'>
+						<select multiple class='form-control' name='sel_lieferant[]' size='5' >"
+					      .print_data($arr_lieferant)."
+						</select>		
+                        </ul>
+                    </div>
+                </div>
+                <div class='col-md-2'>
+                    <div class='panel panel-primary'>
+                        <div class='panel-heading'>
+                            <h3 class='panel-title'>Notiz</h3>
+                        </div>
+                        <ul class='list-group'>
+						<select multiple class='form-control' name='sel_notiz[]' size='5' >"
+					      .print_data($arr_notiz)."
+						</select>		
+                        </ul>
+                    </div>
+                </div>
+            </div>
+			<input class='btn btn-primary' type='Submit' Name = 'submit' VALUE = 'Submit'>			
+			<input class='btn btn-danger' type='reset' Name = 'loeschen' VALUE = 'Loeschen'>			
         </div>
-
-			<table border = '0' cellpadding = '0' cellspacing='4'>
-				<tr>
-					<td width='200px'>Hersteller</td>
-					<td width='200px'>Raum</td>
-					<td width='200px'>Kaufdatum</td>
-					
-				</tr>
-				<tr>
-					<td>
-						<select name='sel_hersteller[]' size='5' multiple>"
-					      .print_data($arr_hersteller).
-						"</select>		
-					</td>			
-					<td>
-						<select name='sel_raum[]' size='5' multiple>"
- 					      .print_data($arr_raum).
-						"</select>		
-					</td>			
-					<td>
-						<select name='sel_kaufdatum[]' size='5' multiple>"
-   					     .print_data($arr_kaufdatum).
-						"</select>		
-					</td>    
-			</table>	
-				
-			<table border = '0' cellpadding = '0' cellspacing='4'>
-				<tr>
-					<td width='200px'>Gewährleistungdauer</td>
-					<td width='200px'>Lieferant</td>
-					<td width='200px'>Notiz</td>			
-				</tr>
-				<tr>						
-					<td>
-						<select name='sel_gewaehrdauer[]' size='5' multiple>"
- 					      .print_data($arr_gewaehrdauer).
-						"</select>		
-					</td>			
-					<td>
-						<select name='sel_lieferant[]' size='5' multiple>"
- 					      .print_data($arr_lieferant).
-						"</select>		
-					</td>			
-					<td>
-						<select name='sel_notiz[]' size='5' multiple>"
- 					      .print_data($arr_notiz).
-						"</select>		
-					</td>			
-				</tr>    
-			</table>
-			<input type = 'Submit' Name = 'submit' VALUE = 'Submit'>			
 		</form>";
 		
 	} /** end of create_search_mask */
