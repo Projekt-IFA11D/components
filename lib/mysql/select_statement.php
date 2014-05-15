@@ -104,8 +104,8 @@ FROM komponenten RIGHT JOIN raeume ON raeume_r_id=r_id
 INNER JOIN Komponentenarten ON komponentenarten_ka_id=ka_id 
 LEFT JOIN komponente_hat_attribute ON komponenten_k_id=k_id 
 LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id 
-LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE '".$Statements_keyword["components"]."'=
-ORDER BY  `komponenten`.`k_id` ASC"
+LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE komponenten_k_id_aggregat =".$piece[$Statements_keyword["components"]]." 
+ORDER BY  `komponenten`.`k_id` ASC "
 ]];
 
 

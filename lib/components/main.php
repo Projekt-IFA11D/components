@@ -17,7 +17,7 @@
 			<th></th>
 		<?php
 			$components = complex_select_statement('main_components');
-			//print_r($components);
+			print_r($components);
 			foreach ($components as $component)
 			{ ?>
 					<tr>
