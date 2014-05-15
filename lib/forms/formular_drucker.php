@@ -14,29 +14,32 @@
 
     <label for="name">Druckertyp: </label>
     <div class="radio">
-       <label><input type="radio" name="drucker_attr_typ" value="drucker_typ_tinte"> Tinte</label>
+       <label><input type="radio" name="drucker_attr_druckertyp" value="Tinte"> Tinte</label>
     </div>
     <div class="radio">
-       <label><input type="radio" name="drucker_attr_typ" value="drucker_typ_laser"> Laser</label>
+       <label><input type="radio" name="drucker_attr_druckertyp" value="Laser"> Laser</label>
     </div>
     <div class="radio">
-       <label><input type="radio" name="drucker_attr_typ" value="drucker_typ_nadel"> Nadel</label>
+       <label><input type="radio" name="drucker_attr_druckertyp" value="Nadel"> Nadel</label>
     </div>
 
     <label for="name">Druckerart: </label>
     <div class="radio">
-       <label><input type="radio" name="drucker_attr_art" value="drucker_art_farbe"> Farbe</label>
+       <label><input type="radio" name="drucker_attr_druckerart" value="Farbe"> Farbe</label>
     </div>
     <div class="radio">
-       <label><input type="radio" name="drucker_attr_art" value="drucker_art_sw"> Schwarz-Weiss</label>
+       <label><input type="radio" name="drucker_attr_druckerart" value="Schwarz-Weiss"> Schwarz-Weiss</label>
     </div>
 
     <label for="name"> </label>Anschluss-Art:
     <div class="checkbox">
-       <label><input type="checkbox" name="drucker_attr_schnittstellen (extern)" value="drucker_anschluss_lan"> LAN</label>
+       <label><input type="checkbox" name="drucker_attr_schnittstellen (extern)[]" value="LPT"> LPT</label>
     </div>
     <div class="checkbox">
-       <label><input type="checkbox" name="drucker_attr_schnittstellen (extern)" value="drucker_anschluss_usb"> USB</label>
+       <label><input type="checkbox" name="drucker_attr_schnittstellen (extern)[]" value="USB 2.0"> USB 2.0</label>
+    </div>
+    <div class="checkbox">
+       <label><input type="checkbox" name="drucker_attr_schnittstellen (extern)[]" value="USB 3.0"> USB 3.0</label>
     </div>
 
 
