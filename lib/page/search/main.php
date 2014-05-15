@@ -1,3 +1,4 @@
+
 <?php
 
 /*+--------------------------------------------------+*/
@@ -13,6 +14,7 @@
 /*|	Autor:											 |*/
 /*|	======											 |*/
 /*|	Maximilian Drescher								 |*/
+/*| bootstrap by Matthias Grießmeier                 |*/
 /*|													 |*/
 /*| Beschreibung:									 |*/
 /*|	=============									 |*/
@@ -50,7 +52,24 @@
 				$arr_notiz, $arr_lieferant, $arr_raum;
 		echo "
 		<h1> Suchfilter </h1><br><br><br>		
-		<form action='such_select.php' method='post'>			
+        <form action='such_select.php' method='post'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-md-2'>
+                    <div class='panel panel-primary'>
+                        <div class='panel-heading'>
+                            <h3 class='panel-title'>Hersteller</h3>
+                        </div>
+                        <ul class='list-group'>";
+                        foreach($arr_hersteller as $h) {
+                            echo "<a href='#' class='list-group-item'>".print_data($h)."</a>"; 
+                        }
+        echo "          </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 			<table border = '0' cellpadding = '0' cellspacing='4'>
 				<tr>
 					<td width='200px'>Hersteller</td>
