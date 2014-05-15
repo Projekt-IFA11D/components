@@ -27,7 +27,7 @@ $replace= array(" ");
 
 //WIP !! 
 /*TEST Array*/
-
+/*
 $_POST['anzahl'] = "1";
 $_POST['ram_attr_interne bezeichnung'] = "KVR";
 $_POST['ram_attr_speicherkapazität'] = "2GB";
@@ -63,7 +63,7 @@ $_POST['mainboard_main_einkaufsdatum'] ="15.05.2014";
 $_POST['mainboard_main_gewaehrleistungsdauer'] ="2";
 $_POST['mainboard_lieferant_lieferant'] ="HP";
 $_POST['mainboard_main_notiz'] ="Mainboard Test";
-
+*/
 
 /*
 echo"<pre>";
@@ -107,7 +107,7 @@ function prepareToSave()
     
     if($is_bundle)
     {
-        echo"<br /><h2>Komplettsystem</h2>";
+        //echo"<br /><h2>Komplettsystem</h2>";
         //Separiere PC vom Rest!
         $pc = $array['komplettsystem'];
         unset($array['komplettsystem']);
@@ -115,7 +115,7 @@ function prepareToSave()
     }
     else
     {
-        echo"<br /><h2>KEIN Komplettsystem</h2>";
+       // echo"<br /><h2>KEIN Komplettsystem</h2>";
         $teilkomponenten = $array;
     }
     
@@ -131,6 +131,11 @@ function prepareToSave()
         
         if($is_bundle)
         {
+        	//Sicherheits Bool Variable die es evtl. verhindert das die Attribute nicht in die Datenbank gelangen
+        	$safety_check_attr = false;
+        	//Handlervariable für die Trennzeichen
+        	$firstAttr=true;
+        	 
             $bundleID = createSingleComp($pc);
             createAggregation($bundleID,$compID,formDate($pc['main']['einkaufsdatum']));
         }
@@ -191,7 +196,7 @@ function rollback($cid)
     mysql_query($sql_compattr);
     mysql_query($sql_aggregat);
     
-    echo"<h1>ROLLBACK DURCHGEFÜHRT!";
+    //echo"<h1>ROLLBACK DURCHGEFÜHRT!";
 }
 
 
@@ -336,17 +341,17 @@ function createSingleComp($array)
         //Existiert der Lieferant? Ja => Liefert die ID zurück; Nein=> gibt false zurück
         if(!$lieferantID)
         {
-            echo"Lieferant existiert nicht!";
+            //echo"Lieferant existiert nicht!";
         }
         
         if(!$raumID)
         {
-            echo"Raum existiert nicht!";
+            //echo"Raum existiert nicht!";
         }
         
         if(!$komponentenartID)
         {
-            echo"Komponentenart existiert nicht!";
+            //echo"Komponentenart existiert nicht!";
         }
         
         
@@ -365,10 +370,10 @@ function createSingleComp($array)
                             k_hersteller='".mysql_real_escape_string($compData['main']['hersteller'])."',
                             komponentenarten_ka_id='".mysql_real_escape_string($komponentenartID)."'
                             ";
-        echo "<br /><br />".$sql_komponente;
+        //echo "<br /><br />".$sql_komponente;
         
         //Füge Komponente ein
-        mysql_query($sql_komponente) or die("Komponente konnte nicht eingetragen werden!<br /><b>SQL:</b>$sql_komponente<br />Fehler:".mysql_error());
+        mysql_query($sql_komponente);// or die("Komponente konnte nicht eingetragen werden!<br /><b>SQL:</b>$sql_komponente<br />Fehler:".mysql_error());
         
         //Hole die neue ID ab
         $NewCompID = mysql_insert_id();
@@ -417,14 +422,14 @@ function createSingleComp($array)
     }
     
     
-    echo "<br /><br />Attributstring: ".$sql_attr;
+    //echo "<br /><br />Attributstring: ".$sql_attr;
     
     //Wenn Sicherheitsvariable true ist, werden die Attribute hinzugefügt. Bei Fehler wird ein Rollback durchgeführt
     if($safety_check_attr)
     {
     	if(!mysql_query($sql_attr))
     	{
-    		echo"<br />Attribute nicht angelegt!<br />SQL: $sql_attr <br>".mysql_error();
+    		//echo"<br />Attribute nicht angelegt!<br />SQL: $sql_attr <br>".mysql_error();
     		
     		
     		rollback($NewCompID);
@@ -452,12 +457,12 @@ function attributManagement($attr,$val,$NewCompID,$sql_attr)
 	 
 	if(!$attrID)
 	{
-		echo "<br>Attribut '<b>$attr</b>' existiert nicht!";
+		//echo "<br>Attribut '<b>$attr</b>' existiert nicht!";
 	}
 
 	if(!$zwID)
 	{
-		echo "<br>Wert '<b>$val</b>' existiert nicht!";
+		//echo "<br>Wert '<b>$val</b>' existiert nicht!";
 	}
 	
 	 
