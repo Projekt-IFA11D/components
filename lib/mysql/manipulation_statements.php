@@ -81,11 +81,12 @@ function complex_manipulation_statement($Index, $Form_Data) {
 
   // Array of statements
   $Statements = ["A" => "B"];
-  mysql_query($Statements[$Index]];
+  mysql_query($Statements[$Index]);
 
 }
 
-function not_really_delete($Index) {
+function not_really_delete($Form_Data) {
+  $Index = $Form_Data[preg_grep("/^[delete_|edit_].*/U", array_keys($Form_Data));
   mysql_query("UPDATE komponenten SET raeume_r_id=8 WHERE $Index");
 }
 
