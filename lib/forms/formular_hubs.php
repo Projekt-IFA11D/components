@@ -25,17 +25,17 @@ echo "<table border = '1' cellpadding = '0' cellspacing='4'>
 
 		<tr>
 		<td align='right'>Interne Bezeichnung/Name: </td>
-		<td><input name='hub_attr_interne bezeichnung' type='text' size='30'></td>
+		<td><input name='hubs_attr_interne bezeichnung' type='text' size='30'></td>
 		</tr>
 
 		<tr>
 		<td align='right'>Anzahl Ports: </td>
-		<td><input name='hub_attr_Anzahl Ports' type='text' size='30'></td>
+		<td><input name='hubs_attr_Anzahl Ports' type='text' size='30'></td>
 		</tr>
 
 		<tr>
 		<td align='right'>Geschwindigkeit: </td>
-		<td><input name='hub_attr_uplink geschwindigkeit' type='text' size='30'></td>
+		<td><input name='hubs_attr_uplink geschwindigkeit' type='text' size='30'></td>
 		</tr>
 
 	  </table>";
