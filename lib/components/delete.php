@@ -1,5 +1,5 @@
 <!-- MODAL DELETE ROOM -->
-<div class="modal fade delete_room_components_modal">
+<div class="modal fade delete_component_modal">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
