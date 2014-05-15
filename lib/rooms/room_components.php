@@ -1,4 +1,6 @@
-<h1 class="page-header">Komponenten des Raumes <?php echo $_GET['room_component']?></h1>
+<h1 class="page-header">Komponenten des Raumes <?php $Data=mysql_query("Select r_nr FROM raeume WHERE r_id=".$_GET['room_component'].";");
+													 $raumid=mysql_fetch_assoc($Data);
+													 echo $raumid['r_nr'];?></h1>
 
 <div class="table table-responsive">
 	<table class="table table-striped">
