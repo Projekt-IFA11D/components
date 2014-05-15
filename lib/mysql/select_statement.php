@@ -104,7 +104,7 @@ FROM komponenten RIGHT JOIN raeume ON raeume_r_id=r_id
 INNER JOIN Komponentenarten ON komponentenarten_ka_id=ka_id 
 LEFT JOIN komponente_hat_attribute ON komponenten_k_id=k_id 
 LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id 
-LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE komponenten_k_id_aggregat =".$Statements_keyword["components"]." 
+LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE komponenten_k_id_aggregat =".$Statements_keyword["components"]."   
 ORDER BY  `komponenten`.`k_id` ASC "
 ]];
 
@@ -131,9 +131,9 @@ WHERE KhK.komponenten_k_id_teil IS NULL*/
   // Replacing the $Index with the actual condition
   foreach ($Data as $key => $piece) {
     $Sub_Index="=".$piece[$Statements_keyword[$Table]];
-    $tmp_Statement=str_replace("='".$Statements_keyword[$Table], $Sub_Index, $Statements[$Table][1]);
+    $tmp_Statement=str_replace("=".$Statements_keyword[$Table]."  ", $Sub_Index, $Statements[$Table][1]);
     $Sub_Result = mysql_query($tmp_Statement);
-    while($Sub_Data[] = mysql_fetch_assoc($Sub_Result));
+	while($Sub_Data[] = mysql_fetch_assoc($Sub_Result));
     array_pop($Sub_Data);
     $Data[$key][$Table] = $Sub_Data;
     unset($Sub_Data);
