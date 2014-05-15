@@ -131,10 +131,15 @@
 		complex_manipulation_statement($_GET);
 		require_once('lib/suppliers.php');
 	}
-	elseif (isset($_GET['edit_component']))
+        elseif (isset($_GET['edit_component']))
 	{
 		manipulation_statement("Update", $_GET);
 	}
+        elseif (isset($_GET['delete_sub_component']))
+        {
+	        not_really_delete($_GET, 1);
+		require_once('lib/components.php');
+        }
 	elseif (isset($_GET['delete_component']))
 	{
 		not_really_delete($_GET);

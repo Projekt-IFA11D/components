@@ -167,13 +167,18 @@ function extract_plz_suppliers($Data) {
 }
 
 // "Delete" function for components
-function not_really_delete($Form_Data) {
+function not_really_delete($Form_Data, $Is_Sub = 0) {
 
   $Room_Result = mysql_query("SELECT r_id FROM raeume WHERE r_nr=\"deleted\"");
   $Room = mysql_fetch_row($Room_Result);
   $Index = $Form_Data["delete_component"];
   $Index = preg_replace("/^.*-/U", "", $Index);
   mysql_query("UPDATE komponenten SET raeume_r_id='".$Room[0]."' WHERE $Index");
+
+  // Subcomponents should lose their reference
+  if($Is_Sub==1) {
+    mysql_query("DELETE From komponente_hat_komponente WHERE komponenten_k_id_teil=".$Index);
+  }
 }
 
 ?>
