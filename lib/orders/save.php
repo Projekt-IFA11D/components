@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 mysql_connect("localhost","root","") or die(mysql_Error());
 mysql_select_db("itv_v1") or die(mysql_Error());
 header("Content-Type: text/html; charset=utf-8");
@@ -96,11 +96,11 @@ function prepareToSave()
     {    
             $array = splitSortInput($key,$value,$array);
     }
-    
+    /*
     echo"<pre>";
     print_r($array);
     echo"</pre>";
-    
+    */
     //Überprüfe ob es sich um ein Komplettsystem handelt
     $is_bundle=checkForBundle($array);
     
@@ -141,6 +141,8 @@ function prepareToSave()
         }
         
     }
+    
+    echo"<center><h2>Komponente gespeichert .... oder vielleicht auch nicht ...</h2></center>";
 }
 
 
