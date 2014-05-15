@@ -27,7 +27,7 @@ $replace= array(" ");
 
 //WIP !! 
 /*TEST Array*/
-/*
+
 $_POST['anzahl'] = "1";
 $_POST['ram_attr_interne bezeichnung'] = "KVR";
 $_POST['ram_attr_speicherkapazität'] = "2GB";
@@ -41,8 +41,7 @@ $_POST['ram_main_notiz'] = "Nigelnagel neu";
 $_POST['ram_raeume_raum'] = "r001";
 
 $_POST['ram_lieferant_lieferant'] = "Lenovo";
-*/
-/*
+
 $_POST['anzahl'] ="1";
 $_POST['mainboard_attr_interne_bezeichnung'] ="Asus";
 $_POST['mainboard_attr_sockel'] ="ATX";
@@ -64,7 +63,7 @@ $_POST['mainboard_main_einkaufsdatum'] ="15.05.2014";
 $_POST['mainboard_main_gewaehrleistungsdauer'] ="2";
 $_POST['mainboard_lieferant_lieferant'] ="HP";
 $_POST['mainboard_main_notiz'] ="Mainboard Test";
-*/
+
 
 /*
 echo"<pre>";
