@@ -27,7 +27,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal" 
-						onclick="room_submit($(this), 'edit_room')">Hinzuf&ueml;gen</button>
+						onclick="room_submit($(this), 'edit_room')">Absenden</button>
 				</div>
 			</form>
 		</div>
