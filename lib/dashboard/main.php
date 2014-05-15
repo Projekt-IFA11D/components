@@ -7,7 +7,7 @@
 <h1 class="page-header">Dashboard</h1>
 
 <p class="lead">
-	Wilkommen, aktuell können wir folgende Statistik vorweisen:
+	Willkommen, aktuell können wir folgende Statistik vorweisen:
 </p>
 
 <div class="table table-responsive">
