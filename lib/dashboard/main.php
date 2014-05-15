@@ -19,11 +19,11 @@
 				<td><?php echo($rooms) ?></td>
 			</tr>
 			<tr>
-				<td>Lieferranten</td>
+				<td>Lieferanten</td>
 				<td><?php echo($suppliers) ?></td>
 			</tr>
 			<tr>
-				<td>Komboneneten</td>
+				<td>Komponenten</td>
 				<td><?php echo($components) ?></td>
 			</tr>
 	<table>
