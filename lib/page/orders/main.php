@@ -4,9 +4,9 @@
 	<h2 class="sub-header">Auswahl der Komponente</h2>
 	<select id="c_type" class="form-control">
 		<option id="" value="">Bitte Komponente ausw&auml;hlen</option>
-		<option id="bundle" value="pc">Komplett PC</option>
+		<option id="bundle" value="komplettsystem">Komplett PC</option>
 		<option id="single" value="ram">Arbeitsspeicher</option>
-		<option id="single" value="cpu">Prozessor</option>
+		<option id="single" value="prozessor">Prozessor</option>
 		<option id="single" value="mainboard">Mainboard</option>
 		<option id="single" value="festplatte">Festplatte</option>
 		<option id="single" value="grafikkarte">Grafikkarte</option>

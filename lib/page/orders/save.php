@@ -74,8 +74,8 @@ function prepareToSave()
     {
         echo"<br /><h2>Komplettsystem</h2>";
         //Separiere PC vom Rest!
-        $pc = $array['pc'];
-        unset($array['pc']);
+        $pc = $array['komplettsystem'];
+        unset($array['komplettsystem']);
         $teilkomponenten = $array;
     }
     else
