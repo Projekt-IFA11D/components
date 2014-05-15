@@ -27,9 +27,7 @@
 		}
 		elseif($wiz == "save")
 		{
-			echo"<pre>";
-                print_r($_POST);
-            echo"</pre>";
+			require_once('lib/page/orders/save.php');
             
 		}
 		else

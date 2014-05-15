@@ -9,13 +9,14 @@ $ignoreVal[0]="taktfrequenz";
 $ignoreVal[1]="notiz";
 $ignoreVal[2]="interne bezeichnung";
 
+
 //Patterns für str_replace
 $search = array(" ");
 $replace= array(" ");
 
 //WIP !! 
 /*TEST Array*/
-
+/*
 $_POST['anzahl'] = "1";
 $_POST['ram_attr_interne bezeichnung'] = "KVR";
 $_POST['ram_attr_speicherkapazität'] = "2GB";
@@ -29,7 +30,7 @@ $_POST['ram_main_notiz'] = "Nigelnagel neu";
 $_POST['ram_raeume_raum'] = "r001";
 
 $_POST['ram_lieferant_lieferant'] = "Lenovo";
-
+*/
 
 echo"<pre>";
     print_r($_POST);
@@ -309,7 +310,7 @@ function createSingleComp($array)
                             k_hersteller='".mysql_real_escape_string($compData['main']['hersteller'])."',
                             komponentenarten_ka_id='".mysql_real_escape_string($komponentenartID)."'
                             ";
-        echo "<br /><br />".$sql_komponente;
+        //echo "<br /><br />".$sql_komponente;
         
         //Füge Komponente ein
         mysql_query($sql_komponente) or die("Komponente konnte nicht eingetragen werden!<br /><b>SQL:</b>$sql_komponente<br />Fehler:".mysql_error());
@@ -325,16 +326,25 @@ function createSingleComp($array)
         //Sicherheits Bool Variable die es evtl. verhindert das die Attribute nicht in die Datenbank gelangen
         $safety_check_attr = false;
         
-         $firstAttr=true;
+        //Handlervariable für die Trennzeichen
+        $firstAttr=true;
+         
         //Gehe alle Attribute der Komponente durch
         foreach($compData['attr'] AS $attr=>$val)
         {
+        	//Hole Attributs ID. Wenn kein Attribut vorhanden, dann wird false zurückgegeben
             $attrID = getAttrID($attr);
+            
+            //Es wird nachgeschaut ob der Attributswert zulässig ist
             $zwID = getAttrValID($val);
            
             
+            if(!$attrID AND $attr =="")
+            {
+            	echo "<br>Attribut '<b>$attr</b>' existiert nicht!";
+            }
             
-            
+                                    
             //Prüfe ob Wert Validierung nichtig ist
             if(in_array(strtolower($attr),$ignoreVal))
             {
@@ -348,6 +358,7 @@ function createSingleComp($array)
             //Wenn Attribut ID true und Wert Zulässig ODER Attributwert Whitelisted ist wird der String fortgeführt  
             if($attrID && ($zwID || $ignore))
             {
+            	//Handler ab wann ein Komma in den String eingefügt wird.
                 if($firstAttr)
                 {
                     $firstAttr=false;
@@ -357,7 +368,7 @@ function createSingleComp($array)
                     $firstAttr=false;
                     $sql_attr .= " , ";
                 }
-                
+                //Es werden die Values hinzugefügt Komponenten ID, Attributs ID und Attributswert
                 $sql_attr .= " ('".$NewCompID."','".$attrID."','".mysql_real_escape_string($val)."') ";
                 
                 //Da min 1 Datensatz eingefügt wird, wird die Sicherheitsvariable auf true gesetzt
