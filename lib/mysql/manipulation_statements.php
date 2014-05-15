@@ -124,9 +124,11 @@ function manip_add_supplier($Data) {
 }
 
 function not_really_delete($Form_Data) {
+  $Room_Result = mysql_query("SELECT r_id FROM raeume WHERE r_nr=\"deleted\"");
+  $Room = mysql_fetch_row($Room_Result);
   $Index = $Form_Data["delete_component"];
   $Index = preg_replace("/^.*-/U", "", $Index);
-  mysql_query("UPDATE komponenten SET raeume_r_id=8 WHERE $Index");
+  mysql_query("UPDATE komponenten SET raeume_r_id='".$Room[0]."' WHERE $Index");
 }
 
 ?>
