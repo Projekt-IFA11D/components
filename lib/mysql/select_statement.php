@@ -121,7 +121,7 @@ ORDER BY  komponenten.k_id ASC"
     $Sub_Index="=".$piece[$Statements_keyword[$Table]];
     $tmp_Statement=str_replace("=".$Statements_keyword[$Table]."  ", $Sub_Index, $Statements[$Table][1]);
     $Sub_Result = mysql_query($tmp_Statement);
-	echo mysql_error();
+	//echo mysql_error();
     while($Sub_Data[] = mysql_fetch_assoc($Sub_Result));
     array_pop($Sub_Data);
     $Data[$key][$Table] = $Sub_Data;
