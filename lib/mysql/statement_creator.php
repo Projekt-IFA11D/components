@@ -1,13 +1,23 @@
 <?php
 /*
- * Statement creator for DELETE, INSERT and UPDATE
- * @author = Kilian Petsch 
- * @date = 2014-05-12
- * Create sql statements
+
+  Modulname:
+  ==========
+  statement_creator.php
+
+  Version:
+  ========
+  1.0
+
+  Autor:
+  ======
+  Kilian Petsch
+
+  Beschreibung:
+  =============
+  Statement creator for DELETE, INSERT and UPDATE
 */
 
-// Expects Values to follow $Values[TABLE]=[COLUMNS => VALUES]
-// Expects Index to contain key for WHERE condition
 // Build an SQL statement for data manipulation
 function create_statement($Values, $Type, $Index) {
 

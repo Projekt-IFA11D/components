@@ -1,8 +1,20 @@
 <?php
-/* 
- * Handler for manipulation statements
- * @author = Kilian Petsch
- * @date = 2014-05-12
+/*
+  Modulname:
+  ==========
+  manipulation_statements.php
+
+  Version:
+  ========
+  1.0
+
+  Autor:
+  ======
+  Kilian Petsch
+
+  Beschreibung:
+  ============
+  Handler for manipulation statements
 */
 
 // Split the form names into their respective tables and columns
