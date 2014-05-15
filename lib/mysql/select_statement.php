@@ -62,12 +62,26 @@ function complex_select_statement($Table, $Index = 0) {
   $Sub_Data = array();
   $Sub_Index = "";
   // Contains the keyword/column which is used for the second query
-  $Statements_keyword = ["components" => "k_id"];
+  $Statements_keyword = ["components" => "k_id", "main_components" => "k_id"];
   // Still needs the correct select statements for each table
   $Statements = ["components" => ["SELECT *
 FROM Komponenten Komp
 LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil
 WHERE KhK.komponenten_k_id_teil IS NULL AND raeume_r_id=$Index",
+
+"SELECT r_nr as RaumNr ,r_bezeichnung,k_id,ka_komponentenart,kat_beschreibung,khkat_wert, (SELECT KA.ka_komponentenart FROM komponenten K 
+INNER JOIN komponentenarten KA ON K.komponentenarten_ka_id=KA.ka_id WHERE K.k_id=komponenten_k_id_aggregat) as AggregatBez,komponenten_k_id_aggregat as AggregatNr 
+FROM komponenten RIGHT JOIN raeume ON raeume_r_id=r_id 
+INNER JOIN Komponentenarten ON komponentenarten_ka_id=ka_id 
+LEFT JOIN komponente_hat_attribute ON komponenten_k_id=k_id 
+LEFT JOIN komponentenattribute ON kat_id=komponentenattribute_kat_id 
+LEFT JOIN komponente_hat_komponente ON komponenten_k_id_teil=k_id WHERE '".$Statements_keyword["components"]."'=
+ORDER BY  `komponenten`.`k_id` ASC"
+],
+"main_components" => ["SELECT *
+FROM Komponenten Komp
+LEFT JOIN komponente_hat_komponente KhK ON Komp.k_id = KhK.komponenten_k_id_teil
+WHERE KhK.komponenten_k_id_teil IS NULL",
 
 "SELECT r_nr as RaumNr ,r_bezeichnung,k_id,ka_komponentenart,kat_beschreibung,khkat_wert, (SELECT KA.ka_komponentenart FROM komponenten K 
 INNER JOIN komponentenarten KA ON K.komponentenarten_ka_id=KA.ka_id WHERE K.k_id=komponenten_k_id_aggregat) as AggregatBez,komponenten_k_id_aggregat as AggregatNr 

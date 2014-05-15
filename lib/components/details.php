@@ -8,6 +8,7 @@
 
 	if(!empty ($_GET["component"]))
 	{
+		print_r($_GET['component']);
 		switch ($_GET["component"])
 		{
 			case 1:
