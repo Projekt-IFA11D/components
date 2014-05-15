@@ -85,6 +85,13 @@
 			require_once('lib/rooms/room_components.php');
 		}
 	}
+    elseif (isset($_GET['search']))
+	{
+		if (file_exists('lib/search/search_handler.php'))
+		{
+			require_once('lib/search/search_handler.php');
+		}
+	}
     elseif (isset($_GET['component']))
 	{
 		$page = $_GET['component'];
