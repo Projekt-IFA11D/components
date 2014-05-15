@@ -11,7 +11,7 @@
 	}
 	elseif (isset($_GET['wizzard']))
 	{
-		$wiz = $_GET['wizzard'];
+    	$wiz = $_GET['wizzard'];
 		$type = $_GET['type'];
 		if ($wiz == 'bundle')
 		{
@@ -38,11 +38,11 @@
 			echo "<input class='form-control' type='text' name='anzahl' value='1' style='width:10%'>";
 			if(isset($_POST['form']) && is_array($_POST['form']))
 			{
-				
+				/*
 				echo"<pre>";
 					print_r($_POST);
 				echo"</pre>";
-                
+                */
                 echo"<table border='0'>";
 
                 echo"<tr>";
