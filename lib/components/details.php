@@ -13,6 +13,7 @@
 			<th>Wert</th>
 			<th>Aggregatbez.</th>
 			<th></th>
+			<th></th>
 		<?php
 			$k_id= ($_GET["component"]);
 			$components = complex_select_statement('main_components');
@@ -31,15 +32,11 @@
 							<td><?php echo($subcomponent['khkat_wert'])?></td>
 							<td><?php echo($subcomponent['AggregatBez'])?></td>
 							<td class="col-md-1">
-<<<<<<< Updated upstream
-								<button type="button" class="btn btn-primary btn-xs"
-								onclick="<?php echo('edit_components($(this), '.$component['ka_id'].')') ?>">Editieren</button>
-			</td><td>
 								<button type="button" class="btn btn-danger btn-xs"
-					    onclick="<?php echo('delete_sub_components($(this), '.$component['ka_id'].')') ?>">L&ouml;schen</button>
-=======
+									onclick="<?php echo('delete_sub_components($(this), '.$component['ka_id'].')') ?>">L&ouml;schen</button>
+							</td>
+							<td>
 								<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".edit_sub_component_modal">Editieren</button>
->>>>>>> Stashed changes
 							</td>
 						</tr>
 			<?php
