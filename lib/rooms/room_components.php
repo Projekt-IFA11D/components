@@ -13,7 +13,7 @@
 			<th></th>
 			<th></th>
 		<?php
-			$components = complex_select_statement('main_components', $_GET['room_component']);
+			$components = complex_select_statement('components', $_GET['room_component']);
 			foreach ($components as $component)
 			{ ?>
 					<tr>
