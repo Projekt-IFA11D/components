@@ -78,6 +78,7 @@
 
 <h1 class="page-header">Suchfilter</h1>
 <form> 
+   <input type="hidden" value="" name="skip"> 
     <div class='container'>
         <div class='row'>
             <div class='col-md-2'>
@@ -86,7 +87,7 @@
                         <h3 class='panel-title'>Hersteller</h3>
                     </div>
                     <ul class='list-group'>
-                        <select multiple class='form-control' name='sel_hersteller[]' size='5' >"
+                        <select multiple='multiple' class='form-control' name='sel_hersteller[]' size='5' >"
 					        <?php print_data("hersteller") ?>
                         </select>		
                     </ul>
@@ -155,7 +156,7 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary"  onclick="search_submit($(this))">Hinzu&uuml;en</button>
+        <button type="button" class="btn btn-primary"  onclick="search_submit($(this))">Suchen</button>
         <input class='btn btn-danger' type='reset' Name = 'loeschen' VALUE = 'L&ouml;schen'>			
     </div>
 </form>
