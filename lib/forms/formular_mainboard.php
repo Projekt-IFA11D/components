@@ -33,16 +33,16 @@
     </div>
     <label for="name">Onboard-Funktionalitaet: </label>
     <div class="checkbox">
-       <label><input type="checkbox" id="mb_grafik" name="mainboard_attr_onboard-funktionalitaet[]" value=""> Grafik</label>
+       <label><input type="checkbox" id="mb_grafik" name="mainboard_attr_onboard-funktionalitaet[]" value="Grafikkarte"> Grafik</label>
     </div>
     <div class="checkbox">
-       <label><input type="checkbox" id="mb_nic" name="mainboard_attr_onboard-funktionalitaet[]" value="mb_nic"> NIC</label>
+       <label><input type="checkbox" id="mb_nic" name="mainboard_attr_onboard-funktionalitaet[]" value="Netzwerk"> NIC</label>
     </div>
     <div class="checkbox">
-       <label><input type="checkbox" id="mb_wol" name="mainboard_attr_onboard-funktionalitaet[]" value="mb_wol"> WakeOnLAN</label>
+       <label><input type="checkbox" id="mb_wol" name="mainboard_attr_onboard-funktionalitaet[]" value="Wake on Lan"> WakeOnLAN</label>
     </div>
     <div class="checkbox">
-       <label><input type="checkbox" id="mb_raidctrl" name="mainboard_attr_onboard-funktionalitaet[]" value="mb_raidctrl"> Raidcontroller</label>
+       <label><input type="checkbox" id="mb_raidctrl" name="mainboard_attr_onboard-funktionalitaet[]" value="Raidcontroller"> Raidcontroller</label>
     </div>
     <label for="name">Interne Schnittstellen: </label>
     <div class="checkbox">
@@ -54,10 +54,10 @@
 
     <label for="name">Externe Schnittstellen: </label>
     <div class="checkbox">
-       <label><input type="checkbox" name="mainboard_attr_schnittstellen (extern)[]" id="mb_ext_if" value="mb_ext_if_usb_2"> USB 2.0</label>
+       <label><input type="checkbox" name="mainboard_attr_schnittstellen (extern)[]" id="mb_ext_if" value="USB 2.0"> USB 2.0</label>
     </div>
     <div class="checkbox">
-       <label><input type="checkbox" name="mainboard_attr_schnittstellen (extern)[]" id="mb_ext_if" value="mb_ext_if_usb_3"> SAS</label>
+       <label><input type="checkbox" name="mainboard_attr_schnittstellen (extern)[]" id="mb_ext_if" value="USB 3.0"> USB 3.0</label>
     </div>
 
 </form>
