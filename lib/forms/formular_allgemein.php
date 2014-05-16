@@ -31,14 +31,20 @@ function form_general($type)
                     <input type='text' class='form-control' name='".$type."_main_hersteller'>
                 </div>
             </div>
-
-            <div class='form-group'>
-            <label for='".$type."_main_raum' class='col-sm1'>Raum</label>
-                <div class='col-sm-7'>
-                    <input type='text' class='form-control' name='".$type."_main_raum'>
-                </div>
-            </div>
-
+			
+            ";
+    		if(!isset($_GET['wizzard']))
+    		{
+    			echo"
+		            <div class='form-group'>
+		            <label for='".$type."_main_raum' class='col-sm1'>Raum</label>
+		                <div class='col-sm-7'>
+		                    <input type='text' class='form-control' name='".$type."_main_raum'>
+		                </div>
+		            </div>
+                 ";
+    		}
+    		echo"
             <div class='form-group'>
             <label for='".$type."_main_einkaufsdatum' class='col-sm1'>Kaufdatum</label>
                 <div class='col-sm-7'>
@@ -56,7 +62,19 @@ function form_general($type)
             <div class='form-group'>
             <label for='".$type."_main_lieferant' class='col-sm1'>Lieferant</label>
                 <div class='col-sm-7'>
-                    <input type='text' class='form-control' name='".$type."_main_lieferant'>
+            		<select id='".$type."_main_lieferant' class='form-control' name='".$type."_main_lieferant' size='1'>
+				";
+    				$sql_sups = "SELECT l_firmenname FROM lieferant ORDER BY l_firmenname ASC";
+    				$query_sups = mysql_query($sql_sups);
+    				while($l = mysql_fetch_assoc($query_sups))
+    				{
+						echo "<option value='".$l['l_firmenname']."'>".$l['l_firmenname']."</option>";
+    				}
+    				
+    				//<input type='text' class='form-control' name='".$type."_main_lieferant'>
+            		echo "
+            			</select>
+            		
                 </div>
             </div>
 
