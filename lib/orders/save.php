@@ -1,6 +1,6 @@
 <?php
-error_reporting(0);
-mysql_connect("localhost","root","") or die(mysql_Error());
+error_reporting(E_ALL);
+mysql_connect("localhost","root","linux") or die(mysql_Error());
 mysql_select_db("itv_v1") or die(mysql_Error());
 header("Content-Type: text/html; charset=utf-8");
 mysql_query("SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'");
@@ -95,6 +95,7 @@ function prepareToSave()
     foreach($_POST AS $key=>$value)
     {    
             $array = splitSortInput($key,$value,$array);
+			
     }
     /*
     echo"<pre>";
@@ -246,7 +247,7 @@ function splitSortInput($key,$value,$array)
 	}
 	
     $array[$comp][$section][$attr]=$value;
-	
+    $array[$comp]['raeume']['raum']="new";
 	return $array;
 	
 }
@@ -337,7 +338,7 @@ function createSingleComp($array)
     foreach($array AS $component=>$compData)
     {
         
-        $lieferantID = getSupplierID($compData['lieferant']['lieferant']);
+        $lieferantID = getSupplierID($compData['main']['lieferant']);
         $raumID = getRoomID($compData['raeume']['raum']);
         $komponentenartID = getCompTypeID($component);
         //Existiert der Lieferant? Ja => Liefert die ID zurück; Nein=> gibt false zurück
@@ -367,7 +368,7 @@ function createSingleComp($array)
                             lieferant_l_id='".mysql_real_escape_string($lieferantID)."',
                             raeume_r_id='2',
                             k_einkaufsdatum='".$datum."',
-                            k_gewaehrleistungsdauer='".mysql_real_escape_string($compData['main']['gewaehrleistungsdauer'])."',
+                            k_gewaehrleistungsdauer='".mysql_real_escape_string($compData['main']['gewaehrleistung'])."',
                             k_notiz='".mysql_real_escape_string($compData['main']['notiz'])."',
                             k_hersteller='".mysql_real_escape_string($compData['main']['hersteller'])."',
                             komponentenarten_ka_id='".mysql_real_escape_string($komponentenartID)."'
