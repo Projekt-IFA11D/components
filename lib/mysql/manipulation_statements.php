@@ -133,6 +133,7 @@ function manip_edit_component($Data) {
   $First_Column_Name = preg_replace("/^.*-/U", "", preg_replace("/=.*$/U", "", $First_Column));
   $First_Column_Value = preg_replace("/^.*=/U", "", $First_Column);
   $Table_Columns["komponenten"][$First_Column_Name[""]] = $First_Column_Value[""];
+  $Table_Columns["komponenten"]["raeume_r_id"] = mysql_query("SELECT r_id FROM raeume WHERE r_nr=".$Table_Columns["raeume"]["r_nr"]);
   // Remove unneccessary arrays from the form data
   unset($Table_Columns[$Type[0]]);
   unset($Table_Columns["_"]);
