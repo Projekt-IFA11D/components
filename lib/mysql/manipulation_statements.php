@@ -126,19 +126,22 @@ function manip_edit_component($Data) {
   $Table_Columns = read_column_names($Data);  
 
   $Type = preg_grep("/^[add_|edit_].*/U", array_keys($Data));
-  $First_Column = $Table_Columns[$Type[0]];
-  
+  $First_Column = $Table_Columns["move_component"][""];
+
   // The first column is not in the same array as the rest of them,
   // so we need to move it
   $First_Column_Name = preg_replace("/^.*-/U", "", preg_replace("/=.*$/U", "", $First_Column));
   $First_Column_Value = preg_replace("/^.*=/U", "", $First_Column);
-  $Table_Columns["komponenten"][$First_Column_Name[""]] = $First_Column_Value[""];
+  $Table_Columns["komponenten"][$First_Column_Name] = $First_Column_Value;
+  $Res = mysql_query("SELECT r_id FROM raeume WHERE r_nr='".$Table_Columns["komponenten"]["r_nr"]."'");
+  $Table_Columns["komponenten"]["raeume_r_id"] = mysql_fetch_row($Res)[0];
   // Remove unneccessary arrays from the form data
   unset($Table_Columns[$Type[0]]);
   unset($Table_Columns["_"]);
 
   $k_Data = $Table_Columns["komponenten"];
-  $Statement="UPDATE komponenten LEFT JOIN komponente_hat_komponente ON komponenten.k_id=komponente_hat_komponente.komponenten_k_id_teil SET komponenten.raeume_r_id=".$k_Data["raeume_r_id"]." WHERE k_id=".$K_Data["k_id"]." or komponente_hat_komponente.komponenten_k_id_aggregat=".$K_Data["k_id"];
+  $Statement="UPDATE komponenten LEFT JOIN komponente_hat_komponente ON komponenten.k_id=komponente_hat_komponente.komponenten_k_id_teil SET komponenten.raeume_r_id=".$k_Data["raeume_r_id"]." WHERE k_id=".$k_Data["k_id"]." or komponente_hat_komponente.komponenten_k_id_aggregat=".$k_Data["k_id"];
+  mysql_query($Statement);
   //$Statement = "UPDATE komponenten SET raeume_r_id=".$k_Data["raeume_r_id"]." WHERE k_id=".$K_Data["k_id"];
   
 }

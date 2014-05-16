@@ -31,7 +31,8 @@
 							onclick="<?php echo('edit_components($(this), '.$component['k_id'].')') ?>">Details</button>
 						</td>
 						<td class="col-md-1">
-							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".move_component_modal">Verschieben</button>
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".move_component_modal"
+                             onclick="<?php echo('move_components('.$component['k_id'].')') ?>">Verschieben</button>
 						</td>
 						<td class="col-md-1">
 							<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_components_modal"

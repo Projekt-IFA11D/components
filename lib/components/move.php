@@ -6,11 +6,11 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title">Komponente verschieben</h4>
 			</div>
-			<div class="modal-body">
+			<form method="POST">
+				<div class="modal-body">
 					<label>In welchen Raum wollen Sie die Komponente verschieben?</label>
 					<input type="text" class="form-control" id="move-raeume-r_nr" name="raeume-r_nr"></input>
-			</div>
-			<form method="POST">
+				</div>
 				<div class="modal-footer">
 					<input type='hidden' id="move-komponenten-k_id" name='komponenten-k_id'>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
