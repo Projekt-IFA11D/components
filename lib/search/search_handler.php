@@ -80,14 +80,14 @@
 ?>
 						<td class="col-md-1">
 							<button type="button" class="btn btn-primary btn-xs"
-							onclick="<?php echo('edit_components($(this), '.$component['k_id'].')') ?>">Details</button>
+							onclick="<?php echo('edit_components($(this), '.$result[$i]['k_id'].')'); ?>">Details</button>
 						</td>
 						<td class="col-md-1">
 							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".move_component_modal">Verschieben</button>
 						</td>
 						<td class="col-md-1">
 							<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target=".delete_component_modal"
-							onclick="<?php echo('delete_components('.$component['k_id'].')') ?>">L&ouml;schen</button>
+							onclick="<?php echo('delete_components('.$result[$i]['k_id'].')'); ?>">L&ouml;schen</button>
 						</td>
 <?php					
                         echo "</tr>";
