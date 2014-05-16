@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-2">
-		<h1 class="page-header">Neubeschaffungen</h1>
+		<h1 class="page-header">Lager</h1>
 	</div>
 </div>
 
