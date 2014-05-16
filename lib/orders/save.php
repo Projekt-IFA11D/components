@@ -365,7 +365,7 @@ function createSingleComp($array)
         //Statement Komponente montieren
         $sql_komponente = "INSERT INTO komponenten SET 
                             lieferant_l_id='".mysql_real_escape_string($lieferantID)."',
-                            raeume_r_id='".mysql_real_escape_string($raumID)."',
+                            raeume_r_id='2',
                             k_einkaufsdatum='".$datum."',
                             k_gewaehrleistungsdauer='".mysql_real_escape_string($compData['main']['gewaehrleistungsdauer'])."',
                             k_notiz='".mysql_real_escape_string($compData['main']['notiz'])."',

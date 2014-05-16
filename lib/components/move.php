@@ -8,7 +8,7 @@
 			</div>
 			<div class="modal-body">
 					<label>In welchen Raum wollen Sie die Komponente verschieben?</label>
-					<input class="form-control" id="i_move_component" name="i_move_component" size="20" type="text"></input>
+					<input type="text" class="form-control" id="move-raeume-r_nr" name="raeume-r_nr"></input>
 			</div>
 			<form method="POST">
 				<div class="modal-footer">
