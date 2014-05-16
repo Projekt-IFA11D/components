@@ -149,6 +149,11 @@
 	{
 		manipulation_statement("Insert", $_GET);
 	}
+	elseif (isset($_GET['move_component']))
+	{
+		manip_edit_component($_GET);
+		require_once('lib/components.php');
+	}
 	else
 	{
 	  echo('Page not found!');
